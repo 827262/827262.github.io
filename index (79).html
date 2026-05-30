@@ -1,0 +1,1946 @@
+<html lang="zh-CN" class="bg-[#FFFFFF] text-[#525252] overflow-x-hidden select-none"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IN CHINA+ | 中国产业深度探访专家</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bgDeep: '#FFFFFF',
+                        bgSlate: '#FFFFFF',
+                        jade: '#525252',
+                        techBlue: '#4f7cff',
+                        easternGold: '#c6a56b',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', 'PingFang SC', sans-serif; }
+        ::-webkit-scrollbar { display: none; }
+        html { scroll-behavior: smooth; }
+        .noise-bg {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+        }
+        .layer-blur { filter: blur(40px); mix-blend-mode: screen; }
+        .map-container { min-height: 600px; }
+        .info-container { max-height: 600px; }
+        .animate-fadeIn { animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-primary {
+            @apply bg-techBlue text-white px-6 py-3 rounded-lg hover:bg-techBlue/90 transition-all duration-300 font-bold;
+        }
+        * {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* 高端全屏透明毛玻璃导航 */
+        .navbar-transparent {
+            background: rgba(255, 255, 255, 0);
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .navbar-scrolled {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-link {
+            @apply relative text-white text-lg font-medium px-6 py-2 transition-all duration-300;
+        }
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-white transition-all duration-300 rounded-full;
+        }
+        .nav-link:hover::after {
+            @apply w-8;
+        }
+        /* 滚动后导航文字变色 */
+        .navbar-scrolled .nav-link {
+            @apply text-jade;
+        }
+        .navbar-scrolled .nav-link::after {
+            @apply bg-techBlue;
+        }
+        .logo-white {
+            @apply text-white text-2xl font-black transition-colors duration-300;
+        }
+        .navbar-scrolled .logo-white {
+            @apply text-techBlue;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+<!-- ==================== 高端全屏透明居中导航 ==================== -->
+<header id="navbar" class="fixed top-0 left-0 w-full z-[9999] py-6 px-4 bg-transparent transition-all duration-500">
+    <div class="max-w-6xl mx-auto flex items-center justify-between relative">
+        <!-- 左侧 Logo -->
+        <a href="#hero-section" class="text-[#f1f1f1] text-xl font-bold transition-colors duration-300">
+            IN CHINA+
+        </a>
+
+     <!-- 修复后的菜单栏 -->
+<nav class="hidden md:flex items-center gap-6">
+  <a href="#start-tour" class="text-white hover:text-gray-200 transition-colors">Explore</a>
+  <a href="#resource-map" class="text-white hover:text-gray-200 transition-colors">Resource Map</a>
+  <a href="#advantages" class="text-white hover:text-gray-200 transition-colors">Our Advantages</a>
+  <a href="#process" class="text-white hover:text-gray-200 transition-colors">Process</a>
+</nav>
+  <a href="#contact" class="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-100 transition-all">Book Visit</a>
+
+        <!-- 移动端菜单按钮 -->
+        <button class="md:hidden text-[#e0e0e0] text-xl">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<div class="fixed inset-0 noise-bg pointer-events-none z-50"></div>
+
+<!-- ==================== HERO 区域 ==================== -->
+    <section class="hero-section relative h-screen w-full flex flex-col justify-center items-center overflow-hidden" id="hero-section">
+        <!-- 主背景图 -->
+        <div class="main-image absolute inset-0 bg-cover bg-center rounded-2xl transition-all duration-1000 z-0 transform scale-100 " style="background-image: url('https://images.unsplash.com/photo-1634647626758-ad751a260e9f?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+            <div class="absolute inset-0 bg-black/0"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+                <h3 class="main-title text-white text-4xl font-bold opacity-0 transition-opacity duration-500 y-8">New China</h3>
+            </div>
+        </div>
+        
+        <!-- 标题文字 -->
+        <div class="text-center z-20 px-6 max-w-6xl">
+            <h1 class="hero-title tracking-tight font-black uppercase text-4xl md:text-8xl leading-none text-white transition-all" style="font-weight: normal; font-size: 64px;">
+                IT'S TIME TO EXPLORE NEW CHINA
+            </h1>
+        </div>
+
+        <!-- 侧边图片容器 -->
+        <div class="side-images absolute inset-0 z-10 pointer-events-none">
+            <!-- 左侧图片 -->
+            <div class="left-images absolute left-0 top-8 bottom-8 flex flex-col gap-6 pl-8 md:pl-16 justify-between transition-all duration-1000">
+                <div class="side-image w-72 h-[28rem] bg-cover bg-center rounded-2xl overflow-hidden relative" style="background-image: url('https://cn-engineai-1304599088.cos.ap-guangzhou.myqcloud.com/uploads/upload/images/20260416/8fd7d428adb7b7c42ca4d2ae519c2ddd.jpg');">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white text-3xl font-bold opacity-0 transition-opacity duration-500 y-8">New Technology</h3>
+                    </div>
+                </div>
+                <div class="side-image w-72 h-[28rem] bg-cover bg-center rounded-2xl overflow-hidden relative" style="background-image: url('https://plus.unsplash.com/premium_photo-1729162773996-68e1c42d77a8?q=80&amp;w=987&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white text-3xl font-bold opacity-0 transition-opacity duration-500 y-8">New Cities</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右侧图片 -->
+           <div class="right-images absolute right-0 top-8 bottom-8 flex flex-col gap-6 pr-8 md:pr-16 justify-between transition-all duration-1000">
+                <div class="side-image w-72 h-[28rem] bg-cover bg-center rounded-2xl overflow-hidden relative" style="background-image: url('https://images.unsplash.com/photo-1524683745036-b46f52b8505a?q=80&amp;w=830&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white text-3xl font-bold opacity-0 transition-opacity duration-500 y-8">New Healthcare</h3>
+                    </div>
+                </div>
+                <div class="side-image w-72 h-[28rem] bg-cover bg-center rounded-2xl overflow-hidden relative" style="background-image: url('https://images.unsplash.com/photo-1531969179221-3946e6b5a5e7?q=80&amp;w=987&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                    <div class="absolute inset-0 bg-black/30"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <h3 class="text-white text-3xl font-bold opacity-0 transition-opacity duration-500 y-8">New Traditions</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white text-xs tracking-widest font-mono animate-bounce z-20">
+</div>
+    </section>
+
+<!-- ==================== 横向滚动产业板块 ==================== -->
+<section id="start-tour" class="horizontal-container relative">
+    <div class="horizontal-wrap flex h-screen w-[600vw] overflow-hidden sticky top-0 bg-bgDeep">
+       <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1634647626782-f5fffa9fd9b1?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="max-w-4xl relative z-10">
+                <span class="text-white font-mono tracking-widest block mb-4">InChina+</span>
+                <h2 class="panel-text-reveal text-3xl md:text-7xl font-bold leading-tight text-white">
+                    Here You Will See......
+                </h2>
+                <p class="text-white mt-6 text-lg max-w-xl">Explore the full picture of China — from intangible heritage, local cuisine and traditional festivals to kung fu culture, manufacturing, cutting-edge technology, leading enterprises, government sectors, healthcare systems and natural resources.</p>
+            </div>
+        </div>
+
+        <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgDeep border-l border-white/5">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                <div>
+                    <div class="text-9xl font-black text-white/5 font-mono">01</div>
+                    <h3 class="text-2xl md:text-5xl font-bold text-techBlue mb-6">New Energy Industry Ecosystem Exploration</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">Discover why China is leading the world in new energy.Gain first-hand insight into China's energy transition through curated visits to leading solar, wind, energy storage, hydrogen, and emerging energy industrial clusters.</p>
+                </div>
+                <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1548337138-e87d889cc369?q=80&amp;w=1792&amp;auto=format&amp;fit=crop');"></div>
+            </div>
+        </div>
+
+        <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgSlate border-l border-white/5">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden order-2 md:order-1" style="background-image: url('https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?q=80&amp;w=1770&amp;auto=format&amp;fit=crop');"></div>
+                <div class="order-1 md:order-2">
+                    <div class="text-9xl font-black text-white/5 font-mono">02</div>
+                    <h3 class="text-2xl md:text-5xl font-bold text-easternGold mb-6">Low-Altitude Economy &amp; Future Mobility</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">Explore drones, low-altitude aviation, and intelligent transportation — emerging sectors redefining the future of mobility.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgSlate border-l border-white/5">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                <div>
+                    <div class="text-9xl font-black text-white/5 font-mono">03</div>
+                    <h3 class="text-2xl md:text-5xl font-bold text-gray-400 mb-6">Advanced Manufacturing &amp; Industrial Design</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">Explore the next generation of Chinese manufacturing through leading factories, industrial design centers, and advanced production ecosystems.</p>
+                </div>
+                <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1585166059782-f28143545183?q=80&amp;w=774&amp;auto=format&amp;fit=crop');"></div>
+            </div>
+        </div>
+
+        <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgDeep border-l border-white/5">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden order-2 md:order-1" style="background-image: url('https://images.unsplash.com/photo-1636821771168-d13e578a88ba?q=80&amp;w=1770&amp;auto=format&amp;fit=crop');"></div>
+                <div class="order-1 md:order-2">
+                    <div class="text-9xl font-black text-white/5 font-mono">04</div>
+                    <h3 class="text-2xl md:text-5xl font-bold text-purple-400 mb-6">Sustainable Development &amp; Future Cities</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">See How the Future of Cities Is Emerging in China. Discover smart urban systems, green architecture, and circular economy models.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgSlate border-l border-white/5">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                <div>
+                    <div class="text-9xl font-black text-white/5 font-mono">05</div>
+                    <h3 class="text-2xl md:text-5xl font-bold text-blue-600 mb-6">AI &amp; Intelligent Manufacturing</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">Visit leading AI companies and intelligent factories to explore how artificial intelligence is transforming modern manufacturing.</p>
+                </div>
+                <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&amp;w=2064&amp;auto=format&amp;fit=crop');"></div>
+            </div>
+        </div>
+
+        <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgDeep border-l border-white/5">
+            <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden order-2 md:order-1" style="background-image: url('https://images.unsplash.com/photo-1668600418821-14bc89be2f0d?q=80&amp;w=1740&amp;auto=format&amp;fit=crop');"></div>
+                <div class="order-1 md:order-2">
+                    <div class="text-9xl font-black text-white/5 font-mono">06</div>
+                    <h3 class="text-2xl md:text-5xl font-bold text-jade mb-6">University Innovation &amp; Research Program</h3>
+                    <p class="text-gray-400 leading-relaxed text-lg">Step inside China's leading universities, laboratories, and research institutions. Engage in in-depth exchanges with professors and scholars.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 中国产业资源地图 ==================== -->
+
+   <section id="resource-map" class="w-full min-h-screen bg-white text-dark antialiased pb-16">
+        <div class="container mx-auto px-4 py-20 max-w-7xl">
+            <header class="mb-8 pb-6 border-b border-gray-100">
+                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-2">China Industrial Resources Map</h1>
+                <p class="text-base text-gray-500">Select your target province via the interactive map and explore the overview of key industries.</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3 w-full">
+                    <div class="border border-gray-200 rounded-xl p-4 bg-white shadow-sm h-full flex flex-col justify-between">
+                        <div id="china-map" class="map-container w-full flex-grow"></div>
+                        <div class="text-xs text-gray-400 mt-2 flex items-center justify-between">
+                            <span><i class="fa fa-info-circle mr-1"></i> Use mouse wheel to zoom. Click and drag to pan across regions.</span>
+                            <span>Standard Reference Projection (2026 Audit)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 w-full">
+                    <div id="province-info" class="border border-gray-200 rounded-xl p-6 bg-white shadow-sm info-container overflow-y-auto">
+                        <div class="text-center py-24 text-gray-400">
+                            <i class="fa fa-map-o text-5xl text-gray-300 mb-4 block"></i>
+                            <h2 class="text-xl font-medium text-gray-700 mb-1">No Region Selected</h2>
+                            <p class="text-sm px-4">Click any province or municipality on the left map layer to generate its industrial ecosystem, resource reserves, and key city breakdowns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 border border-gray-200 rounded-xl p-5 bg-gray-50/50">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <div class="flex-grow">
+                        <div class="relative">
+                            <input type="text" id="province-search" placeholder="Query region by English name (e.g., Guangdong, Jiangsu, Beijing)..." class="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition text-sm">
+                            <i class="fa fa-search absolute left-3.5 top-3.5 text-gray-400"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-64">
+                        <select id="industry-filter" class="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition text-sm">
+                            <option value="all">All Sector Filters</option>
+                            <option value="tech">Advanced Tech &amp; Digital</option>
+                            <option value="industry">Heavy Industry &amp; Manufacturing</option>
+                            <option value="service">Financial &amp; Modern Services</option>
+                            <option value="agriculture">Primary Agribusiness &amp; Sourcing</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="search-results" class="mt-3 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 hidden"></div>
+            </div>
+        </div>
+     </section>
+
+<!-- 开始你的中国之旅（修复跳转 + 背景图 + 间距） -->
+<section id="start-tour" class="relative w-full py-32 my-16 flex items-center justify-center text-center" style="background-image: url('https://images.unsplash.com/photo-1644067321735-dca4a3be4d35?q=80&amp;w=2542&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <div class="absolute inset-0 bg-black/60 z-0"></div>
+  <div class="relative z-10 px-6 max-w-3xl">
+    <h2 class="text-white text-[clamp(24px,5vw,48px)] font-bold mb-8">
+      Start Your Inspection Tour in China
+    </h2>
+    <!-- 跳转：联系我们（100%正确） -->
+    <a href="#contact" class="inline-block bg-white text-black px-10 py-4 rounded-xl text-lg font-medium hover:bg-gray-100 transition-all">
+      Custom Itinerary
+    </a>
+  </div>
+</section>
+
+  
+<!-- ==================== 我们的优势 ==================== -->
+<section id="advantages" class="product-sticky-container relative bg-white w-full flex flex-col md:flex-row min-h-screen h-screen overflow-hidden z-0 pt-10">
+    <div class="w-full md:w-1/2 h-40 md:h-screen flex items-center px-8 md:px-24 z-20 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1720050704211-03712ebe857c?q=80&amp;w=981&amp;auto=format&amp;fit=crop');">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative z-10">
+            <span class="text-easternGold font-mono text-xs tracking-widest block mb-3">InChina+</span>
+            <h2 class="text-3xl md:text-6xl font-black text-white uppercase tracking-tight leading-none">OUR ADVANTAGES</h2>
+            <div class="w-24 h-[1px] bg-gradient-to-r from-easternGold to-transparent mt-6"></div>
+        </div>
+    </div>
+
+    <div class="w-full md:w-1/2 overflow-y-auto h-full" id="themes-content">
+            <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-techBlue font-mono text-sm mb-5 tracking-wider">THEME 01</div>
+                    <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">300+ Verified Direct Resources</h3>
+                    <p class="text-gray-500 leading-relaxed mb-8 text-lg">This is not a "surface-level visit" — but a true dive into the inner workings of industries. High-value industrial access often requires long-term trust and genuine connections. With IN CHINA+, you skip cumbersome intermediaries and gain efficient entry to core enterprises, labs, industrial parks, and C-level decision-making scenarios.</p>
+                    <div class="text-base font-mono text-gray-400 leading-relaxed mt-8 pt-6 border-t border-gray-100">
+                        • Direct official partnerships guarantee 100% authentic access<br>
+                        • Customizable in-depth visits tailored to your needs<br>
+                        • On-site tours of production lines and R&amp;D labs
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 优势 02 -->
+            <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 02</div>
+                    <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">100% Bespoke Solutions</h3>
+                    <p class="text-gray-500 leading-relaxed mb-8 text-lg">No template-based itineraries — built entirely around your goals.<br>We design truly effective China exploration paths tailored to your industry, profile, schedule and objectives.</p>
+                    <div class="text-base font-mono text-gray-400 leading-relaxed mt-8 pt-6 border-t border-gray-100">
+                        • Fully customized visit agendas<br>
+                        • Flexible duration adjustments<br>
+                        • Modular service components that you can freely combine
+                    </div>
+                </div>
+            </div>
+
+            <!-- 优势 03 -->
+            <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 03</div>
+                    <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">End-to-End Premium Professional Services</h3>
+                    <p class="text-gray-500 leading-relaxed mb-8 text-lg">Avoid missing critical information due to language and cultural barriers.<br>Our industry consultants and technical experts, with deep understanding of business logic and industry backgrounds, help you truly grasp Chinese enterprises and the industrial ecosystem — making communication more efficient and cooperation smoother.</p>
+                    <div class="text-base font-mono text-gray-400 leading-relaxed mt-8 pt-6 border-t border-gray-100">
+                        • In-depth, end-to-end insights from industry experts<br>
+                        • Professional multilingual interpreter support<br>
+                        • Precise delivery of specialized technical terminology
+                    </div>
+                </div>
+            </div>
+
+            <!-- 优势 04 -->
+            <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 04</div>
+                    <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">Long-Term Value Continuity</h3>
+                    <p class="text-gray-500 leading-relaxed mb-8 text-lg">Turn a single visit into lasting, long-term value.<br>The most valuable relationships and connections only truly begin after the visit concludes. We continue supporting you with:</p>
+                    <div class="text-base font-mono text-gray-400 leading-relaxed mt-8 pt-6 border-t border-gray-100">
+                        • Follow-up on resource connections<br>
+                        • Ongoing communication for partnership development<br>
+                        • Exclusive, regular industry updates tailored to you
+                    </div>
+                </div>
+            </div>
+
+            <!-- 优势 05 -->
+            <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 05</div>
+                    <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">Global One-Stop Services</h3>
+                    <p class="text-gray-500 leading-relaxed mb-8 text-lg">We make complex cross-border visits simple, efficient and secure.<br>We handle all the complexities of cross-border travel, so you can focus entirely on what matters most: critical business decisions and opportunities.</p>
+                    <div class="text-base font-mono text-gray-400 leading-relaxed mt-8 pt-6 border-t border-gray-100">
+                        • Multilingual support for all scenarios<br>
+                        • Visa assistance &amp; end-to-end cross-border travel coordination<br>
+                        • Consistent premium service standards worldwide
+                    </div>
+                </div>
+            </div>
+
+            <!-- 优势 06 -->
+            <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 06</div>
+                    <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">Comprehensive Service Assurance</h3>
+                    <p class="text-gray-500 leading-relaxed mb-6 text-lg">True premium service is not just about smooth execution — it's about complete peace of mind.<br>With end-to-end safety protocols, a dedicated professional team and full insurance coverage, we ensure the safety of all personnel and every step of your itinerary.<br>We also support signing non-disclosure agreements (NDAs) to strictly protect your commercial information, discussion content and partnership plans.</p>
+                    <div class="text-base font-mono text-gray-400 flex gap-4">
+                        <span>• Safety &amp; Security</span>
+                        <span>• Confidentiality &amp; Data Protection</span>
+                        <span>• Emergency Response Protocols</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+<!-- ==================== 数字优势展示 ==================== -->
+<section class="min-h-screen w-full bg-white relative flex items-center px-8 md:px-24 py-24" id="next-section">
+    <div class="grid md:grid-cols-2 gap-16 w-full max-w-7xl mx-auto">
+        <div class="flex flex-col justify-center">
+            <span class="text-easternGold font-mono text-xs tracking-widest block mb-4">// BRAND ADVANTAGE</span>
+            <h2 class="text-3xl md:text-6xl font-black text-jade leading-tight mb-8">
+                <span class="counter-num text-easternGold" data-target="300">0</span>+<br>
+                Corporate Resources
+            </h2>
+            <p class="text-gray-400 text-lg leading-relaxed mb-4" style="font-size: 20px;">Over 300 official cooperative resources, covering core sectors including new technology, modern industry, study tours and cultural innovation.</p>
+        </div>
+
+        <div class="flex flex-col gap-5">
+            <div class="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm">
+                <div class="text-lg font-bold text-jade mb-1" style="font-size: 24px;">New Technology</div>
+                <div class="text-xs text-gray-400" style="font-size: 16px; line-height: 33px;">Apollo、BGI、Tencent、BYD…</div>
+            </div>
+            <div class="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm">
+                <div class="text-lg font-bold text-jade mb-1" style="font-size: 24px;">Modern Industry</div>
+                <div class="text-xs text-gray-400" style="font-size: 16px; line-height: 33px;">SF Express、Shenzhen Metro、Huaqiangbei…</div>
+            </div>
+            <div class="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm">
+                <div class="text-lg font-bold text-jade mb-1" style="font-size: 24px;">New Study Tours</div>
+                <div class="text-xs text-gray-400" style="font-size: 16px; line-height: 33px;">HIT、HKU、SYSU、SUSTech、SIAT…</div>
+            </div>
+            <div class="border border-gray-100 p-6 rounded-2xl bg-white shadow-sm">
+                <div class="text-lg font-bold text-jade mb-1" style="font-size: 24px;">New Culture</div>
+                <div class="text-xs text-gray-400" style="font-size: 16px; line-height: 33px;">Mission Hills、Artron、Arts Center…</div>
+            </div>
+        </div>
+    </div>
+   <div class="absolute w-[50vh] h-[50vh] bg-techBlue/5 rounded-full blur-3xl top-[10%] -right-[20vh] opacity-70"></div>
+  <div class="absolute w-[40vh] h-[40vh] bg-easternGold/5 rounded-full blur-3xl bottom-[10%] -left-[15vh] opacity-70"></div>
+</section>
+
+
+
+<!-- ==================== 东方美学 ==================== -->
+<section class="h-screen w-full relative overflow-hidden">
+    <video autoplay="" muted="" loop="" playsinline="" class="w-full h-full object-cover">
+        <source src="https://www.pexels.com/download/video/32016660/" type="video/mp4">
+    </video>
+</section>
+
+<section class="experience-section">
+    <style>
+        /* 样式隔离：所有选择器添加 .experience-section 前缀，避免冲突 */
+        .experience-section * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Noto Sans SC", "Microsoft Yahei", sans-serif;
+        }
+        .experience-section {
+            background-color: #ffffff;
+            color: #333;
+            min-height: calc(100vh - 140px);
+            padding: 30px;
+            width: 100%;
+        }
+        .experience-section .page-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            margin-bottom: 40px;
+            color: #222;
+        }
+
+        /* ========== 核心容器：纯Flex嵌套（彻底解决重叠）========== */
+        .experience-section .experience-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px; /* 全局固定间隙 */
+            height: calc(100vh - 140px);
+        }
+
+        /* 上半区：横向+纵向嵌套Flex */
+        .experience-section .top-wrapper {
+            display: flex;
+            gap: 16px;
+            flex: 1; /* 上半区占总高度50% */
+        }
+        .experience-section .top-left {
+            flex: 6; /* 左侧大卡片占6份（差异化尺寸） */
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .experience-section .top-right {
+            flex: 6; /* 右侧区域占6份 */
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .experience-section .top-right-top {
+            flex: 2; /* 右上卡片占2份 */
+        }
+        .experience-section .top-right-bottom {
+            flex: 2; /* 右下两行占2份 */
+            display: flex;
+            gap: 16px;
+        }
+        .experience-section .top-right-bottom > div {
+            flex: 3; /* 每个小卡片占3份 */
+        }
+
+        /* 下半区：横向+纵向嵌套Flex */
+        .experience-section .bottom-wrapper {
+            display: flex;
+            gap: 16px;
+            flex: 1; /* 下半区占总高度50% */
+        }
+        .experience-section .bottom-left {
+            flex: 4; /* 左下卡片占4份 */
+        }
+        .experience-section .bottom-middle {
+            flex: 4; /* 中下部卡片占4份 */
+        }
+        .experience-section .bottom-right {
+            flex: 4; /* 右下区域占4份 */
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .experience-section .bottom-right > div {
+            flex: 2; /* 每个小卡片占2份 */
+        }
+
+        /* ========== 卡片核心样式（丝滑挤压）========== */
+        .experience-section .experience-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            background-size: cover;
+            background-position: center;
+            min-width: 0;
+            min-height: 0;
+            /* 核心：弹性伸缩+超丝滑过渡（关键修复） */
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1;
+        }
+
+        /* ========== 差异化挤压动画（无重叠）========== */
+        /* 横向挤压卡片：悬停时横向占比增大 */
+        .experience-section .stretch-x {
+            flex: 1;
+        }
+        .experience-section .stretch-x:hover {
+            flex: 1.8; /* 横向拉伸，周边自动挤压，无重叠 */
+        }
+
+        /* 纵向挤压卡片：悬停时纵向占比增大 */
+        .experience-section .stretch-y {
+            flex: 1;
+        }
+        .experience-section .stretch-y:hover {
+            flex: 1.8; /* 纵向拉伸，周边自动挤压，无重叠 */
+        }
+
+        /* ========== 标题+遮罩样式 ========== */
+        .experience-section .card-title {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            z-index: 2;
+        }
+        .experience-section .experience-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+        .experience-section .experience-card:hover::before {
+            opacity: 0.4;
+        }
+
+        /* ========== 8张卡片差异化尺寸+背景图 ========== */
+        .experience-section .card-1 { /* 最大尺寸 - 左侧纵向 */
+            background-image: url("https://plus.unsplash.com/premium_photo-1661433201283-fcb240e88ad4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        }
+        .experience-section .card-2 { /* 大尺寸 - 右上横向 */
+            background-image: url("https://images.unsplash.com/photo-1531970227416-f0cddeb1f748?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        }
+        .experience-section .card-3 { /* 中尺寸 - 右下左横向 */
+            background-image: url("https://plus.unsplash.com/premium_photo-1677458719182-00d72bbc6044?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        }
+        .experience-section .card-4 { /* 中尺寸 - 右下右横向 */
+            background-image: url("https://images.unsplash.com/photo-1486303954368-398fea0e72cd?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        }
+        .experience-section .card-5 { /* 中小尺寸 - 左下纵向 */
+            background-image: url("https://images.unsplash.com/photo-1497015289639-54688650d173?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        }
+        .experience-section .card-6 { /* 中小尺寸 - 中下部纵向 */
+            background-image: url("https://images.unsplash.com/photo-1639562954961-0aa228b27c62?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        }
+        .experience-section .card-7 { /* 小尺寸 - 右下上横向 */
+            background-image: url("https://images.unsplash.com/photo-1648337564744-f919c7c2fc02?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        }
+        .experience-section .card-8 { /* 小尺寸 - 右下下横向 */
+            background-image: url("https://images.unsplash.com/photo-1717163232515-4e0bc422a07a?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        }
+
+        /* ========== 移动端适配 ========== */
+        @media (max-width: 768px) {
+            .experience-section .experience-container {
+                height: auto;
+                min-height: 100vh;
+            }
+            /* 移动端改为纵向排列，保留差异化 */
+            .experience-section .top-wrapper, 
+            .experience-section .bottom-wrapper, 
+            .experience-section .top-right-bottom, 
+            .experience-section .bottom-right {
+                flex-direction: column;
+            }
+            .experience-section .top-left, 
+            .experience-section .top-right, 
+            .experience-section .bottom-left, 
+            .experience-section .bottom-middle, 
+            .experience-section .bottom-right {
+                flex: none;
+            }
+            /* 移动端简化交互，仅轻微放大 */
+            .experience-section .experience-card:hover {
+                flex: none;
+                transform: scale(1.03);
+                margin: 4px;
+                z-index: 10;
+            }
+            .experience-section .card-title { font-size: 14px; top: 15px; left: 15px; }
+            .experience-section .page-title { font-size: 24px; }
+            .experience-section .experience-card { border-radius: 16px; }
+        }
+    </style>
+
+ <h2 class="page-title" style="font-size: 32px; text-align: center; font-weight: bold; opacity: 1; line-height: 161px; letter-spacing: -0.5px;">Exclusive experience</h2>
+    <div class="experience-container">
+        <!-- 上半区 -->
+        <div class="top-wrapper">
+            <!-- 1. 高端产业沙龙（最大尺寸 - 纵向拉伸）-->
+            <div class="top-left">
+                <div class="experience-card card-1 stretch-y">
+                    <div class="card-title">Premium Industry Banquet</div>
+                </div>
+            </div>
+            <div class="top-right">
+                <!-- 2. 非遗文化体验（大尺寸 - 横向拉伸）-->
+                <div class="experience-card card-2 stretch-x top-right-top">
+                    <div class="card-title">ICH Experie</div>
+                </div>
+                <div class="top-right-bottom">
+                    <!-- 3. 文创创意体验（中尺寸 - 横向拉伸）-->
+                    <div class="experience-card card-3 stretch-x">
+                        <div class="card-title">Cultural &amp; Creative Experience</div>
+                    </div>
+                    <!-- 4. 中国文化课（中尺寸 - 横向拉伸）-->
+                    <div class="experience-card card-4 stretch-x">
+                        <div class="card-title">Chinese Culture Course</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下半区 -->
+        <div class="bottom-wrapper">
+            <!-- 5. 全程视频记录（中小尺寸 - 纵向拉伸）-->
+            <div class="experience-card card-5 stretch-y bottom-left">
+                <div class="card-title">Full Video Coverage</div>
+            </div>
+            <!-- 6. 高端伴手礼（中小尺寸 - 纵向拉伸）-->
+            <div class="experience-card card-6 stretch-y bottom-middle">
+                <div class="card-title">Premium Souvenirs</div>
+            </div>
+            <div class="bottom-right">
+                <!-- 7. 官方研学证书（小尺寸 - 纵向拉伸）-->
+                <div class="experience-card card-7 stretch-y">
+                    <div class="card-title">Official Study Tour Certificate</div>
+                </div>
+                <!-- 8. 定制文创产品（小尺寸 - 纵向拉伸）-->
+                <div class="experience-card card-8 stretch-y">
+                    <div class="card-title">Custom Cultural &amp; Creative Products</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- ==================== 客户案例 ==================== -->
+<section class="min-h-screen w-full bg-[#525252] flex flex-col justify-center px-8 md:px-24 py-24">
+    <div class="max-w-7xl w-full">
+        <div class="mb-16">
+            <span class="text-easternGold font-mono text-xs tracking-widest block mb-2">InChina+</span>
+            <h2 class="text-3xl md:text-5xl font-bold text-white leading-tight">Client Testimonials</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-20">
+            <div class="border border-white/10 p-8 rounded-3xl bg-black/40">
+                <div class="text-xs font-mono text-easternGold mb-4">CASE 01 // 2025.05</div>
+                <h4 class="text-xl font-bold text-white mb-3">Egyptian Govt-Enterprise UAV Tour</h4>
+                <p class="text-gray-300 text-sm leading-relaxed">5-Day Custom UAV Tour for 8 Egyptian Delegation, Connecting Global Leading Tech &amp; Cooperation</p>
+            </div>
+            <div class="border border-white/10 p-8 rounded-3xl bg-black/40">
+                <div class="text-xs font-mono text-easternGold mb-4">CASE 02 // 2025.05</div>
+                <h4 class="text-xl font-bold text-white mb-3">European Gaming Delegation | Tencent Exchange</h4>
+                <p class="text-gray-300 text-sm leading-relaxed">Connect European gaming firms with Tencent for accurate resource integration.</p>
+            </div>
+            <div class="border border-white/10 p-8 rounded-3xl bg-black/40">
+                <div class="text-xs font-mono text-easternGold mb-4">CASE 03 // 2025.04</div>
+                <h4 class="text-xl font-bold text-white mb-3">US University Industry-Research Exchange</h4>
+                <p class="text-gray-300 text-sm leading-relaxed">Connect distinguished US professors with China’s leading academic institutions.</p>
+            </div>
+        </div>
+
+        <div class="border-t border-white/10 pt-10 max-w-3xl">
+            <p class="text-xl md:text-2xl italic text-gray-300 leading-relaxed font-light">“Plenty of top resources can’t be bought with money. IN CHINA+ saved us tons of time and hassle, letting us truly get to grips with how China’s industrial ecosystem works at its core.”</p>
+            <div class="mt-6 text-sm font-mono text-easternGold">— CEO of a European Energy Company | New Energy Industry Delegation</div>
+        </div>
+    </div>
+</section>
+ <!-- 服务流程 -->
+        <section id="process" class="min-h-screen pt-20 bg-white">
+            <div class="container mx-auto px-4 py-16">
+                <div class="text-center mb-16 animate-on-scroll">
+                    <h2 class="text-3xl md:text-5xl font-bold text-primary mb-4">Standard Process</h2>
+                    <div class="w-24 h-1 bg-secondary mx-auto mb-6"></div>
+                    <p class="text-xl text-muted max-w-3xl mx-auto">
+                        From initial consultation to post-program follow-up, we provide end-to-end professional services to ensure the effectiveness and value of your visit.
+                    </p>
+                </div>
+              
+        
+     <!-- ==================== 标准流程 ==================== -->
+<section id="11" class="min-h-screen px-6 py-24 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-20">
+
+      <div class="w-24 h-1 bg-gradient-to-r from-easternGold to-transparent mx-auto mt-6"></div>
+    </div>
+
+    <div class="relative">
+      <!-- 中间竖线 -->
+      <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-200 -translate-x-1/2"></div>
+
+      <!-- 步骤1 -->
+      <div class="relative mb-16 md:mb-24">
+        <div class="hidden md:flex absolute left-1/2 top-1/2 w-10 h-10 bg-black rounded-full -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center">
+          <span class="text-white font-bold leading-none">1</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
+          <div class="md:text-right md:pr-10">
+            <h3 class="text-xl md:text-2xl font-bold text-jade mb-3"> Needs Consultation</h3>
+            <p class="text-gray-500">We conduct in-depth consultations to understand your visit objectives, industry background, team composition, scheduling requirements, and provide initial recommendations and a draft itinerary framework.</p>
+          </div>
+          <div class="md:pl-6">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm">
+              <ul class="space-y-2 text-gray-500">
+                <li>• Needs Questionnaire Completion</li>
+                <li>•  One-on-One Consultation with a Dedicated Advisor</li>
+                <li>•  Initial Itinerary Framework Confirmation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 步骤2 -->
+      <div class="relative mb-16 md:mb-24">
+        <div class="hidden md:flex absolute left-1/2 top-1/2 w-10 h-10 bg-black rounded-full -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center">
+          <span class="text-white font-bold leading-none">2</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
+          <div class="md:pl-10 md:order-2">
+            <h3 class="text-xl md:text-2xl font-bold text-jade mb-3">Itinerary Confirmation</h3>
+            <p class="text-gray-500">We develop a detailed customized itinerary based on your requirements, including company visits, scheduling, hospitality standards, and budget estimates.</p>
+          </div>
+          <div class="md:pr-6 md:order-1">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm text-right">
+              <ul class="space-y-2 text-gray-500">
+                <li>• Custom Itinerary Development</li>
+                <li>• Itinerary Refinement &amp; Optimization</li>
+                <li>•  Final Itinerary Confirmation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 步骤3 -->
+      <div class="relative mb-16 md:mb-24">
+        <div class="hidden md:flex absolute left-1/2 top-1/2 w-10 h-10 bg-black rounded-full -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center">
+          <span class="text-white font-bold leading-none">3</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
+          <div class="md:text-right md:pr-10">
+            <h3 class="text-xl md:text-2xl font-bold text-jade mb-3">Contract &amp; Payment</h3>
+            <p class="text-gray-500">We formalize the service contract, defining the rights and obligations of both parties. Upon receipt of payment as agreed, we officially launch the service process.</p>
+          </div>
+          <div class="md:pl-6">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm">
+              <ul class="space-y-2 text-gray-500">
+                <li>• Contract Terms Review</li>
+                <li>• Contract Signing</li>
+                <li>• Payment Settlement</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 步骤4 -->
+      <div class="relative mb-16 md:mb-24">
+        <div class="hidden md:flex absolute left-1/2 top-1/2 w-10 h-10 bg-black rounded-full -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center">
+          <span class="text-white font-bold leading-none">4</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
+          <div class="md:pl-10 md:order-2">
+            <h3 class="text-xl md:text-2xl font-bold text-jade mb-3">On-site Preparation</h3>
+            <p class="text-gray-500">We confirm itinerary details with partner companies, arrange the on-site hospitality team, prepare all program materials, and complete all pre-visit preparations.</p>
+          </div>
+          <div class="md:pr-6 md:order-1">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm text-right">
+              <ul class="space-y-2 text-gray-500">
+                <li>• Partner Visit Confirmation</li>
+                <li>• Hospitality Team Coordination</li>
+                <li>• Program Materials Preparation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 步骤5 -->
+      <div class="relative mb-16 md:mb-24">
+        <div class="hidden md:flex absolute left-1/2 top-1/2 w-10 h-10 bg-black rounded-full -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center">
+          <span class="text-white font-bold leading-none">5</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
+          <div class="md:text-right md:pr-10">
+            <h3 class="text-xl md:text-2xl font-bold text-jade mb-3">Program Execution</h3>
+            <p class="text-gray-500">Your dedicated team accompanies you throughout the program, providing interpretation, guided tours, and on-site support to ensure a seamless visit experience.</p>
+          </div>
+          <div class="md:pl-6">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm">
+              <ul class="space-y-2 text-gray-500">
+                <li>• Full-time Dedicated Team Support</li>
+                <li>• Real-time Itinerary Adjustment</li>
+                <li>• Contingency &amp; Emergency Handling</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 步骤6 -->
+      <div class="relative">
+        <div class="hidden md:flex absolute left-1/2 top-1/2 w-10 h-10 bg-black rounded-full -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center">
+          <span class="text-white font-bold leading-none">6</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
+          <div class="md:pl-10 md:order-2">
+            <h3 class="text-xl md:text-2xl font-bold text-jade mb-3">Post-program Follow-up</h3>
+            <p class="text-gray-500">After the program, we deliver a comprehensive visit report, conduct ongoing follow-ups, and provide long-term resource matching services.</p>
+          </div>
+          <div class="md:pr-6 md:order-1">
+            <div class="bg-gray-50 p-5 rounded-xl shadow-sm text-right">
+              <ul class="space-y-2 text-gray-500">
+                <li>• Post-program Satisfaction Survey</li>
+                <li>• Comprehensive Visit Summary Report</li>
+                <li>•  Long-term Resource Matching Services</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- 背景装饰（保持你原网站风格） -->
+  <div class="absolute w-[50vh] h-[50vh] bg-techBlue/5 rounded-full blur-3xl top-[10%] -right-[20vh] opacity-70"></div>
+  <div class="absolute w-[40vh] h-[40vh] bg-easternGold/5 rounded-full blur-3xl bottom-[10%] -left-[15vh] opacity-70"></div>
+</section>
+              
+
+
+  
+<!-- ==================== 新增：ABOUT / 品牌详情 页面（复刻参考图排版） ==================== -->
+<section id="about-detail" class="min-h-screen w-full bg-white flex items-center px-8 md:px-24 py-24 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto w-full relative z-10">
+    
+    <!-- 顶部：左标题 + 右导航（和参考图结构一致） -->
+    <div class="flex justify-between items-start mb-12">
+      <div>
+        <span class="text-easternGold font-mono text-xs tracking-widest block mb-4">// ABOUT DETAIL</span>
+        <h2 class="text-3xl md:text-6xl font-black text-jade leading-tight">
+          About Us
+        </h2>
+      </div>
+      <!-- 右侧导航链接（对应参考图的 WORKS / CONTACTS） -->
+      <nav class="hidden md:flex gap-8 font-mono text-sm">
+        <a href="#works" class="text-easternGold hover:opacity-70 transition-opacity">WORKS</a>
+        <a href="#contact" class="text-easternGold hover:opacity-70 transition-opacity">CONTACTS</a>
+      </nav>
+    </div>
+
+    <!-- 主体布局：1:1 复刻参考图的「左上文字 + 左下图片 + 右侧文字」 -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      
+      <!-- 左侧：占 7 列（和参考图比例一致） -->
+      <div class="lg:col-span-7 flex flex-col gap-10">
+        
+        <!-- 左上文字区域（对应参考图的 ABOUT ME 文字） -->
+        <div class="text-gray-500 leading-relaxed text-lg space-y-4">
+          <p>
+            InChina+ is a premium sub-brand under Reception Experts, dedicated to providing in-depth China industry immersion programs for high-end business delegations worldwide. Combining international service standards with local industry resources, we help clients connect with China’s core industries and gain cutting-edge insights.
+          </p>
+          <p>
+            We bring clarity, speed, and a collaborative spirit to every project — and we’re always learning. Currently exploring deeper cross-industry collaboration to make brands move, not just speak.
+          </p>
+        </div>
+
+        <!-- 左下角图片（位置和尺寸完全对应参考图） -->
+       <!-- 左下：大图（通宽、无圆角、无阴影，极简） -->
+        <div class="w-full">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="About Us" class="w-full h-auto object-cover">
+        </div>
+      </div>
+
+      <!-- 右侧：占 5 列（和参考图的 EDUCATION 区域对应） -->
+      <div class="lg:col-span-5 flex flex-col h-full justify-end">
+        <h3 class="text-3xl md:text-4xl font-bold text-jade mb-8">Service &amp; Resources</h3>
+        <!-- 两列网格排版，和参考图一致 -->
+        <div class="grid grid-cols-2 gap-x-6 gap-y-8 font-mono text-sm text-gray-600">
+          <div>
+            <p class="text-gray-400 mb-2">Prime Location Advantage</p>
+            <p class="leading-tight">
+              Based in the Greater Bay Area, our Shenzhen office serves as your ideal gateway to Shenzhen-Hong Kong resources for inbound business visits.
+
+            </p>
+          </div>
+          <div>
+            <p class="text-gray-400 mb-2">Strong Group Backing</p>
+            <p class="leading-tight">
+              With over 10 years of experience and a global network, we provide mature international business services.
+
+            </p>
+          </div>
+          <div>
+            <p class="text-gray-400 mb-2">Professional Team Expertise</p>
+            <p class="leading-tight">
+           Fortune 500-caliber professionals with global experience, skilled in high-level conferences and premium business visits.
+            </p>
+          </div>
+          <div>
+            <p class="text-gray-400 mb-2">Premium Resource Network</p>
+            <p class="leading-tight">
+             Partnered with top-tier hotels and global business resources to deliver high-standard hospitality services.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 背景装饰（保持你原网站风格） -->
+  <div class="absolute w-[50vh] h-[50vh] bg-techBlue/5 rounded-full blur-3xl top-[10%] -right-[20vh] opacity-70"></div>
+  <div class="absolute w-[40vh] h-[40vh] bg-easternGold/5 rounded-full blur-3xl bottom-[10%] -left-[15vh] opacity-70"></div>
+</section>
+
+
+              
+<!-- ==================== CTA 行动召唤 ==================== -->
+<section class="h-screen w-full flex flex-col justify-center items-center bg-[#525252] px-6 relative z-10">
+    <div class="text-center max-w-3xl">
+        <h2 class="text-4xl md:text-8xl font-black tracking-tight text-white mb-12 uppercase leading-none">
+            Ready to enter <br>the real China?
+        </h2>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a href="#contact" class="px-8 py-4 rounded-full bg-white text-jade font-bold tracking-wide hover:scale-105 active:scale-95 transition-all duration-300 w-64 sm:w-auto text-center shadow-lg">
+                Start Your Journey
+            </a>
+            <a href="#contact" class="px-8 py-4 rounded-full border border-white/30 text-white font-medium tracking-wide hover:bg-white/10 active:scale-95 transition-all duration-300 w-64 sm:w-auto text-center">
+                Private Consultation
+            </a>
+        </div>
+    </div>
+    <div class="absolute bottom-10 font-mono text-[10px] text-gray-400 tracking-[0.3em]">
+        © 2026 IN CHINA+. ALL RIGHTS RESERVED.
+    </div>
+</section>
+<!-- ==================== 联系我们 ==================== -->
+ <section id="contact" class="w-full bg-white py-24 px-8 md:px-16">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+    <!-- Custom Inquiry Form -->
+    <div>
+      <h3 class="text-2xl font-light text-black mb-12 tracking-wide">Submit Custom Inquiry</h3>
+      <form id="contact-form" class="space-y-6">
+        <!-- Name + Organization -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">Full Name <span class="text-red-500">*</span></label>
+            <input type="text" name="name" required="" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]" placeholder="Your full name">
+          </div>
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">Organization / Company <span class="text-red-500">*</span></label>
+            <input type="text" name="company" required="" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]" placeholder="Your organization or company">
+          </div>
+        </div>
+
+        <!-- Email + Phone -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">Email <span class="text-red-500">*</span></label>
+            <input type="email" name="email" required="" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]" placeholder="Your email address">
+          </div>
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">Phone <span class="text-red-500">*</span></label>
+            <input type="tel" name="phone" required="" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]" placeholder="Your contact number">
+          </div>
+        </div>
+
+        <!-- Visit Theme -->
+        <div>
+          <label class="block text-sm text-gray-600 mb-2">Visit Theme <span class="text-red-500">*</span></label>
+          <select name="theme" required="" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]">
+            <option value="">Select visit theme</option>
+            <option value="tech">Technology Industry Tour</option>
+            <option value="culture">Cultural &amp; Creative Tour</option>
+            <option value="energy">New Energy Industry Tour</option>
+            <option value="other">Customized Theme</option>
+          </select>
+        </div>
+
+        <!-- People + Days + Budget -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">Group Size <span class="text-red-500">*</span></label>
+            <input type="number" name="people" required="" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]" placeholder="Number of people">
+          </div>
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">Duration <span class="text-red-500">*</span></label>
+            <select name="days" required="" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]">
+              <option value="">Select duration</option>
+              <option value="3">3 Days</option>
+              <option value="5">5 Days</option>
+              <option value="7">7 Days</option>
+              <option value="custom">Custom Duration</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm text-gray-600 mb-2">Total Budget</label>
+            <input type="text" name="budget" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]" placeholder="Total budget (USD)">
+          </div>
+        </div>
+
+        <!-- Target Companies -->
+        <div>
+          <label class="block text-sm text-gray-600 mb-2">Target Companies / Institutions</label>
+          <input type="text" name="target" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa]" placeholder="Companies you wish to visit, separated by commas">
+        </div>
+
+        <!-- Special Requirements -->
+        <div>
+          <label class="block text-sm text-gray-600 mb-2">Special Requirements</label>
+          <textarea name="note" rows="5" class="w-full border border-gray-200 rounded-xl px-4 py-3.5 focus:outline-none focus:border-black transition-all duration-300 bg-[#fafafa] resize-y" placeholder="Your special requests or additional notes"></textarea>
+        </div>
+
+                <!-- Submit Button -->
+         <!-- Submit Button -->
+<div class="ml-auto mt-auto pt-0">
+  <button type="submit" class="bg-gray-200 text-white px-8 py-4 rounded-xl text-sm font-medium tracking-widest hover:bg-gray-800 active:scale-[0.98] transition-all duration-300">
+    SUBMIT INQUIRY
+  </button>
+</div>
+        </form>
+      </div>
+
+    <!-- Contact & Office Info -->
+    <div>
+      <div class="mb-16">
+        <h3 class="text-2xl font-light text-black mb-12 tracking-wide">Contact Information</h3>
+        <div class="space-y-6 text-gray-600">
+          <div class="flex items-start gap-4">
+            <i class="fa-solid fa-phone text-black text-lg w-5 text-center"></i>
+            <div>
+              <p class="text-sm text-gray-400 mb-1">Phone</p>
+              <p>+86(0) 755 8670 7763</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <i class="fa-solid fa-envelope text-black text-lg w-5 text-center"></i>
+            <div>
+              <p class="text-sm text-gray-400 mb-1">Email</p>
+              <p> info@receptionexpert.com</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <i class="fa-solid fa-location-dot text-black text-lg w-5 text-center"></i>
+            <div>
+              <p class="text-sm text-gray-400 mb-1">Locations</p>
+              <p>·Hong Kong<br>  Rooms 01-06, 27th Floor, Wing On Centre, 111 Connaught Road Central, Sheung Wan, Hong Kong, China <br>  <br>
+                · Shenzhen<br>  Room 1015, 10th Floor, Sunshine Yuehai Building, No. 3818 Baishi Road, Yuehai Subdistrict, Nanshan District, Shenzhen, Guangdong, China <br>  <br>
+                · Chengdu<br>  Room 3504, 35th Floor, Tower C, Xidun International Plaza, Jitai 2nd Road, Wuhou District, Chengdu, Sichuan Province, China</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <i class="fa-solid fa-clock text-black text-lg w-5 text-center"></i>
+            <div>
+              <p class="text-sm text-gray-400 mb-1">Working Hours</p>
+              <p>Mon - Fri: 9:00 - 18:00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+</section>
+
+<!-- 高级浅灰渐变 Footer -->
+<footer class="relative bg-gradient-to-r from-gray-100 via-gray-200 to-gray-100 text-gray-800 py-14 px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+      <div class="mb-6 md:mb-0 text-center md:text-left">
+        <h2 class="text-2xl font-bold tracking-tight">IN CHINA+</h2>
+        <p class="text-gray-600 mt-1">Exclusive Industrial Inspection Tours</p>
+      </div>
+      <div class="flex gap-6 text-gray-600">
+        <a href="#" class="hover:text-gray-900 transition-colors">LinkedIn</a>
+        <a href="#" class="hover:text-gray-900 transition-colors">WeChat</a>
+        <a href="#" class="hover:text-gray-900 transition-colors">Email</a>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-300 pt-6 flex flex-col md:flex-row justify-between text-gray-600 text-sm">
+      <div>© 2025 IN CHINA+. All rights reserved.</div>
+      <div class="flex gap-6 mt-4 md:mt-0">
+        <a href="#" class="hover:text-gray-900 transition-colors">Privacy</a>
+        <a href="#" class="hover:text-gray-900 transition-colors">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== 返回顶部 ==================== -->
+<button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-easternGold flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 z-50">
+    <i class="fa fa-chevron-up text-white"></i>
+</button>
+
+<!-- ==================== JS 依赖 ==================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+
+<script>
+    // 初始化 GSAP + 滚动动画
+    gsap.registerPlugin(ScrollTrigger);
+
+    // 窗口 resize 重绘图表
+    window.addEventListener('resize', () => {
+        if(window.chinaChart) window.chinaChart.resize();
+    });
+
+    // ========== 全局通用：页面滚动渐入动画 ==========
+    function setupSectionFadeIn() {
+        const sections = gsap.utils.toArray("section:not(#hero-section)");
+        
+        sections.forEach((section) => {
+            const headings = section.querySelectorAll("h1, h2, h3");
+            const texts = section.querySelectorAll("p, span, div");
+            const images = section.querySelectorAll("[style*='background-image']");
+            const cards = section.querySelectorAll(".grid > div, .prod-item, .panel > div");
+
+            gsap.set(section, { opacity: 0 });
+            gsap.set(headings, { y: 30, opacity: 0 });
+            gsap.set(texts, { y: 20, opacity: 0 });
+            gsap.set(images, { scale: 0.95, opacity: 0 });
+            gsap.set(cards, { y: 40, opacity: 0 });
+
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top 80%",
+                once: true,
+                onEnter: () => {
+                    gsap.to(section, { 
+                        opacity: 1, 
+                        duration: 0.8,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(headings, {
+                        y: 0, opacity: 1, duration: 0.9,
+                        stagger: 0.1, ease: "power3.out"
+                    });
+                    gsap.to(texts, {
+                        y: 0, opacity: 1, duration: 1,
+                        stagger: 0.08, delay: 0.2, ease: "power2.out"
+                    });
+                    gsap.to(images, {
+                        scale: 1, opacity: 1, duration: 1.2,
+                        delay: 0.3, ease: "power2.out"
+                    });
+                    gsap.to(cards, {
+                        y: 0, opacity: 1, duration: 1.1,
+                        stagger: 0.12, delay: 0.1, ease: "power3.out"
+                    });
+                }
+            });
+        });
+    }
+
+    // HERO 开幕动画
+   // ==================== 动效核心开发逻辑 ====================
+
+        // 01 Hero Opening - 电影级开幕模糊放大淡出
+        gsap.fromTo(".hero-title", 
+            { filter: "blur(25px)", opacity: 0, y: 40, scale: 0.93 },
+            { filter: "blur(0px)", opacity: 1, y: 0, scale: 1, duration: 2, ease: "power4.out" }
+        );
+        gsap.fromTo(".hero-sub", 
+            { opacity: 0 },
+            { opacity: 1, duration: 1.5, delay: 0.8, ease: "power2.out" }
+        );
+
+        // 随着鼠标滚动，第一屏文字渐渐消失
+        gsap.to(".hero-title", {
+            scrollTrigger: { trigger: ".hero-section", start: "top top", end: "50% top", scrub: true },
+            opacity: 0, y: -50
+        });
+
+        // 创建统一的时间线来同步所有动画
+        const syncTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".hero-section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // 主背景图从全屏变为居中的超大尺寸圆角图片
+        syncTimeline.to(".main-image", {
+            width: "80vh",
+            height: "90vh",
+            borderRadius: "8xl",
+            top: "50%",
+            left: "50%",
+            xPercent: -50,
+            yPercent: -50,
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+            ease: "power3.inOut"
+        }, 0); // 0表示同时开始
+
+        // 左侧图片容器从左外移动到中间
+        syncTimeline.fromTo(".left-images", 
+            { x: "-100%", opacity: 0 },
+            {
+                x: "0%", 
+                opacity: 1,
+                ease: "power3.out"
+            }, 0); // 0表示同时开始
+
+        // 右侧图片容器从右外移动到中间
+        syncTimeline.fromTo(".right-images", 
+            { x: "100%", opacity: 0 },
+            {
+                x: "0%", 
+                opacity: 1,
+                ease: "power3.out"
+            }, 0); // 0表示同时开始
+
+        // 为每个侧边图片添加统一的动画，确保它们同时出现
+        syncTimeline.fromTo(".side-image", 
+            { y: 30, opacity: 0 },
+            {
+                y: 0, 
+                opacity: 1,
+                stagger: 0.05, // 微小的间隔创造层次感
+                ease: "back.out(1.2)"
+            }, 0.2); // 稍微延迟一点开始
+
+        // 图片上的文字渐显
+        gsap.to(".side-image h3", {
+            scrollTrigger: { trigger: ".hero-section", start: "50% top", end: "80% top", scrub: true },
+            opacity: 1,
+            y: 0,
+            stagger: 0.15,
+            ease: "power2.out"
+        });
+        
+        // 主图片上的"新中国"文字渐显
+        gsap.to(".main-title", {
+            scrollTrigger: { trigger: ".hero-section", start: "50% top", end: "80% top", scrub: true },
+            opacity: 1,
+            scale: 1.1,
+            ease: "power2.out"
+        });
+
+        // 为所有图片添加悬停效果
+        document.querySelectorAll('.side-image, .main-image').forEach(img => {
+            img.addEventListener('mouseenter', () => {
+                gsap.to(img, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+            });
+            img.addEventListener('mouseleave', () => {
+                gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.in" });
+            });
+        });
+
+        // 创建滚动锁定，在交互完成前固定页面
+        const heroTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#hero-section",
+                start: "top top",
+                end: "bottom top",
+                pin: true, // 固定页面
+                scrub: true
+            }
+        });
+
+
+        // 添加一个空的动画来确保timeline持续整个滚动范围
+        heroTimeline.to({}, { duration: 1 });
+  
+    // 横向滚动
+    const horizWrap = document.querySelector(".horizontal-wrap");
+    const panels = gsap.utils.toArray(".panel");
+    gsap.to(panels, {
+        xPercent: -100 * (panels.length - 1),
+        ease: "none",
+        scrollTrigger: { trigger: ".horizontal-container", pin: true, scrub: 1, start: "top top" }
+    });
+
+    // 数字增长动画
+    gsap.utils.toArray(".counter-num").forEach(counter => {
+        const target = +counter.dataset.target;
+        gsap.to(counter, {
+            innerText: target, duration: 2.5, snap: { innerText: 1 },
+            scrollTrigger: { trigger: counter, start: "top 90%" }
+        });
+    });
+
+    // 返回顶部
+    const backTop = document.getElementById("back-to-top");
+    window.addEventListener("scroll", () => {
+        backTop.classList.toggle("opacity-0", window.scrollY <= 500);
+        backTop.classList.toggle("invisible", window.scrollY <= 500);
+    });
+    backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+ // 07 中国产业资源地图交互功能
+        function initChinaMap() {
+            const mapChart = echarts.init(document.getElementById('china-map'));
+            
+            const provinceData = {
+                "Guangdong": {
+                    name: "Guangdong", category: "tech",
+                    indicators: { gdp: "14.15 Trillion RMB", growth: "4.6%", pop: "127 Million" },
+                    summary: "Global advanced electronics powerhouse and GBA core engine. Possesses the world's most complete end-to-end hardware manufacturing ecosystem and pioneered low-altitude economy (eVTOL) testbeds.",
+                    pillars: ["Next-Gen Electronic Information", "Intelligent Connected EVs", "Smart Home Appliances", "Ultra-HD Displays", "Biopharmaceuticals & Medical Devices"],
+                    resources: ["High-density tech engineering labor pool", "Global maritime shipping networks (Shenzhen/Guangzhou ports)", "Advanced manufacturing precision tooling networks"],
+                    cities: [
+                        { name: "Shenzhen", industries: "Semiconductors & IC Design, Telecommunications Hardware, Low-Altitude Economy (eVTOL/Drones), Fintech, EV Battery Supply (BYD)." },
+                        { name: "Guangzhou", industries: "Automotive Manufacturing, Bio-tech Systems, International Trade Logistics, High-End Chemicals, E-commerce Supply Chains." },
+                        { name: "Foshan", industries: "Intelligent Home Appliances, Industrial Robotics, Advanced Ceramic Materials." },
+                        { name: "Dongguan", industries: "Smart Terminal Assembly (OPPO/VIVO), Precision Electronics Components, Advanced Die-Casting." },
+                        { name: "Zhuhai", industries: "Aviation & Aerospace, Biopharmaceuticals, Integrated Circuits, Smart Grids." },
+                        { name: "Huizhou", industries: "Petrochemical Refining, Electronic Information, Lithium-ion Batteries." },
+                        { name: "Zhongshan", industries: "Lighting Fixtures, Intelligent Hardware, Modern Pharmaceutical Manufacturing." },
+                        { name: "Jiangmen", industries: "Rail Transit Equipment, Fine Chemicals, Paper Making & Packaging." },
+                        { name: "Zhaoqing", industries: "New Energy Vehicle Parts, Metal Processing, Advanced Materials." }
+                    ]
+                },
+                "Hongkong": {
+                    name: "Hong Kong (SAR)", category: "service",
+                    indicators: { gdp: "3.12 Trillion HKD", growth: "3.0%", pop: "7.5 Million" },
+                    summary: "Global financial super-connector, offshore RMB clearing powerhouse, and international asset management hub. Serving as the primary gateway for international capital entering Mainland China.",
+                    pillars: ["International Banking & Finance", "Wealth & Asset Management", "Professional & Legal Services", "Trade Logistics & Maritime Shipping", "Innovation & Technology Hub"],
+                    resources: ["Free port status with zero tariff frameworks", "Independent common law judicial structure", "Unrestricted international capital flows"],
+                    cities: [
+                        { name: "Hong Kong", industries: "Cross-border Equity Financing, Fintech Applications, Wealth Management, Dispute Resolution, Cyber-port Incubation." }
+                    ]
+                },
+                "Beijing": {
+                    name: "Beijing", category: "service",
+                    indicators: { gdp: "4.58 Trillion RMB", growth: "5.1%", pop: "21.8 Million" },
+                    summary: "National regulatory, cultural, and technological innovation nucleus. Dominated by premier knowledge-intensive modern services, authoritative academic research foundations, and top-tier technological venture capital clusters.",
+                    pillars: ["Financial Infrastructure Services", "Scientific R&D & Enterprise Software", "Generative AI Large Models", "Aerospace & Satellite Engineering", "Advanced Electronics Design"],
+                    resources: ["Highest national concentration of Tier-1 elite research universities (Tsinghua/Peking)", "National key scientific laboratories", "Sovereign regulatory framework and central state-owned enterprise HQs"],
+                    cities: [
+                        { name: "Beijing Municipality", industries: "Generative AI Frameworks, Enterprise Software, Institutional Asset Management, Biologics & Novel Vaccine Innovation." }
+                    ]
+                },
+                "Shanghai": {
+                    name: "Shanghai", category: "service",
+                    indicators: { gdp: "4.95 Trillion RMB", growth: "4.8%", pop: "24.8 Million" },
+                    summary: "Global financial nerve node, maritime trade nexus, and multinational headquarters cluster. Spearheading national break-through industrial paths in high-end semiconductor fabrication, advanced automation, and pilot open-trade testing.",
+                    pillars: ["International Finance & Global Banking", "Cross-Border Trade & Super-shipping Logistical Units", "Integrated Circuits Fabrication (Wafer Fabs)", "Intelligent Net-linked EVs", "Biomedical R&D Platforms"],
+                    resources: ["Hyperscale global deepwater shipping lanes (Yangshan Port)", "High concentration of Fortune 500 regional headquarters", "Institutional cross-border RMB clearing financial conduits"],
+                    cities: [
+                        { name: "Shanghai Municipality", industries: "Multinational Wealth Management, Clean Energy Powertrains, Wafer Foundries, Global Consumer Goods Distribution Networks." }
+                    ]
+                },
+                "Sichuan": {
+                    name: "Sichuan", category: "tech",
+                    indicators: { gdp: "6.35 Trillion RMB", growth: "5.8%", pop: "83.7 Million" },
+                    summary: "Economic engine of Western China and key national strategic hinterland. Emerging as a powerhouse for technological manufacturing, advanced clean energy storage supply nodes, and digital model localization.",
+                    pillars: ["Electronic Information & Display Systems", "Lithium Battery & Power Storage", "Crystalline Silicon Photovoltaics", "Premium Agri-food & Distillery Processing", "Aviation & Aerospace Equipment"],
+                    resources: ["Largest national clean hydropower generation capacity", "Massive natural gas and lithium-vanadium mineral reserves", "High-density technical labor pool in Western China"],
+                    cities: [
+                        { name: "Chengdu", industries: "Integrated Circuit Advanced Testing & Packaging, Software Outsourcing & Game Dev, National Supercomputing Clusters, Aerospace Subsystems, High-end Medical Equipment." },
+                        { name: "Mianyang", industries: "Military-Civilian Technology Integration, Electronic Components, Intelligent Displays & TV Manufacturing." },
+                        { name: "Yibin", industries: "Hyperscale Lithium Power Battery Production Clusters, Premium Distilling Facilities (Wuliangye)." }
+                    ]
+                },
+                "Zhejiang": {
+                    name: "Zhejiang", category: "tech",
+                    indicators: { gdp: "8.68 Trillion RMB", growth: "5.5%", pop: "66 Million" },
+                    summary: "Global paradigm for digital economy architectures, vibrant private enterprise networks, and cloud infrastructure ecosystem. Pioneers in building national-level digital innovation pilot zones and massive e-commerce supply chains.",
+                    pillars: ["Digital Economy Core Sectors", "Intelligent Equipment & Hardware", "Modern Textiles & Premium Fashion", "Green Petrochemical Refining", "Artificial Intelligence & Cloud Computing"],
+                    resources: ["World-class deep-water maritime hub (Ningbo-Zhoushan Port)", "Ultra-high private equity liquidity & entrepreneurship index", "Pioneering hyperscale cloud computing infrastructures"],
+                    cities: [
+                        { name: "Hangzhou", industries: "E-Commerce Infrastructure, Cloud Architecture & Cloud Native, Artificial Intelligence Software, Fintech Ecosystems, Intelligent Video Surveillance (Hikvision)." },
+                        { name: "Ningbo", industries: "Global Port Logistics Networks, Precision Injection Moldings, Advanced Petrochemicals, Automotive Components." },
+                        { name: "Wenzhou", industries: "Light Consumer Manufactures, Low-Voltage Electrical Apparatuses, Hardware Valve Systems." }
+                    ]
+                },
+                "Jiangsu": {
+                    name: "Jiangsu", category: "industry",
+                    indicators: { gdp: "13.35 Trillion RMB", growth: "5.4%", pop: "85 Million" },
+                    summary: "Industrial core engine of the Yangtze River Delta and global hub for advanced manufacturing. Characterized by high-density industrial processing parks, world-class integrated circuits fabrication, and innovative biochemical engineering zones.",
+                    pillars: ["High-End Equipment Manufacturing", "Integrated Circuits & Semiconductors", "Advanced Chemicals & Polymeric Materials", "Biomedicine & Medical Apparatuses", "New Energy Equipment"],
+                    resources: ["High-concentration technical engineering talent pool", "Deepwater inland river transport corridors", "Dense clusters of National-level High-tech Development Zones"],
+                    cities: [
+                        { name: "Suzhou", industries: "High-end Electronics Assembly, Nanotechnology & Functional Materials, Industrial Automation Equipment Systems." },
+                        { name: "Nanjing", industries: "Software Engineering & Enterprise IT, Petrochemical Refining, Iron & Steel, Clean Vehicle Engineering." },
+                        { name: "Wuxi", industries: "IoT Sensors & Hardware, Semiconductor Packaging & Testing, New Energy Component Sourcing." }
+                    ]
+                },
+                "Jiangxi": {
+                    name: "Jiangxi", category: "industry",
+                    indicators: { gdp: "3.39 Trillion RMB", growth: "4.8%", pop: "45.1 Million" },
+                    summary: "Inland advanced manufacturing base specializing in rare metals, optoelectronic displays, and lithium energy refining supply loops for the Yangtze and Pearl River deltas.",
+                    pillars: ["Non-Ferrous Metallurgy & Rare Earths", "Lithium Battery Refining", "LED Display Electronics", "Aviation Engineering", "Traditional Chinese Medicine"],
+                    resources: ["World-class tungsten and heavy rare earth deposits", "Vast lithium-mica mineral extraction and processing networks in Yichun"],
+                    cities: [
+                        { name: "Nanchang", industries: "LED Optoelectronics & GaN Chips, Aviation Frameworks & Trainer Aircraft, Automobile Powertrains." },
+                        { name: "Ganzhou", industries: "Rare Earth Permanent Magnet Materials, Tungsten High-End Tools, Recycling of Secondary Batteries." },
+                        { name: "Yichun", industries: "Lithium Extraction from Mica, Battery Anode/Cathode Sourcing, New Energy Storage Cells." }
+                    ]
+                },
+                "Yunnan": {
+                    name: "Yunnan", category: "agriculture",
+                    indicators: { gdp: "3.15 Trillion RMB", growth: "4.5%", pop: "46.9 Million" },
+                    summary: "Southwestern clean energy hub and international gateway connecting China to ASEAN markets. Leading in green aluminum/silicon processing powered by massive hydro grids.",
+                    pillars: ["Clean Hydropower Generation", "Green Aluminum & Crystalline Silicon", "Specialty Tobacco & Agri-Floriculture", "ASEAN Cross-Border Logistics", "Biodiversity Tourism"],
+                    resources: ["Rich non-ferrous metal reserves", "Cross-border Southeast Asian rail connections (China-Laos Railway)"],
+                    cities: [
+                        { name: "Kunming", industries: "Floriculture Distribution, Phosphorus Chemical Synthesis, Border Commodities Trading, Rail-Truck Multimodal Freight Logistics Hubs." },
+                        { name: "Qujing", industries: "Crystalline Silicon Photovoltaic Materials, Green Aluminum Smetling, Fine Chemicals." }
+                    ]
+                },
+                "Xizang": {
+                    name: "Tibet", category: "agriculture",
+                    indicators: { gdp: "0.26 Trillion RMB", growth: "8.5%", pop: "3.6 Million" },
+                    summary: "High-altitude ecological reserve focusing on specialty clean power generation inputs, unique alpine agribusiness, and strategic international Himalayan land passages.",
+                    pillars: ["Clean Hydropower & Geothermal Energy", "Tibetan Medical Systems & Biotech", "Premium Bottled Water Sourcing", "Ecological Tourism Services", "Border Trade Infrastructure"],
+                    resources: ["Highest national solar and geothermal energy yield potential", "Unique pure glacier water networks, heavy mineral reserve baselines"],
+                    cities: [
+                        { name: "Lhasa", industries: "Tibetan Medicine Processing, Cultural Handcrafts, Green Logistics & Warehousing Hubs, High-altitude Data Caching Storage." }
+                    ]
+                },
+                "Shandong": {
+                    name: "Shandong", category: "industry", indicators: { gdp: "9.52 Trillion RMB", growth: "5.5%", pop: "101.6 Million" },
+                    summary: "Comprehensive industrial powerhouse with complete categories. Leading green, low-carbon industrial transformation.",
+                    pillars: ["Petrochemical Refining", "Heavy Machinery & Transport", "Marine Bio-industries", "Smart Household Appliances"],
+                    resources: ["Abundant energy deposits (Shengli Oilfield)", "Extensive coastal marine reserves"],
+                    cities: [{ name: "Qingdao", industries: "Smart Home Appliance Ecosystems, Marine Science & Deepsea Equipment, Logistics Networks." }]
+                },
+                "Anhui": {
+                    name: "Anhui", category: "industry", indicators: { gdp: "4.92 Trillion RMB", growth: "5.6%", pop: "61.3 Million" },
+                    summary: "Fastest-growing tech-manufacturing rising star. Globally recognized for its aggressive tech-investment incubation model.",
+                    pillars: ["New Energy Vehicles", "Advanced Photovoltaics & Energy Storage", "Quantum Information & AI Software"],
+                    resources: ["Highly integrated industrial ecosystem chains", "Direct access to top-tier technological commercialization pipelines"],
+                    cities: [{ name: "Hefei", industries: "New Energy Vehicle Assembly (NIO/Volkswagen), Quantum Computing R&D, AI Speech (iFlytek), Display Fabs." }]
+                },
+                "Chongqing": {
+                    name: "Chongqing", category: "industry", indicators: { gdp: "3.18 Trillion RMB", growth: "5.8%", pop: "32.1 Million" },
+                    summary: "Megacity industrial fortress in Southwestern China and anchor point for the Western Land-Sea New Corridor.",
+                    pillars: ["Intelligent Connected NEVs", "Consumer Electronic Manufacturing", "Advanced Structural Materials"],
+                    resources: ["World-class river-rail-air multi-modal logistical transportation network"],
+                    cities: [{ name: "Chongqing Municipality", industries: "Intelligent Clean EV Production (Changan/Seres), Hyperscale Laptop Computer Assembly Lines." }]
+                },
+                "Tianjin": {
+                    name: "Tianjin", category: "industry", indicators: { gdp: "1.72 Trillion RMB", growth: "4.2%", pop: "13.6 Million" },
+                    summary: "Northern shipping nexus and advanced manufacturing base.",
+                    pillars: ["Aerospace Engineering (Airbus)", "Petrochemical Refining", "Equipment Manufacturing"],
+                    resources: ["Northern deepwater cargo port (Tianjin Port)"],
+                    cities: [{ name: "Tianjin Municipality", industries: "Aviation Logistics, Large-scale Petrochemicals, Marine Engineering Machinery." }]
+                },
+                "Hebei": {
+                    name: "Hebei", category: "industry", indicators: { gdp: "4.55 Trillion RMB", growth: "5.0%", pop: "74.2 Million" },
+                    summary: "Key heavy industrial processing layer enveloping the capital region.",
+                    pillars: ["Iron & Steel Metallurgy", "Equipment Manufacturing", "Modern Logistics"],
+                    resources: ["Largest global steel manufacturing capacity"],
+                    cities: [{ name: "Shijiazhuang", industries: "Biopharmaceuticals, Textiles, Chemical Base Raw Materials." }]
+                },
+                "Shanxi": {
+                    name: "Shanxi", category: "industry", indicators: { gdp: "2.65 Trillion RMB", growth: "4.0%", pop: "34.8 Million" },
+                    summary: "National energy baseline safeguard and pioneer in coal-to-clean energy shift.",
+                    pillars: ["Coal & Modern Carbon Chemicals", "Specialty Steel & Metallurgy", "New Energy Equipment"],
+                    resources: ["Abundant coking coal deposits"],
+                    cities: [{ name: "Taiyuan", industries: "Specialty Stainless Steels, Heavy Mining Machinery, Coal Chemical Units." }]
+                },
+                "Neimenggu": {
+                    name: "Inner Mongolia", category: "agriculture", indicators: { gdp: "2.58 Trillion RMB", growth: "6.0%", pop: "24.0 Million" },
+                    summary: "Northern green energy storage base and national dairy and livestock engine.",
+                    pillars: ["Dairy Food Processing", "Wind & Solar Clean Power", "Rare Earth Metallurgy"],
+                    resources: ["World's largest rare earth deposits (Bayan Obo)", "Vast solar and wind energy land corridors"],
+                    cities: [{ name: "Baotou", industries: "Rare Earth Functional Materials, Heavy Tracked Vehicles." }]
+                },
+                "Liaoning": {
+                    name: "Liaoning", category: "industry", indicators: { gdp: "3.12 Trillion RMB", growth: "4.8%", pop: "42.0 Million" },
+                    summary: "Northeastern rust-belt anchor reinventing into advanced precision tooling and maritime units.",
+                    pillars: ["Heavy Equipment & Defense Machinery", "Petrochemical Refining", "Automotive Assembly"],
+                    resources: ["Deep industrial machining legacy", "Major northern maritime hubs (Dalian Port)"],
+                    cities: [{ name: "Shenyang", industries: "CNC Machine Tools, Aircraft Assemblies, Automotive Processing (BMW)." }]
+                },
+                "Jilin": {
+                    name: "Jilin", category: "industry", indicators: { gdp: "1.41 Trillion RMB", growth: "5.5%", pop: "23.5 Million" },
+                    summary: "National automotive pioneer and prime grain-belt supplier.",
+                    pillars: ["Automotive Manufacturing", "Agricultural Sourcing", "Satellite Remote Sensing"],
+                    resources: ["Fertile black-soil arable systems", "Deep automotive tier-1 supplier networks"],
+                    cities: [{ name: "Changchun", industries: "Passenger Vehicle Manufacturing, Rail Transit Cars, Optical Precision Machinery." }]
+                },
+                "Heilongjiang": {
+                    name: "Heilongjiang", category: "agriculture", indicators: { gdp: "1.65 Trillion RMB", growth: "3.2%", pop: "30.6 Million" },
+                    summary: "Northern agricultural security anchor and heavy aerospace engineering zone.",
+                    pillars: ["Commercial Agriculture & Grain Logistics", "Heavy Power Generation Equipment", "Aerospace Composites"],
+                    resources: ["Largest grain reserve baseline", "Daqing Oilfield deposits"],
+                    cities: [{ name: "Harbin", industries: "Heavy Electric Machinery, Gas Turbines, Aerospace Engineering." }]
+                },
+                "Fujian": {
+                    name: "Fujian", category: "tech", indicators: { gdp: "5.65 Trillion RMB", growth: "4.6%", pop: "41.8 Million" },
+                    summary: "Maritime Silk Road hub and global leader in energy storage batteries.",
+                    pillars: ["Lithium EV Batteries (CATL)", "Electronic Information", "Premium Footwear & Textiles"],
+                    resources: ["Global battery technology innovation hub", "Extensive private business trading networks"],
+                    cities: [{ name: "Xiamen", industries: "LCD Display Panels, Semiconductor Assembly, Cross-border Financial Services." }]
+                },
+                "Henan": {
+                    name: "Henan", category: "agriculture", indicators: { gdp: "6.12 Trillion RMB", growth: "4.2%", pop: "98.2 Million" },
+                    summary: "Central logistical junction transforming from a food giant to an electronics node.",
+                    pillars: ["Electronic Terminal Assembly (Foxconn)", "Food Processing & Agribusiness", "New Materials"],
+                    resources: ["Vast demographic dividend and labor supply", "High-density cross-national high-speed rail nodes"],
+                    cities: [{ name: "Zhengzhou", industries: "Smartphones Assembly, Commercial Buses (Yutong), Frozen Food Processing." }]
+                },
+                "Hubei": {
+                    name: "Hubei", category: "tech", indicators: { gdp: "5.82 Trillion RMB", growth: "5.5%", pop: "58.4 Million" },
+                    summary: "Central technological and optoelectronic nexus flanking the Yangtze river transport pipeline.",
+                    pillars: ["Optoelectronic Information (Optics Valley)", "Automotive Core Systems", "Biomedicine"],
+                    resources: ["Premier engineering research institutions", "High-capacity inland central river port infrastructure"],
+                    cities: [{ name: "Wuhan", industries: "Fiber Optic Communications, Flash Memory Chips (YMTC), Automobile Assemblies." }]
+                },
+                "Hunan": {
+                    name: "Hunan", category: "industry", indicators: { gdp: "5.21 Trillion RMB", growth: "4.8%", pop: "65.7 Million" },
+                    summary: "Global epicentre for heavy construction machinery and intelligent rail platforms.",
+                    pillars: ["Heavy Construction Machinery", "Rail Transit Systems", "Advanced Metallurgy & New Materials"],
+                    resources: ["Deep industrial engineering talent pool", "Abundant non-ferrous mineral extraction bases"],
+                    cities: [{ name: "Changsha", industries: "Heavy Excavation Equipment (Sany), Automotive Assemblies, Cultural Media Production." }]
+                },
+                "Guangxi": {
+                    name: "Guangxi", category: "agriculture", indicators: { gdp: "2.82 Trillion RMB", growth: "4.1%", pop: "50.4 Million" },
+                    summary: "Southern trade corridor facing ASEAN trade zones with strengths in heavy automotives.",
+                    pillars: ["Automotive & Machinery", "Metallurgy", "ASEAN Logistical Routing"],
+                    resources: ["Primary sea gateway for western regions (Beibu Gulf)", "Hyperscale sugarcane cultivation"],
+                    cities: [{ name: "Liuzhou", industries: "Mini EVs (Wuling), Heavy Industrial Machinery, Steel Metallurgy." }]
+                },
+                "Hainan": {
+                    name: "Hainan", category: "service", indicators: { gdp: "0.79 Trillion RMB", growth: "7.5%", pop: "10.4 Million" },
+                    summary: "National Free Trade Port pilot zone emphasizing duty-free business and deepsea tech testing.",
+                    pillars: ["Duty-Free Tourism & Retail Services", "Modern Maritime Shipping Logistics", "Deep-sea Tech & Seed Science"],
+                    resources: ["Sovereign zero-tariff custom policy perks", "Strategic deepsea maritime exploration grids"],
+                    cities: [{ name: "Haikou", industries: "Cross-border Financial Tech, Duty-Free Distribution, Pharmaceutical Formulations." }]
+                },
+                "Guizhou": {
+                    name: "Guizhou", category: "tech", indicators: { gdp: "2.18 Trillion RMB", growth: "4.6%", pop: "38.5 Million" },
+                    summary: "National Big Data storage center leveraging its unique cool climate and natural karst caves.",
+                    pillars: ["Cloud Data Storage Centers", "Premium Spirits (Moutai)", "New Energy Battery Materials"],
+                    resources: ["Massive low-cost computing power infrastructure", "Rich phosphorus and manganese deposits"],
+                    cities: [{ name: "Guiyang", industries: "Hyperscale Server Farms, Cloud Software, Electronic Components." }]
+                },
+                "Shaanxi": {
+                    name: "Shaanxi", category: "tech", indicators: { gdp: "3.52 Trillion RMB", growth: "4.5%", pop: "39.5 Million" },
+                    summary: "Northwestern high-tech powerhouse anchoring aerospace development and semiconductor design.",
+                    pillars: ["Aerospace Engineering", "Semiconductor Wafers & Flash Memory", "New Energy Vehicles"],
+                    resources: ["Dense concentrations of defense labs and tech universities", "Massive energy assets in northern grids"],
+                    cities: [{ name: "Xian", industries: "Semiconductor Packaging (Samsung), Solar Modules (LONGi), Electric Autos (BYD Xian)." }]
+                },
+                "Gansu": {
+                    name: "Gansu", category: "industry", indicators: { gdp: "1.25 Trillion RMB", growth: "5.8%", pop: "24.9 Million" },
+                    summary: "Strategic northwest energy passage transitioning rapidly into a wind and solar capital.",
+                    pillars: ["Wind & Solar Power Generation", "Petrochemical & Heavy Extraction", "Non-Ferrous Metallurgy"],
+                    resources: ["Vast desert corridors optimized for solar arrays", "Rich nickel and cobalt deposits"],
+                    cities: [{ name: "Lanzhou", industries: "Petrochemical Refining, Heavy Industrial Piping, Bio-pharmaceutical Bases." }]
+                },
+                "Qinghai": {
+                    name: "Qinghai", category: "industry", indicators: { gdp: "0.41 Trillion RMB", growth: "4.8%", pop: "5.9 Million" },
+                    summary: "Strategic brine salt-lake resource pool supplying national battery chains.",
+                    pillars: ["Salt Lake Lithium Extraction", "Photovoltaic Power Units", "Clean Power Grid Interconnects"],
+                    resources: ["Largest national brine lithium and potassium reserve", "Massive solar land grid lots"],
+                    cities: [{ name: "Xining", industries: "Lithium Carbonate Synthesis, Carbon Fiber, Special Steel Products." }]
+                },
+                "Ningxia": {
+                    name: "Ningxia", category: "tech", indicators: { gdp: "0.56 Trillion RMB", growth: "6.0%", pop: "7.3 Million" },
+                    summary: "Key Western cloud computing storage hub and elite wine production zone.",
+                    pillars: ["Cloud Computing Data Centers", "Premium Viticulture", "Coal Carbon Chemicals"],
+                    resources: ["Abundant low-cost electricity grids for server operations", "Optimal arid soil for premium grapes"],
+                    cities: [{ name: "Yinchuan", industries: "Monocrystalline Silicon Wafers, Server Cluster Hosting, Wine Processing." }]
+                },
+                "Xinjiang": {
+                    name: "Xinjiang", category: "agriculture", indicators: { gdp: "2.02 Trillion RMB", growth: "6.2%", pop: "25.8 Million" },
+                    summary: "Eurasian land corridor boasting immense energy reserves and top-tier industrial farming inputs.",
+                    pillars: ["Oil & Natural Gas Refining", "Coal-Fired Clean Power Grid Utilities", "Polysilicon Solar Components"],
+                    resources: ["Largest domestic oil, gas, and coal deposit baselines", "Premium long-staple cotton farms"],
+                    cities: [{ name: "Urumqi", industries: "Petroleum Refining, Polysilicon Production, Wind Power Turbines, Border Trade Logistics." }]
+                },
+                "Taiwan": {
+                    name: "Taiwan", category: "tech", indicators: { gdp: "25.2 Trillion TWD", growth: "2.8%", pop: "23.4 Million" },
+                    summary: "Global semiconductor silicon shield with unmatched precision electronic design and foundry ecosystems.",
+                    pillars: ["Advanced Semiconductor Manufacturing (TSMC)", "IC Design & Electronic Frameworks", "Precision CNC Machinery"],
+                    resources: ["World-leading sub-2nm chip wafer fabrication fabs", "Extensive global tech supply link integrations"],
+                    cities: [{ name: "Hsinchu", industries: "Advanced Foundry Substrates, Global IC Prototyping, Optoelectronic Optics." }]
+                },
+                "Macao": {
+                    name: "Macao (SAR)", category: "service", indicators: { gdp: "410 Billion MOP", growth: "12%", pop: "0.68 Million" },
+                    summary: "International leisure tourism anchor and trade platform connecting Portuguese-speaking markets.",
+                    pillars: ["Integrated Leisure Tourism & Hospitality", "MICE Expo Event Services", "Traditional Chinese Medicine Platforms"],
+                    resources: ["Free port status with international trade open-channels", "Historical Portuguese linguistic business ties"],
+                    cities: [{ name: "Macao", industries: "Cross-border Destination Management, Traditional Medicine Incubators, Offshore Micro-Fintech." }]
+                }
+            };
+
+            const mapNameMap = {
+                "北京市": "Beijing", "天津市": "Tianjin", "河北省": "Hebei", "山西省": "Shanxi", "内蒙古自治区": "Neimenggu",
+                "辽宁省": "Liaoning", "吉林省": "Jilin", "黑龙江省": "Heilongjiang", "上海市": "Shanghai", "江苏省": "Jiangsu",
+                "浙江省": "Zhejiang", "安徽省": "Anhui", "福建省": "Fujian", "江西省": "Jiangxi", "山东省": "Shandong",
+                "河南省": "Henan", "湖北省": "Hubei", "湖南省": "Hunan", "广东省": "Guangdong", "广西壮族自治区": "Guangxi",
+                "海南省": "Hainan", "重庆市": "Chongqing", "四川省": "Sichuan", "贵州省": "Guizhou", "云南省": "Yunnan",
+                "西藏自治区": "Xizang", "陕西省": "Shaanxi", "甘肃省": "Gansu", "青海省": "Qinghai", "宁夏回族自治区": "Ningxia",
+                "新疆维吾尔自治区": "Xinjiang", "台湾省": "Taiwan", "香港特别行政区": "Hongkong", "澳门特别行政区": "Macao"
+            };
+            
+            fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
+                .then(response => response.json())
+                .then(chinaJson => {
+                    echarts.registerMap('china', chinaJson);
+                    
+                    const mapData = chinaJson.features.map(f => {
+                        const chnName = f.properties.name;
+                        const engName = mapNameMap[chnName] || chnName;
+                        const hasData = provinceData[engName] ? 60 : 20; 
+                        return { name: chnName, value: hasData };
+                    });
+
+                    const option = {
+                        backgroundColor: '#ffffff',
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: function(params) {
+                                const engName = mapNameMap[params.name] || params.name;
+                                return `<strong>${engName}</strong><br/><span style="font-size:11px;">Click to audit data assets</span>`;
+                            },
+                            backgroundColor: '#1f2937',
+                            textStyle: { color: '#ffffff' }
+                        },
+                        visualMap: {
+                            show: false,
+                            min: 0,
+                            max: 100,
+                            inRange: {
+                                color: ['#f3f4f6', '#e5e7eb', '#cbd5e1', '#94a3b8']
+                            }
+                        },
+                        series: [
+                            {
+                                name: 'China Infrastructure Units',
+                                type: 'map',
+                                map: 'china',
+                                roam: true,
+                                scaleLimit: { min: 1, max: 6 },
+                                label: {
+                                    show: true,
+                                    fontSize: 9,
+                                    color: '#4b5563',
+                                    formatter: function(p) { return mapNameMap[p.name] || ''; }
+                                },
+                                emphasis: {
+                                    label: { show: true, fontSize: 11, fontWeight: 'bold', color: '#ffffff' },
+                                    itemStyle: { areaColor: '#1e3a8a' }
+                                },
+                                itemStyle: {
+                                    borderColor: '#ffffff',
+                                    borderWidth: 1,
+                                    areaColor: '#f3f4f6'
+                                },
+                                data: mapData
+                            }
+                        ]
+                    };
+
+                    mapChart.setOption(option);
+                    mapChart.on('click', function(params) {
+                        const engKey = mapNameMap[params.name];
+                        if (engKey && provinceData[engKey]) {
+                            renderDataDetails(provinceData[engKey]);
+                        } else {
+                            renderFallback(engKey || params.name);
+                        }
+                    });
+                    
+                    initAuxiliaryControls();
+                });
+
+            function renderDataDetails(data) {
+                const container = document.getElementById('province-info');
+                
+                let pillarBadges = data.pillars.map(p => `<span class="inline-block bg-blue-50 text-blue-800 border border-blue-200 text-xs font-semibold px-2.5 py-1 rounded-md m-0.5">${p}</span>`).join('');
+                let resourceItems = data.resources.map(r => `<li class="text-xs text-gray-600 flex items-start gap-1.5"><i class="fa fa-cube text-gray-400 mt-1"></i><span>${r}</span></li>`).join('');
+                
+                let cityBlocks = data.cities.map(c => `
+                    <div class="p-3 bg-gray-50 border border-gray-100 rounded-lg">
+                        <h4 class="text-xs font-bold text-gray-800 flex items-center gap-1.5 mb-1">
+                            <i class="fa fa-building text-primary"></i> ${c.name} Hub
+                        </h4>
+                        <p class="text-xs text-gray-600 leading-relaxed"><span class="font-medium text-gray-400">Pillar Matrix:</span> ${c.industries}</p>
+                    </div>
+                `).join('');
+
+                container.innerHTML = `
+                    <div class="space-y-5 animate-fadeIn">
+                        <div class="border-b border-gray-100 pb-3">
+                            <span class="text-xs font-bold tracking-widest text-primary uppercase">Geographic Economic Profile</span>
+                            <h2 class="text-2xl font-black text-gray-900 mt-0.5">${data.name}</h2>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 text-center bg-gray-50/70 p-2.5 rounded-lg border border-gray-100">
+                            <div>
+                                <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Est. GDP (2026)</div>
+                                <div class="text-xs font-bold text-gray-800 mt-0.5">${data.indicators.gdp}</div>
+                            </div>
+                            <div class="border-x border-gray-200">
+                                <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Growth Rate</div>
+                                <div class="text-xs font-bold text-green-600 mt-0.5">${data.indicators.growth}</div>
+                            </div>
+                            <div>
+                                <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Population</div>
+                                <div class="text-xs font-bold text-gray-800 mt-0.5">${data.indicators.pop}</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-1.5">Industrial Context</h3>
+                            <p class="text-xs text-gray-600 leading-relaxed bg-white">${data.summary}</p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-2">Regional Pillar Sectors</h3>
+                            <div class="flex flex-wrap -m-0.5">${pillarBadges}</div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-1.5">Structural Reserves & Foundational Resources</h3>
+                            <ul class="space-y-1">${resourceItems}</ul>
+                        </div>
+
+                        <div class="pt-2 border-t border-gray-100">
+                            <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-2.5">Key Node / City Industry Breakdown</h3>
+                            <div class="space-y-2">${cityBlocks}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function renderFallback(name) {
+                const container = document.getElementById('province-info');
+                container.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="border-b border-gray-100 pb-3">
+                            <span class="text-xs font-semibold tracking-wider text-gray-400 uppercase">Profile Layer</span>
+                            <h2 class="text-2xl font-bold text-gray-800 mt-0.5">${name}</h2>
+                        </div>
+                        <div class="p-4 bg-yellow-50 text-yellow-800 border border-yellow-100 text-xs rounded-lg flex gap-2">
+                            <i class="fa fa-exclamation-triangle mt-0.5"></i>
+                            <div>
+                                <span class="font-bold">Extended baseline profile pending compilation.</span>
+                                <p class="mt-1 text-gray-600">Please click valid interactive map layers on the left window panel to view full live structured datasets.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function initAuxiliaryControls() {
+                const searchInput = document.getElementById('province-search');
+                const filterSelect = document.getElementById('industry-filter');
+                const resultsBox = document.getElementById('search-results');
+
+                function executeDirectoryQuery() {
+                    const query = searchInput.value.toLowerCase().trim();
+                    const filter = filterSelect.value;
+                    
+                    resultsBox.innerHTML = '';
+                    let matchingCount = 0;
+
+                    if (query === '' && filter === 'all') {
+                        resultsBox.classList.add('hidden');
+                        return;
+                    }
+
+                    Object.keys(provinceData).forEach(key => {
+                        const p = provinceData[key];
+                        const matchesQuery = p.name.toLowerCase().includes(query);
+                        const matchesFilter = filter === 'all' || p.category === filter;
+
+                        if (matchesQuery && matchesFilter) {
+                            matchingCount++;
+                            const btn = document.createElement('button');
+                            btn.className = "px-2.5 py-1.5 bg-white border border-gray-200 hover:border-primary hover:bg-blue-50/30 text-gray-700 text-xs font-medium rounded-md transition text-left truncate shadow-sm flex items-center justify-between";
+                            btn.innerHTML = `<span>${p.name}</span><i class="fa fa-chevron-right text-[9px] text-gray-400"></i>`;
+                            btn.onclick = () => renderDataDetails(p);
+                            resultsBox.appendChild(btn);
+                        }
+                    });
+
+                    if (matchingCount > 0) {
+                        resultsBox.classList.remove('hidden');
+                    } else {
+                        resultsBox.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-2">No structural matches found for current filter criteria</div>`;
+                        resultsBox.classList.remove('hidden');
+                    }
+                }
+
+                searchInput.addEventListener('input', executeDirectoryQuery);
+                filterSelect.addEventListener('change', executeDirectoryQuery);
+            }
+        }
+        
+        // 当页面滚动到地图区域时初始化地图
+        ScrollTrigger.create({
+            trigger: '.bg-bgDeep',
+            start: 'top 80%',
+            onEnter: function() {
+                initChinaMap();
+                this.kill(); // 只初始化一次
+            }
+        });
+
+    // 表单提交阻止默认行为
+    document.getElementById('contact-form')?.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        alert('需求提交成功！我们将尽快与您联系');
+    })
+
+    // ==================== 导航栏滚动效果 ====================
+// 导航栏滚动样式切换
+const navbar = document.getElementById('navbar');
+const navLinks = navbar.querySelectorAll('a');
+const navBtn = navbar.querySelector('a[href="#contact"]');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        // 滚动后：白底毛玻璃 + 深色文字
+        navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'py-3');
+        navbar.classList.remove('py-6');
+        navLinks.forEach(link => {
+            link.classList.remove('text-[#e0e0e0]', 'hover:text-white');
+            link.classList.add('text-gray-800', 'hover:text-techBlue');
+        });
+        if (navBtn) {
+            navBtn.classList.remove('border-[#d1d1d1]', 'text-[#e0e0e0]', 'hover:bg-white/10');
+            navBtn.classList.add('border-techBlue', 'text-techBlue', 'hover:bg-techBlue/5');
+        }
+    } else {
+        // 顶部状态：透明背景 + 浅灰白色文字
+        navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'py-3');
+        navbar.classList.add('py-6');
+        navLinks.forEach(link => {
+            link.classList.add('text-[#e0e0e0]', 'hover:text-white');
+            link.classList.remove('text-gray-800', 'hover:text-techBlue');
+        });
+        if (navBtn) {
+            navBtn.classList.add('border-[#d1d1d1]', 'text-[#e0e0e0]', 'hover:bg-white/10');
+            navBtn.classList.remove('border-techBlue', 'text-techBlue', 'hover:bg-techBlue/5');
+        }
+    }
+});
+
+    // ========== 页面加载完成后执行 ==========
+    window.addEventListener("load", () => {
+        setupSectionFadeIn();
+        // 懒加载地图
+        ScrollTrigger.create({
+            trigger: "#china-map",
+            start: "top 80%",
+            once: true,
+            onEnter: initChinaMap
+        });
+    });
+</script>
+
+
+
+</div></section></body></html>
