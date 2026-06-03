@@ -1210,11 +1210,15 @@
 const horizWrap = document.querySelector(".horizontal-wrap");
 const panels = gsap.utils.toArray(".panel");
 gsap.to(panels, {
-    xPercent: -600 * (panels.length - 1),
+    xPercent: -100 * (panels.length - 1),
     ease: "none",
-    scrollTrigger: { trigger: ".horizontal-container", pin: true, scrub: 1, start: "top top" }
+    scrollTrigger: {
+        trigger: ".horizontal-container",
+        pin: true,
+        scrub: 0, // 👈 只改这里！
+        start: "top top"
+    }
 });
-
     gsap.utils.toArray(".counter-num").forEach(counter => {
         const target = +counter.dataset.target;
         gsap.to(counter, {
