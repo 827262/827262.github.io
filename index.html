@@ -1116,14 +1116,18 @@
         });
     }
 
-    gsap.fromTo(".hero-title", 
-        { filter: "blur(25px)", opacity: 0, y: 40, scale: 0.93 },
-        { filter: "blur(0px)", opacity: 1, y: 0, scale: 1, duration: 2, ease: "power4.out" }
-    );
-    gsap.to(".hero-title", {
-        scrollTrigger: { trigger: ".hero-section", start: "top top", end: "50% top", scrub: true },
-        opacity: 0, y: -50
-    });
+   // 只控制首页 it's time to... ：立即显示 + 滑动快速消失
+// 完全不影响其他任何动画、交互、横向滚动
+gsap.to(".hero-title", {
+  opacity: 0,
+  filter: "blur(10px)",
+  scrollTrigger: {
+    trigger: ".hero",
+    start: "top top",
+    end: "20% top",
+    scrub: 0.2,
+  },
+});
 
     const syncTimeline = gsap.timeline({
         scrollTrigger: {
