@@ -1209,20 +1209,10 @@
   
 const horizWrap = document.querySelector(".horizontal-wrap");
 const panels = gsap.utils.toArray(".panel");
-
 gsap.to(panels, {
-  xPercent: -100 * (panels.length - 1),
-  scrollTrigger: {
-    trigger: ".horizontal-container",
-    pin: true,
-    start: "top top",
-    snap: {
-      snapTo: 1 / (panels.length - 1),
-      duration: 0.1,
-      ease: "none"
-    },
-    scrub: 0,
-  }
+    xPercent: -100 * (panels.length - 1),
+    ease: "none",
+    scrollTrigger: { trigger: ".horizontal-container", pin: true, scrub: 1, start: "top top" }
 });
 
     gsap.utils.toArray(".counter-num").forEach(counter => {
