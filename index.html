@@ -1210,7 +1210,7 @@
 const horizWrap = document.querySelector(".horizontal-wrap");
 const panels = gsap.utils.toArray(".panel");
 gsap.to(panels, {
-    xPercent: -100 * (panels.length - 1),
+    xPercent: -600 * (panels.length - 1),
     ease: "none",
     scrollTrigger: { trigger: ".horizontal-container", pin: true, scrub: 1, start: "top top" }
 });
