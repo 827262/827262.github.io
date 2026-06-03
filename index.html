@@ -1207,13 +1207,19 @@
 
     heroTimeline.to({}, { duration: 1 });
   
-    const horizWrap = document.querySelector(".horizontal-wrap");
-    const panels = gsap.utils.toArray(".panel");
-    gsap.to(panels, {
-        xPercent: -100 * (panels.length - 1),
-        ease: "none",
-        scrollTrigger: { trigger: ".horizontal-container", pin: true, scrub: 0.5, start: "top top" }
-    });
+const horizWrap = document.querySelector(".horizontal-wrap");
+const panels = gsap.utils.toArray(".panel");
+gsap.to(panels, {
+    xPercent: -100 * (panels.length - 1),
+    ease: "none",
+    scrollTrigger: { 
+        trigger: ".horizontal-container", 
+        pin: true, 
+        scrub: 0.5, 
+        snap: 1 / (panels.length - 1), 
+        start: "top top" 
+    }
+});
 
     gsap.utils.toArray(".counter-num").forEach(counter => {
         const target = +counter.dataset.target;
