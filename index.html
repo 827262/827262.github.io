@@ -1209,16 +1209,24 @@
   
 const horizWrap = document.querySelector(".horizontal-wrap");
 const panels = gsap.utils.toArray(".panel");
+
+// 👇 就用这段，完美解决 飞滑 + 空白
 gsap.to(panels, {
-    xPercent: -100 * (panels.length - 1),
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".horizontal-container",
-        pin: true,
-        scrub: 0, // 👈 只改这里！
-        start: "top top"
-    }
+  xPercent: -100 * (panels.length - 1),
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".horizontal-container",
+    pin: true,
+    scrub: 0,           // 完全跟手，不飘
+    start: "top top",
+    end: "+=" + window.innerHeight * (panels.length - 1), // 👈 修复空白！
+    snap: {
+      snapTo: 1 / (panels.length - 1), // 👈 强制一页一页停稳！
+      duration: 0.1,
+    },
+  },
 });
+    
     gsap.utils.toArray(".counter-num").forEach(counter => {
         const target = +counter.dataset.target;
         gsap.to(counter, {
