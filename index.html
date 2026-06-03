@@ -1211,13 +1211,17 @@ const horizWrap = document.querySelector(".horizontal-wrap");
 const panels = gsap.utils.toArray(".panel");
 gsap.to(panels, {
     xPercent: -100 * (panels.length - 1),
-    ease: "none",
+    ease: "power2.inOut",
     scrollTrigger: { 
         trigger: ".horizontal-container", 
-        pin: true, 
-        scrub: 0.5, 
-        snap: 1 / (panels.length - 1), 
-        start: "top top" 
+        pin: true,
+        start: "top top",
+        // 重点：去掉scrub！改用精准定点吸附
+        snap: {
+            snapTo: 1 / (panels.length - 1),
+            duration: 0.6, // 翻页动画快慢
+            ease: "power2.inOut"
+        }
     }
 });
 
