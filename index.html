@@ -1177,61 +1177,60 @@
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 
 <script>
-    gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-    window.addEventListener('resize', () => {
-        if(window.chinaChart) window.chinaChart.resize();
-    });
+window.addEventListener('resize', () => {
+    if(window.chinaChart) window.chinaChart.resize();
+});
 
-    function setupSectionFadeIn() {
-        const sections = gsap.utils.toArray("section:not(#hero-section)");
-        
-        sections.forEach((section) => {
-            const headings = section.querySelectorAll("h1, h2, h3");
-            const texts = section.querySelectorAll("p, span, div");
-            const images = section.querySelectorAll("[style*='background-image']");
-            const cards = section.querySelectorAll(".grid > div, .prod-item, .panel > div");
+function setupSectionFadeIn() {
+    const sections = gsap.utils.toArray("section:not(#hero-section)");
+    
+    sections.forEach((section) => {
+        const headings = section.querySelectorAll("h1, h2, h3");
+        const texts = section.querySelectorAll("p, span, div");
+        const images = section.querySelectorAll("[style*='background-image']");
+        const cards = section.querySelectorAll(".grid > div, .prod-item, .panel > div");
 
-            gsap.set(section, { opacity: 0 });
-            gsap.set(headings, { y: 30, opacity: 0 });
-            gsap.set(texts, { y: 20, opacity: 0 });
-            gsap.set(images, { scale: 0.95, opacity: 0 });
-            gsap.set(cards, { y: 40, opacity: 0 });
+        gsap.set(section, { opacity: 0 });
+        gsap.set(headings, { y: 30, opacity: 0 });
+        gsap.set(texts, { y: 20, opacity: 0 });
+        gsap.set(images, { scale: 0.95, opacity: 0 });
+        gsap.set(cards, { y: 40, opacity: 0 });
 
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top 80%",
-                once: true,
-                onEnter: () => {
-                    gsap.to(section, { 
-                        opacity: 1, 
-                        duration: 0.8,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.to(headings, {
-                        y: 0, opacity: 1, duration: 0.9,
-                        stagger: 0.1, ease: "power3.out"
-                    });
-                    gsap.to(texts, {
-                        y: 0, opacity: 1, duration: 1,
-                        stagger: 0.08, delay: 0.2, ease: "power2.out"
-                    });
-                    gsap.to(images, {
-                        scale: 1, opacity: 1, duration: 1.2,
-                        delay: 0.3, ease: "power2.out"
-                    });
-                    gsap.to(cards, {
-                        y: 0, opacity: 1, duration: 1.1,
-                        stagger: 0.12, delay: 0.1, ease: "power3.out"
-                    });
-                }
-            });
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top 80%",
+            once: true,
+            onEnter: () => {
+                gsap.to(section, { 
+                    opacity: 1, 
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+                
+                gsap.to(headings, {
+                    y: 0, opacity: 1, duration: 0.9,
+                    stagger: 0.1, ease: "power3.out"
+                });
+                gsap.to(texts, {
+                    y: 0, opacity: 1, duration: 1,
+                    stagger: 0.08, delay: 0.2, ease: "power2.out"
+                });
+                gsap.to(images, {
+                    scale: 1, opacity: 1, duration: 1.2,
+                    delay: 0.3, ease: "power2.out"
+                });
+                gsap.to(cards, {
+                    y: 0, opacity: 1, duration: 1.1,
+                    stagger: 0.12, delay: 0.1, ease: "power3.out"
+                });
+            }
         });
-    }
+    });
+}
 
-   // 只控制首页 it's time to... ：立即显示 + 滑动快速消失
-// 完全不影响其他任何动画、交互、横向滚动
+// 首页标题消失动画（不影响任何滚动）
 gsap.to(".hero-title", {
   opacity: 0,
   filter: "blur(10px)",
@@ -1243,672 +1242,679 @@ gsap.to(".hero-title", {
   },
 });
 
-    const syncTimeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".hero-section",
-            start: "top top",
-            end: "bottom top",
-            scrub: true
+// 主图同步动画
+const syncTimeline = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    }
+});
+
+syncTimeline.to(".main-image", {
+    width: "80vh",
+    height: "90vh",
+    borderRadius: "8xl",
+    top: "50%",
+    left: "50%",
+    xPercent: -50,
+    yPercent: -50,
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+    ease: "power3.inOut"
+}, 0);
+
+syncTimeline.fromTo(".left-images", 
+    { x: "-100%", opacity: 0 },
+    { x: "0%", opacity: 1, ease: "power3.out" }, 0);
+
+syncTimeline.fromTo(".right-images", 
+    { x: "100%", opacity: 0 },
+    { x: "0%", opacity: 1, ease: "power3.out" }, 0);
+
+syncTimeline.fromTo(".side-image", 
+    { y: 30, opacity: 0 },
+    { y: 0, opacity: 1, stagger: 0.05, ease: "back.out(1.2)" }, 0.2);
+
+gsap.to(".side-image h3", {
+    scrollTrigger: { trigger: ".hero-section", start: "50% top", end: "80% top", scrub: true },
+    opacity: 1, y: 0, stagger: 0.15, ease: "power2.out"
+});
+
+gsap.to(".main-title", {
+    scrollTrigger: { trigger: ".hero-section", start: "50% top", end: "80% top", scrub: true },
+    opacity: 1, scale: 1.1, ease: "power2.out"
+});
+
+// 图片悬浮放大
+document.querySelectorAll('.side-image, .main-image').forEach(img => {
+    img.addEventListener('mouseenter', () => {
+        gsap.to(img, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+    });
+    img.addEventListener('mouseleave', () => {
+        gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.in" });
+    });
+});
+
+// ==============================================
+// ✅ 终极修复：电脑端 pin + 横向滚动，手机端完全禁用
+// ==============================================
+let ht; // 横向滚动动画
+let pinST; // hero pin
+
+function initScrollEffects() {
+    // 先销毁所有旧动画，防止卡死
+    ScrollTrigger.getAll().forEach(st => {
+        if (st.vars.trigger === "#hero-section" || st.vars.trigger === ".horizontal-container") {
+            st.kill();
         }
     });
+    if (ht) ht.kill();
+    if (pinST) pinST.kill();
 
-    syncTimeline.to(".main-image", {
-        width: "80vh",
-        height: "90vh",
-        borderRadius: "8xl",
-        top: "50%",
-        left: "50%",
-        xPercent: -50,
-        yPercent: -50,
-        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
-        ease: "power3.inOut"
-    }, 0);
-
-    syncTimeline.fromTo(".left-images", 
-        { x: "-100%", opacity: 0 },
-        {
-            x: "0%", 
-            opacity: 1,
-            ease: "power3.out"
-        }, 0);
-
-    syncTimeline.fromTo(".right-images", 
-        { x: "100%", opacity: 0 },
-        {
-            x: "0%", 
-            opacity: 1,
-            ease: "power3.out"
-        }, 0);
-
-    syncTimeline.fromTo(".side-image", 
-        { y: 30, opacity: 0 },
-        {
-            y: 0, 
-            opacity: 1,
-            stagger: 0.05,
-            ease: "back.out(1.2)"
-        }, 0.2);
-
-    gsap.to(".side-image h3", {
-        scrollTrigger: { trigger: ".hero-section", start: "50% top", end: "80% top", scrub: true },
-        opacity: 1,
-        y: 0,
-        stagger: 0.15,
-        ease: "power2.out"
-    });
-    
-    gsap.to(".main-title", {
-        scrollTrigger: { trigger: ".hero-section", start: "50% top", end: "80% top", scrub: true },
-        opacity: 1,
-        scale: 1.1,
-        ease: "power2.out"
-    });
-
-    document.querySelectorAll('.side-image, .main-image').forEach(img => {
-        img.addEventListener('mouseenter', () => {
-            gsap.to(img, { scale: 1.05, duration: 0.3, ease: "power2.out" });
-        });
-        img.addEventListener('mouseleave', () => {
-            gsap.to(img, { scale: 1, duration: 0.3, ease: "power2.in" });
-        });
-    });
-
-    const heroTimeline = gsap.timeline({
-        scrollTrigger: {
+    // 电脑端才启用
+    if (window.innerWidth >= 768) {
+        // hero pin
+        pinST = ScrollTrigger.create({
             trigger: "#hero-section",
             start: "top top",
             end: "bottom top",
             pin: true,
             scrub: true
-        }
-    });
-
-    heroTimeline.to({}, { duration: 1 });
-  
-const horizWrap = document.querySelector(".horizontal-wrap");
-const panels = gsap.utils.toArray(".panel");
-
-// 👇 就用这段，完美解决 飞滑 + 空白
-gsap.to(panels, {
-  xPercent: -100 * (panels.length - 1),
-  ease: "none",
-  scrollTrigger: {
-    trigger: ".horizontal-container",
-    pin: true,
-    scrub: 0,           // 完全跟手，不飘
-    start: "top top",
-    end: "+=" + window.innerHeight * (panels.length - 1), // 👈 修复空白！
-    snap: {
-      snapTo: 1 / (panels.length - 1), // 👈 强制一页一页停稳！
-      duration: 0.1,
-    },
-  },
-});
-    
-    gsap.utils.toArray(".counter-num").forEach(counter => {
-        const target = +counter.dataset.target;
-        gsap.to(counter, {
-            innerText: target, duration: 2.5, snap: { innerText: 1 },
-            scrollTrigger: { trigger: counter, start: "top 90%" }
         });
+
+        // 横向滚动（第二页那个，不会再卡）
+        const panels = gsap.utils.toArray(".panel");
+        ht = gsap.to(panels, {
+            xPercent: -100 * (panels.length - 1),
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".horizontal-container",
+                pin: true,
+                scrub: 0,
+                start: "top top",
+                end: "+=" + window.innerHeight * (panels.length - 1),
+                snap: {
+                    snapTo: 1 / (panels.length - 1),
+                    duration: 0.1,
+                },
+            },
+        });
+    }
+}
+
+// 数字增长
+gsap.utils.toArray(".counter-num").forEach(counter => {
+    const target = +counter.dataset.target;
+    gsap.to(counter, {
+        innerText: target, duration: 2.5, snap: { innerText: 1 },
+        scrollTrigger: { trigger: counter, start: "top 90%" }
     });
+});
 
-    const backTop = document.getElementById("back-to-top");
-    window.addEventListener("scroll", () => {
-        backTop.classList.toggle("opacity-0", window.scrollY <= 500);
-        backTop.classList.toggle("invisible", window.scrollY <= 500);
-    });
-    backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+// 返回顶部
+const backTop = document.getElementById("back-to-top");
+window.addEventListener("scroll", () => {
+    backTop.classList.toggle("opacity-0", window.scrollY <= 500);
+    backTop.classList.toggle("invisible", window.scrollY <= 500);
+});
+backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-    function initChinaMap() {
-        const mapChart = echarts.init(document.getElementById('china-map'));
-        
-        const provinceData = {
-            "Guangdong": {
-                name: "Guangdong", category: "tech",
-                indicators: { gdp: "14.15 Trillion RMB", growth: "4.6%", pop: "127 Million" },
-                summary: "Global advanced electronics powerhouse and GBA core engine. Possesses the world's most complete end-to-end hardware manufacturing ecosystem and pioneered low-altitude economy (eVTOL) testbeds.",
-                pillars: ["Next-Gen Electronic Information", "Intelligent Connected EVs", "Smart Home Appliances", "Ultra-HD Displays", "Biopharmaceuticals & Medical Devices"],
-                resources: ["High-density tech engineering labor pool", "Global maritime shipping networks (Shenzhen/Guangzhou ports)", "Advanced manufacturing precision tooling networks"],
-                cities: [
-                    { name: "Shenzhen", industries: "Semiconductors & IC Design, Telecommunications Hardware, Low-Altitude Economy (eVTOL/Drones), Fintech, EV Battery Supply (BYD)." },
-                    { name: "Guangzhou", industries: "Automotive Manufacturing, Bio-tech Systems, International Trade Logistics, High-End Chemicals, E-commerce Supply Chains." },
-                    { name: "Foshan", industries: "Intelligent Home Appliances, Industrial Robotics, Advanced Ceramic Materials." },
-                    { name: "Dongguan", industries: "Smart Terminal Assembly (OPPO/VIVO), Precision Electronics Components, Advanced Die-Casting." },
-                    { name: "Zhuhai", industries: "Aviation & Aerospace, Biopharmaceuticals, Integrated Circuits, Smart Grids." },
-                    { name: "Huizhou", industries: "Petrochemical Refining, Electronic Information, Lithium-ion Batteries." },
-                    { name: "Zhongshan", industries: "Lighting Fixtures, Intelligent Hardware, Modern Pharmaceutical Manufacturing." },
-                    { name: "Jiangmen", industries: "Rail Transit Equipment, Fine Chemicals, Paper Making & Packaging." },
-                    { name: "Zhaoqing", industries: "New Energy Vehicle Parts, Metal Processing, Advanced Materials." }
-                ]
-            },
-            "Hongkong": {
-                name: "Hong Kong (SAR)", category: "service",
-                indicators: { gdp: "3.12 Trillion HKD", growth: "3.0%", pop: "7.5 Million" },
-                summary: "Global financial super-connector, offshore RMB clearing powerhouse, and international asset management hub. Serving as the primary gateway for international capital entering Mainland China.",
-                pillars: ["International Banking & Finance", "Wealth & Asset Management", "Professional & Legal Services", "Trade Logistics & Maritime Shipping", "Innovation & Technology Hub"],
-                resources: ["Free port status with zero tariff frameworks", "Independent common law judicial structure", "Unrestricted international capital flows"],
-                cities: [
-                    { name: "Hong Kong", industries: "Cross-border Equity Financing, Fintech Applications, Wealth Management, Dispute Resolution, Cyber-port Incubation." }
-                ]
-            },
-            "Beijing": {
-                name: "Beijing", category: "service",
-                indicators: { gdp: "4.58 Trillion RMB", growth: "5.1%", pop: "21.8 Million" },
-                summary: "National regulatory, cultural, and technological innovation nucleus. Dominated by premier knowledge-intensive modern services, authoritative academic research foundations, and top-tier technological venture capital clusters.",
-                pillars: ["Financial Infrastructure Services", "Scientific R&D & Enterprise Software", "Generative AI Large Models", "Aerospace & Satellite Engineering", "Advanced Electronics Design"],
-                resources: ["Highest national concentration of Tier-1 elite research universities (Tsinghua/Peking)", "National key scientific laboratories", "Sovereign regulatory framework and central state-owned enterprise HQs"],
-                cities: [
-                    { name: "Beijing Municipality", industries: "Generative AI Frameworks, Enterprise Software, Institutional Asset Management, Biologics & Novel Vaccine Innovation." }
-                ]
-            },
-            "Shanghai": {
-                name: "Shanghai", category: "service",
-                indicators: { gdp: "4.95 Trillion RMB", growth: "4.8%", pop: "24.8 Million" },
-                summary: "Global financial nerve node, maritime trade nexus, and multinational headquarters cluster. Spearheading national break-through industrial paths in high-end semiconductor fabrication, advanced automation, and pilot open-trade testing.",
-                pillars: ["International Finance & Global Banking", "Cross-Border Trade & Super-shipping Logistical Units", "Integrated Circuits Fabrication (Wafer Fabs)", "Intelligent Net-linked EVs", "Biomedical R&D Platforms"],
-                resources: ["Hyperscale global deepwater shipping lanes (Yangshan Port)", "High concentration of Fortune 500 regional headquarters", "Institutional cross-border RMB clearing financial conduits"],
-                cities: [
-                    { name: "Shanghai Municipality", industries: "Multinational Wealth Management, Clean Energy Powertrains, Wafer Foundries, Global Consumer Goods Distribution Networks." }
-                ]
-            },
-            "Sichuan": {
-                name: "Sichuan", category: "tech",
-                indicators: { gdp: "6.35 Trillion RMB", growth: "5.8%", pop: "83.7 Million" },
-                summary: "Economic engine of Western China and key national strategic hinterland. Emerging as a powerhouse for technological manufacturing, advanced clean energy storage supply nodes, and digital model localization.",
-                pillars: ["Electronic Information & Display Systems", "Lithium Battery & Power Storage", "Crystalline Silicon Photovoltaics", "Premium Agri-food & Distillery Processing", "Aviation & Aerospace Equipment"],
-                resources: ["Largest national clean hydropower generation capacity", "Massive natural gas and lithium-vanadium mineral reserves", "High-density technical labor pool in Western China"],
-                cities: [
-                    { name: "Chengdu", industries: "Integrated Circuit Advanced Testing & Packaging, Software Outsourcing & Game Dev, National Supercomputing Clusters, Aerospace Subsystems, High-end Medical Equipment." },
-                    { name: "Mianyang", industries: "Military-Civilian Technology Integration, Electronic Components, Intelligent Displays & TV Manufacturing." },
-                    { name: "Yibin", industries: "Hyperscale Lithium Power Battery Production Clusters, Premium Distilling Facilities (Wuliangye)." }
-                ]
-            },
-            "Zhejiang": {
-                name: "Zhejiang", category: "tech",
-                indicators: { gdp: "8.68 Trillion RMB", growth: "5.5%", pop: "66 Million" },
-                summary: "Global paradigm for digital economy architectures, vibrant private enterprise networks, and cloud infrastructure ecosystem. Pioneers in building national-level digital innovation pilot zones and massive e-commerce supply chains.",
-                pillars: ["Digital Economy Core Sectors", "Intelligent Equipment & Hardware", "Modern Textiles & Premium Fashion", "Green Petrochemical Refining", "Artificial Intelligence & Cloud Computing"],
-                resources: ["World-class deep-water maritime hub (Ningbo-Zhoushan Port)", "Ultra-high private equity liquidity & entrepreneurship index", "Pioneering hyperscale cloud computing infrastructures"],
-                cities: [
-                    { name: "Hangzhou", industries: "E-Commerce Infrastructure, Cloud Architecture & Cloud Native, Artificial Intelligence Software, Fintech Ecosystems, Intelligent Video Surveillance (Hikvision)." },
-                    { name: "Ningbo", industries: "Global Port Logistics Networks, Precision Injection Moldings, Advanced Petrochemicals, Automotive Components." },
-                    { name: "Wenzhou", industries: "Light Consumer Manufactures, Low-Voltage Electrical Apparatuses, Hardware Valve Systems." }
-                ]
-            },
-            "Jiangsu": {
-                name: "Jiangsu", category: "industry",
-                indicators: { gdp: "13.35 Trillion RMB", growth: "5.4%", pop: "85 Million" },
-                summary: "Industrial core engine of the Yangtze River Delta and global hub for advanced manufacturing. Characterized by high-density industrial processing parks, world-class integrated circuits fabrication, and innovative biochemical engineering zones.",
-                pillars: ["High-End Equipment Manufacturing", "Integrated Circuits & Semiconductors", "Advanced Chemicals & Polymeric Materials", "Biomedicine & Medical Apparatuses", "New Energy Equipment"],
-                resources: ["High-concentration technical engineering talent pool", "Deepwater inland river transport corridors", "Dense clusters of National-level High-tech Development Zones"],
-                cities: [
-                    { name: "Suzhou", industries: "High-end Electronics Assembly, Nanotechnology & Functional Materials, Industrial Automation Equipment Systems." },
-                    { name: "Nanjing", industries: "Software Engineering & Enterprise IT, Petrochemical Refining, Iron & Steel, Clean Vehicle Engineering." },
-                    { name: "Wuxi", industries: "IoT Sensors & Hardware, Semiconductor Packaging & Testing, New Energy Component Sourcing." }
-                ]
-            },
-            "Jiangxi": {
-                name: "Jiangxi", category: "industry",
-                indicators: { gdp: "3.39 Trillion RMB", growth: "4.8%", pop: "45.1 Million" },
-                summary: "Inland advanced manufacturing base specializing in rare metals, optoelectronic displays, and lithium energy refining supply loops for the Yangtze and Pearl River deltas.",
-                pillars: ["Non-Ferrous Metallurgy & Rare Earths", "Lithium Battery Refining", "LED Display Electronics", "Aviation Engineering", "Traditional Chinese Medicine"],
-                resources: ["World-class tungsten and heavy rare earth deposits", "Vast lithium-mica mineral extraction and processing networks in Yichun"],
-                cities: [
-                    { name: "Nanchang", industries: "LED Optoelectronics & GaN Chips, Aviation Frameworks & Trainer Aircraft, Automobile Powertrains." },
-                    { name: "Ganzhou", industries: "Rare Earth Permanent Magnet Materials, Tungsten High-End Tools, Recycling of Secondary Batteries." },
-                    { name: "Yichun", industries: "Lithium Extraction from Mica, Battery Anode/Cathode Sourcing, New Energy Storage Cells." }
-                ]
-            },
-            "Yunnan": {
-                name: "Yunnan", category: "agriculture",
-                indicators: { gdp: "3.15 Trillion RMB", growth: "4.5%", pop: "46.9 Million" },
-                summary: "Southwestern clean energy hub and international gateway connecting China to ASEAN markets. Leading in green aluminum/silicon processing powered by massive hydro grids.",
-                pillars: ["Clean Hydropower Generation", "Green Aluminum & Crystalline Silicon", "Specialty Tobacco & Agri-Floriculture", "ASEAN Cross-Border Logistics", "Biodiversity Tourism"],
-                resources: ["Rich non-ferrous metal reserves", "Cross-border Southeast Asian rail connections (China-Laos Railway)"],
-                cities: [
-                    { name: "Kunming", industries: "Floriculture Distribution, Phosphorus Chemical Synthesis, Border Commodities Trading, Rail-Truck Multimodal Freight Logistics Hubs." },
-                    { name: "Qujing", industries: "Crystalline Silicon Photovoltaic Materials, Green Aluminum Smetling, Fine Chemicals." }
-                ]
-            },
-            "Xizang（Tibet）": {
-                name: "Xizang（Tibet）", category: "agriculture",
-                indicators: { gdp: "0.26 Trillion RMB", growth: "8.5%", pop: "3.6 Million" },
-                summary: "High-altitude ecological reserve focusing on specialty clean power generation inputs, unique alpine agribusiness, and strategic international Himalayan land passages.",
-                pillars: ["Clean Hydropower & Geothermal Energy", "Tibetan Medical Systems & Biotech", "Premium Bottled Water Sourcing", "Ecological Tourism Services", "Border Trade Infrastructure"],
-                resources: ["Highest national solar and geothermal energy yield potential", "Unique pure glacier water networks, heavy mineral reserve baselines"],
-                cities: [
-                    { name: "Lhasa", industries: "Tibetan Medicine Processing, Cultural Handcrafts, Green Logistics & Warehousing Hubs, High-altitude Data Caching Storage." }
-                ]
-            },
-            "Shandong": {
-                name: "Shandong", category: "industry", indicators: { gdp: "9.52 Trillion RMB", growth: "5.5%", pop: "101.6 Million" },
-                summary: "Comprehensive industrial powerhouse with complete categories. Leading green, low-carbon industrial transformation.",
-                pillars: ["Petrochemical Refining", "Heavy Machinery & Transport", "Marine Bio-industries", "Smart Household Appliances"],
-                resources: ["Abundant energy deposits (Shengli Oilfield)", "Extensive coastal marine reserves"],
-                cities: [{ name: "Qingdao", industries: "Smart Home Appliance Ecosystems, Marine Science & Deepsea Equipment, Logistics Networks." }]
-            },
-            "Anhui": {
-                name: "Anhui", category: "industry", indicators: { gdp: "4.92 Trillion RMB", growth: "5.6%", pop: "61.3 Million" },
-                summary: "Fastest-growing tech-manufacturing rising star. Globally recognized for its aggressive tech-investment incubation model.",
-                pillars: ["New Energy Vehicles", "Advanced Photovoltaics & Energy Storage", "Quantum Information & AI Software"],
-                resources: ["Highly integrated industrial ecosystem chains", "Direct access to top-tier technological commercialization pipelines"],
-                cities: [{ name: "Hefei", industries: "New Energy Vehicle Assembly (NIO/Volkswagen), Quantum Computing R&D, AI Speech (iFlytek), Display Fabs." }]
-            },
-            "Chongqing": {
-                name: "Chongqing", category: "industry", indicators: { gdp: "3.18 Trillion RMB", growth: "5.8%", pop: "32.1 Million" },
-                summary: "Megacity industrial fortress in Southwestern China and anchor point for the Western Land-Sea New Corridor.",
-                pillars: ["Intelligent Connected NEVs", "Consumer Electronic Manufacturing", "Advanced Structural Materials"],
-                resources: ["World-class river-rail-air multi-modal logistical transportation network"],
-                cities: [{ name: "Chongqing Municipality", industries: "Intelligent Clean EV Production (Changan/Seres), Hyperscale Laptop Computer Assembly Lines." }]
-            },
-            "Tianjin": {
-                name: "Tianjin", category: "industry", indicators: { gdp: "1.72 Trillion RMB", growth: "4.2%", pop: "13.6 Million" },
-                summary: "Northern shipping nexus and advanced manufacturing base.",
-                pillars: ["Aerospace Engineering (Airbus)", "Petrochemical Refining", "Equipment Manufacturing"],
-                resources: ["Northern deepwater cargo port (Tianjin Port)"],
-                cities: [{ name: "Tianjin Municipality", industries: "Aviation Logistics, Large-scale Petrochemicals, Marine Engineering Machinery." }]
-            },
-            "Hebei": {
-                name: "Hebei", category: "industry", indicators: { gdp: "4.55 Trillion RMB", growth: "5.0%", pop: "74.2 Million" },
-                summary: "Key heavy industrial processing layer enveloping the capital region.",
-                pillars: ["Iron & Steel Metallurgy", "Equipment Manufacturing", "Modern Logistics"],
-                resources: ["Largest global steel manufacturing capacity"],
-                cities: [{ name: "Shijiazhuang", industries: "Biopharmaceuticals, Textiles, Chemical Base Raw Materials." }]
-            },
-            "Shanxi": {
-                name: "Shanxi", category: "industry", indicators: { gdp: "2.65 Trillion RMB", growth: "4.0%", pop: "34.8 Million" },
-                summary: "National energy baseline safeguard and pioneer in coal-to-clean energy shift.",
-                pillars: ["Coal & Modern Carbon Chemicals", "Specialty Steel & Metallurgy", "New Energy Equipment"],
-                resources: ["Abundant coking coal deposits"],
-                cities: [{ name: "Taiyuan", industries: "Specialty Stainless Steels, Heavy Mining Machinery, Coal Chemical Units." }]
-            },
-            "Neimenggu（Inner Mongolia）": {
-                name: "Neimenggu（Inner Mongolia）", category: "agriculture", indicators: { gdp: "2.58 Trillion RMB", growth: "6.0%", pop: "24.0 Million" },
-                summary: "Northern green energy storage base and national dairy and livestock engine.",
-                pillars: ["Dairy Food Processing", "Wind & Solar Clean Power", "Rare Earth Metallurgy"],
-                resources: ["World's largest rare earth deposits (Bayan Obo)", "Vast solar and wind energy land corridors"],
-                cities: [{ name: "Baotou", industries: "Rare Earth Functional Materials, Heavy Tracked Vehicles." }]
-            },
-            "Liaoning": {
-                name: "Liaoning", category: "industry", indicators: { gdp: "3.12 Trillion RMB", growth: "4.8%", pop: "42.0 Million" },
-                summary: "Northeastern rust-belt anchor reinventing into advanced precision tooling and maritime units.",
-                pillars: ["Heavy Equipment & Defense Machinery", "Petrochemical Refining", "Automotive Assembly"],
-                resources: ["Deep industrial machining legacy", "Major northern maritime hubs (Dalian Port)"],
-                cities: [{ name: "Shenyang", industries: "CNC Machine Tools, Aircraft Assemblies, Automotive Processing (BMW)." }]
-            },
-            "Jilin": {
-                name: "Jilin", category: "industry", indicators: { gdp: "1.41 Trillion RMB", growth: "5.5%", pop: "23.5 Million" },
-                summary: "National automotive pioneer and prime grain-belt supplier.",
-                pillars: ["Automotive Manufacturing", "Agricultural Sourcing", "Satellite Remote Sensing"],
-                resources: ["Fertile black-soil arable systems", "Deep automotive tier-1 supplier networks"],
-                cities: [{ name: "Changchun", industries: "Passenger Vehicle Manufacturing, Rail Transit Cars, Optical Precision Machinery." }]
-            },
-            "Heilongjiang": {
-                name: "Heilongjiang", category: "agriculture", indicators: { gdp: "1.65 Trillion RMB", growth: "3.2%", pop: "30.6 Million" },
-                summary: "Northern agricultural security anchor and heavy aerospace engineering zone.",
-                pillars: ["Commercial Agriculture & Grain Logistics", "Heavy Power Generation Equipment", "Aerospace Composites"],
-                resources: ["Largest grain reserve baseline", "Daqing Oilfield deposits"],
-                cities: [{ name: "Harbin", industries: "Heavy Electric Machinery, Gas Turbines, Aerospace Engineering." }]
-            },
-            "Fujian": {
-                name: "Fujian", category: "tech", indicators: { gdp: "5.65 Trillion RMB", growth: "4.6%", pop: "41.8 Million" },
-                summary: "Maritime Silk Road hub and global leader in energy storage batteries.",
-                pillars: ["Lithium EV Batteries (CATL)", "Electronic Information", "Premium Footwear & Textiles"],
-                resources: ["Global battery technology innovation hub", "Extensive private business trading networks"],
-                cities: [{ name: "Xiamen", industries: "LCD Display Panels, Semiconductor Assembly, Cross-border Financial Services." }]
-            },
-            "Henan": {
-                name: "Henan", category: "agriculture", indicators: { gdp: "6.12 Trillion RMB", growth: "4.2%", pop: "98.2 Million" },
-                summary: "Central logistical junction transforming from a food giant to an electronics node.",
-                pillars: ["Electronic Terminal Assembly (Foxconn)", "Food Processing & Agribusiness", "New Materials"],
-                resources: ["Vast demographic dividend and labor supply", "High-density cross-national high-speed rail nodes"],
-                cities: [{ name: "Zhengzhou", industries: "Smartphones Assembly, Commercial Buses (Yutong), Frozen Food Processing." }]
-            },
-            "Hubei": {
-                name: "Hubei", category: "tech", indicators: { gdp: "5.82 Trillion RMB", growth: "5.5%", pop: "58.4 Million" },
-                summary: "Central technological and optoelectronic nexus flanking the Yangtze river transport pipeline.",
-                pillars: ["Optoelectronic Information (Optics Valley)", "Automotive Core Systems", "Biomedicine"],
-                resources: ["Premier engineering research institutions", "High-capacity inland central river port infrastructure"],
-                cities: [{ name: "Wuhan", industries: "Fiber Optic Communications, Flash Memory Chips (YMTC), Automobile Assemblies." }]
-            },
-            "Hunan": {
-                name: "Hunan", category: "industry", indicators: { gdp: "5.21 Trillion RMB", growth: "4.8%", pop: "65.7 Million" },
-                summary: "Global epicentre for heavy construction machinery and intelligent rail platforms.",
-                pillars: ["Heavy Construction Machinery", "Rail Transit Systems", "Advanced Metallurgy & New Materials"],
-                resources: ["Deep industrial engineering talent pool", "Abundant non-ferrous mineral extraction bases"],
-                cities: [{ name: "Changsha", industries: "Heavy Excavation Equipment (Sany), Automotive Assemblies, Cultural Media Production." }]
-            },
-            "Guangxi": {
-                name: "Guangxi", category: "agriculture", indicators: { gdp: "2.82 Trillion RMB", growth: "4.1%", pop: "50.4 Million" },
-                summary: "Southern trade corridor facing ASEAN trade zones with strengths in heavy automotives.",
-                pillars: ["Automotive & Machinery", "Metallurgy", "ASEAN Logistical Routing"],
-                resources: ["Primary sea gateway for western regions (Beibu Gulf)", "Hyperscale sugarcane cultivation"],
-                cities: [{ name: "Liuzhou", industries: "Mini EVs (Wuling), Heavy Industrial Machinery, Steel Metallurgy." }]
-            },
-            "Hainan": {
-                name: "Hainan", category: "service", indicators: { gdp: "0.79 Trillion RMB", growth: "7.5%", pop: "10.4 Million" },
-                summary: "National Free Trade Port pilot zone emphasizing duty-free business and deepsea tech testing.",
-                pillars: ["Duty-Free Tourism & Retail Services", "Modern Maritime Shipping Logistics", "Deep-sea Tech & Seed Science"],
-                resources: ["Sovereign zero-tariff custom policy perks", "Strategic deepsea maritime exploration grids"],
-                cities: [{ name: "Haikou", industries: "Cross-border Financial Tech, Duty-Free Distribution, Pharmaceutical Formulations." }]
-            },
-            "Guizhou": {
-                name: "Guizhou", category: "tech", indicators: { gdp: "2.18 Trillion RMB", growth: "4.6%", pop: "38.5 Million" },
-                summary: "National Big Data storage center leveraging its unique cool climate and natural karst caves.",
-                pillars: ["Cloud Data Storage Centers", "Premium Spirits (Moutai)", "New Energy Battery Materials"],
-                resources: ["Massive low-cost computing power infrastructure", "Rich phosphorus and manganese deposits"],
-                cities: [{ name: "Guiyang", industries: "Hyperscale Server Farms, Cloud Software, Electronic Components." }]
-            },
-            "Shaanxi": {
-                name: "Shaanxi", category: "tech", indicators: { gdp: "3.52 Trillion RMB", growth: "4.5%", pop: "39.5 Million" },
-                summary: "Northwestern high-tech powerhouse anchoring aerospace development and semiconductor design.",
-                pillars: ["Aerospace Engineering", "Semiconductor Wafers & Flash Memory", "New Energy Vehicles"],
-                resources: ["Dense concentrations of defense labs and tech universities", "Massive energy assets in northern grids"],
-                cities: [{ name: "Xian", industries: "Semiconductor Packaging (Samsung), Solar Modules (LONGi), Electric Autos (BYD Xian)." }]
-            },
-            "Gansu": {
-                name: "Gansu", category: "industry", indicators: { gdp: "1.25 Trillion RMB", growth: "5.8%", pop: "24.9 Million" },
-                summary: "Strategic northwest energy passage transitioning rapidly into a wind and solar capital.",
-                pillars: ["Wind & Solar Power Generation", "Petrochemical & Heavy Extraction", "Non-Ferrous Metallurgy"],
-                resources: ["Vast desert corridors optimized for solar arrays", "Rich nickel and cobalt deposits"],
-                cities: [{ name: "Lanzhou", industries: "Petrochemical Refining, Heavy Industrial Piping, Bio-pharmaceutical Bases." }]
-            },
-            "Qinghai": {
-                name: "Qinghai", category: "industry", indicators: { gdp: "0.41 Trillion RMB", growth: "4.8%", pop: "5.9 Million" },
-                summary: "Strategic brine salt-lake resource pool supplying national battery chains.",
-                pillars: ["Salt Lake Lithium Extraction", "Photovoltaic Power Units", "Clean Power Grid Interconnects"],
-                resources: ["Largest national brine lithium and potassium reserve", "Massive solar land grid lots"],
-                cities: [{ name: "Xining", industries: "Lithium Carbonate Synthesis, Carbon Fiber, Special Steel Products." }]
-            },
-            "Ningxia": {
-                name: "Ningxia", category: "tech", indicators: { gdp: "0.56 Trillion RMB", growth: "6.0%", pop: "7.3 Million" },
-                summary: "Key Western cloud computing storage hub and elite wine production zone.",
-                pillars: ["Cloud Computing Data Centers", "Premium Viticulture", "Coal Carbon Chemicals"],
-                resources: ["Abundant low-cost electricity grids for server operations", "Optimal arid soil for premium grapes"],
-                cities: [{ name: "Yinchuan", industries: "Monocrystalline Silicon Wafers, Server Cluster Hosting, Wine Processing." }]
-            },
-            "Xinjiang": {
-                name: "Xinjiang", category: "agriculture", indicators: { gdp: "2.02 Trillion RMB", growth: "6.2%", pop: "25.8 Million" },
-                summary: "Eurasian land corridor boasting immense energy reserves and top-tier industrial farming inputs.",
-                pillars: ["Oil & Natural Gas Refining", "Coal-Fired Clean Power Grid Utilities", "Polysilicon Solar Components"],
-                resources: ["Largest domestic oil, gas, and coal deposit baselines", "Premium long-staple cotton farms"],
-                cities: [{ name: "Urumqi", industries: "Petroleum Refining, Polysilicon Production, Wind Power Turbines, Border Trade Logistics." }]
-            },
-            "Taiwan": {
-                name: "Taiwan", category: "tech", indicators: { gdp: "25.2 Trillion TWD", growth: "2.8%", pop: "23.4 Million" },
-                summary: "Global semiconductor silicon shield with unmatched precision electronic design and foundry ecosystems.",
-                pillars: ["Advanced Semiconductor Manufacturing (TSMC)", "IC Design & Electronic Frameworks", "Precision CNC Machinery"],
-                resources: ["World-leading sub-2nm chip wafer fabrication fabs", "Extensive global tech supply link integrations"],
-                cities: [{ name: "Hsinchu", industries: "Advanced Foundry Substrates, Global IC Prototyping, Optoelectronic Optics." }]
-            },
-            "Macao": {
-                name: "Macao (SAR)", category: "service", indicators: { gdp: "410 Billion MOP", growth: "12%", pop: "0.68 Million" },
-                summary: "International leisure tourism anchor and trade platform connecting Portuguese-speaking markets.",
-                pillars: ["Integrated Leisure Tourism & Hospitality", "MICE Expo Event Services", "Traditional Chinese Medicine Platforms"],
-                resources: ["Free port status with international trade open-channels", "Historical Portuguese linguistic business ties"],
-                cities: [{ name: "Macao", industries: "Cross-border Destination Management, Traditional Medicine Incubators, Offshore Micro-Fintech." }]
-            }
-        };
+// 地图部分（完全不动）
+function initChinaMap() {
+    const mapChart = echarts.init(document.getElementById('china-map'));
+    window.chinaChart = mapChart;
 
-        const mapNameMap = {
-            "北京市": "Beijing", "天津市": "Tianjin", "河北省": "Hebei", "山西省": "Shanxi", "内蒙古自治区": "Neimenggu（Inner Mongolia）",
-            "辽宁省": "Liaoning", "吉林省": "Jilin", "黑龙江省": "Heilongjiang", "上海市": "Shanghai", "江苏省": "Jiangsu",
-            "浙江省": "Zhejiang", "安徽省": "Anhui", "福建省": "Fujian", "江西省": "Jiangxi", "山东省": "Shandong",
-            "河南省": "Henan", "湖北省": "Hubei", "湖南省": "Hunan", "广东省": "Guangdong", "广西壮族自治区": "Guangxi",
-            "海南省": "Hainan", "重庆市": "Chongqing", "四川省": "Sichuan", "贵州省": "Guizhou", "云南省": "Yunnan",
-            "西藏自治区": "Xizang（Tibet）", "陕西省": "Shaanxi", "甘肃省": "Gansu", "青海省": "Qinghai", "宁夏回族自治区": "Ningxia",
-            "新疆维吾尔自治区": "Xinjiang", "台湾省": "Taiwan", "香港特别行政区": "Hongkong", "澳门特别行政区": "Macao"
-        };
-        
-        fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
-            .then(response => response.json())
-            .then(chinaJson => {
-                echarts.registerMap('china', chinaJson);
-                
-                const mapData = chinaJson.features.map(f => {
-                    const chnName = f.properties.name;
-                    const engName = mapNameMap[chnName] || chnName;
-                    const hasData = provinceData[engName] ? 60 : 20; 
-                    return { name: chnName, value: hasData };
-                });
+    const provinceData = {
+        "Guangdong": {
+            name: "Guangdong", category: "tech",
+            indicators: { gdp: "14.15 Trillion RMB", growth: "4.6%", pop: "127 Million" },
+            summary: "Global advanced electronics powerhouse and GBA core engine. Possesses the world's most complete end-to-end hardware manufacturing ecosystem and pioneered low-altitude economy (eVTOL) testbeds.",
+            pillars: ["Next-Gen Electronic Information", "Intelligent Connected EVs", "Smart Home Appliances", "Ultra-HD Displays", "Biopharmaceuticals & Medical Devices"],
+            resources: ["High-density tech engineering labor pool", "Global maritime shipping networks (Shenzhen/Guangzhou ports)", "Advanced manufacturing precision tooling networks"],
+            cities: [
+                { name: "Shenzhen", industries: "Semiconductors & IC Design, Telecommunications Hardware, Low-Altitude Economy (eVTOL/Drones), Fintech, EV Battery Supply (BYD)." },
+                { name: "Guangzhou", industries: "Automotive Manufacturing, Bio-tech Systems, International Trade Logistics, High-End Chemicals, E-commerce Supply Chains." },
+                { name: "Foshan", industries: "Intelligent Home Appliances, Industrial Robotics, Advanced Ceramic Materials." },
+                { name: "Dongguan", industries: "Smart Terminal Assembly (OPPO/VIVO), Precision Electronics Components, Advanced Die-Casting." },
+                { name: "Zhuhai", industries: "Aviation & Aerospace, Biopharmaceuticals, Integrated Circuits, Smart Grids." },
+                { name: "Huizhou", industries: "Petrochemical Refining, Electronic Information, Lithium-ion Batteries." },
+                { name: "Zhongshan", industries: "Lighting Fixtures, Intelligent Hardware, Modern Pharmaceutical Manufacturing." },
+                { name: "Jiangmen", industries: "Rail Transit Equipment, Fine Chemicals, Paper Making & Packaging." },
+                { name: "Zhaoqing", industries: "New Energy Vehicle Parts, Metal Processing, Advanced Materials." }
+            ]
+        },
+        "Hongkong": {
+            name: "Hong Kong (SAR)", category: "service",
+            indicators: { gdp: "3.12 Trillion HKD", growth: "3.0%", pop: "7.5 Million" },
+            summary: "Global financial super-connector, offshore RMB clearing powerhouse, and international asset management hub. Serving as the primary gateway for international capital entering Mainland China.",
+            pillars: ["International Banking & Finance", "Wealth & Asset Management", "Professional & Legal Services", "Trade Logistics & Maritime Shipping", "Innovation & Technology Hub"],
+            resources: ["Free port status with zero tariff frameworks", "Independent common law judicial structure", "Unrestricted international capital flows"],
+            cities: [
+                { name: "Hong Kong", industries: "Cross-border Equity Financing, Fintech Applications, Wealth Management, Dispute Resolution, Cyber-port Incubation." }
+            ]
+        },
+        "Beijing": {
+            name: "Beijing", category: "service",
+            indicators: { gdp: "4.58 Trillion RMB", growth: "5.1%", pop: "21.8 Million" },
+            summary: "National regulatory, cultural, and technological innovation nucleus. Dominated by premier knowledge-intensive modern services, authoritative academic research foundations, and top-tier technological venture capital clusters.",
+            pillars: ["Financial Infrastructure Services", "Scientific R&D & Enterprise Software", "Generative AI Large Models", "Aerospace & Satellite Engineering", "Advanced Electronics Design"],
+            resources: ["Highest national concentration of Tier-1 elite research universities (Tsinghua/Peking)", "National key scientific laboratories", "Sovereign regulatory framework and central state-owned enterprise HQs"],
+            cities: [
+                { name: "Beijing Municipality", industries: "Generative AI Frameworks, Enterprise Software, Institutional Asset Management, Biologics & Novel Vaccine Innovation." }
+            ]
+        },
+        "Shanghai": {
+            name: "Shanghai", category: "service",
+            indicators: { gdp: "4.95 Trillion RMB", growth: "4.8%", pop: "24.8 Million" },
+            summary: "Global financial nerve node, maritime trade nexus, and multinational headquarters cluster. Spearheading national break-through industrial paths in high-end semiconductor fabrication, advanced automation, and pilot open-trade testing.",
+            pillars: ["International Finance & Global Banking", "Cross-Border Trade & Super-shipping Logistical Units", "Integrated Circuits Fabrication (Wafer Fabs)", "Intelligent Net-linked EVs", "Biomedical R&D Platforms"],
+            resources: ["Hyperscale global deepwater shipping lanes (Yangshan Port)", "High concentration of Fortune 500 regional headquarters", "Institutional cross-border RMB clearing financial conduits"],
+            cities: [
+                { name: "Shanghai Municipality", industries: "Multinational Wealth Management, Clean Energy Powertrains, Wafer Foundries, Global Consumer Goods Distribution Networks." }
+            ]
+        },
+        "Sichuan": {
+            name: "Sichuan", category: "tech",
+            indicators: { gdp: "6.35 Trillion RMB", growth: "5.8%", pop: "83.7 Million" },
+            summary: "Economic engine of Western China and key national strategic hinterland. Emerging as a powerhouse for technological manufacturing, advanced clean energy storage supply nodes, and digital model localization.",
+            pillars: ["Electronic Information & Display Systems", "Lithium Battery & Power Storage", "Crystalline Silicon Photovoltaics", "Premium Agri-food & Distillery Processing", "Aviation & Aerospace Equipment"],
+            resources: ["Largest national clean hydropower generation capacity", "Massive natural gas and lithium-vanadium mineral reserves", "High-density technical labor pool in Western China"],
+            cities: [
+                { name: "Chengdu", industries: "Integrated Circuit Advanced Testing & Packaging, Software Outsourcing & Game Dev, National Supercomputing Clusters, Aerospace Subsystems, High-end Medical Equipment." },
+                { name: "Mianyang", industries: "Military-Civilian Technology Integration, Electronic Components, Intelligent Displays & TV Manufacturing." },
+                { name: "Yibin", industries: "Hyperscale Lithium Power Battery Production Clusters, Premium Distilling Facilities (Wuliangye)." }
+            ]
+        },
+        "Zhejiang": {
+            name: "Zhejiang", category: "tech",
+            indicators: { gdp: "8.68 Trillion RMB", growth: "5.5%", pop: "66 Million" },
+            summary: "Global paradigm for digital economy architectures, vibrant private enterprise networks, and cloud infrastructure ecosystem. Pioneers in building national-level digital innovation pilot zones and massive e-commerce supply chains.",
+            pillars: ["Digital Economy Core Sectors", "Intelligent Equipment & Hardware", "Modern Textiles & Premium Fashion", "Green Petrochemical Refining", "Artificial Intelligence & Cloud Computing"],
+            resources: ["World-class deep-water maritime hub (Ningbo-Zhoushan Port)", "Ultra-high private equity liquidity & entrepreneurship index", "Pioneering hyperscale cloud computing infrastructures"],
+            cities: [
+                { name: "Hangzhou", industries: "E-Commerce Infrastructure, Cloud Architecture & Cloud Native, Artificial Intelligence Software, Fintech Ecosystems, Intelligent Video Surveillance (Hikvision)." },
+                { name: "Ningbo", industries: "Global Port Logistics Networks, Precision Injection Moldings, Advanced Petrochemicals, Automotive Components." },
+                { name: "Wenzhou", industries: "Light Consumer Manufactures, Low-Voltage Electrical Apparatuses, Hardware Valve Systems." }
+            ]
+        },
+        "Jiangsu": {
+            name: "Jiangsu", category: "industry",
+            indicators: { gdp: "13.35 Trillion RMB", growth: "5.4%", pop: "85 Million" },
+            summary: "Industrial core engine of the Yangtze River Delta and global hub for advanced manufacturing. Characterized by high-density industrial processing parks, world-class integrated circuits fabrication, and innovative biochemical engineering zones.",
+            pillars: ["High-End Equipment Manufacturing", "Integrated Circuits & Semiconductors", "Advanced Chemicals & Polymeric Materials", "Biomedicine & Medical Apparatuses", "New Energy Equipment"],
+            resources: ["High-concentration technical engineering talent pool", "Deepwater inland river transport corridors", "Dense clusters of National-level High-tech Development Zones"],
+            cities: [
+                { name: "Suzhou", industries: "High-end Electronics Assembly, Nanotechnology & Functional Materials, Industrial Automation Equipment Systems." },
+                { name: "Nanjing", industries: "Software Engineering & Enterprise IT, Petrochemical Refining, Iron & Steel, Clean Vehicle Engineering." },
+                { name: "Wuxi", industries: "IoT Sensors & Hardware, Semiconductor Packaging & Testing, New Energy Component Sourcing." }
+            ]
+        },
+        "Jiangxi": {
+            name: "Jiangxi", category: "industry",
+            indicators: { gdp: "3.39 Trillion RMB", growth: "4.8%", pop: "45.1 Million" },
+            summary: "Inland advanced manufacturing base specializing in rare metals, optoelectronic displays, and lithium energy refining supply loops for the Yangtze and Pearl River deltas.",
+            pillars: ["Non-Ferrous Metallurgy & Rare Earths", "Lithium Battery Refining", "LED Display Electronics", "Aviation Engineering", "Traditional Chinese Medicine"],
+            resources: ["World-class tungsten and heavy rare earth deposits", "Vast lithium-mica mineral extraction and processing networks in Yichun"],
+            cities: [
+                { name: "Nanchang", industries: "LED Optoelectronics & GaN Chips, Aviation Frameworks & Trainer Aircraft, Automobile Powertrains." },
+                { name: "Ganzhou", industries: "Rare Earth Permanent Magnet Materials, Tungsten High-End Tools, Recycling of Secondary Batteries." },
+                { name: "Yichun", industries: "Lithium Extraction from Mica, Battery Anode/Cathode Sourcing, New Energy Storage Cells." }
+            ]
+        },
+        "Yunnan": {
+            name: "Yunnan", category: "agriculture",
+            indicators: { gdp: "3.15 Trillion RMB", growth: "4.5%", pop: "46.9 Million" },
+            summary: "Southwestern clean energy hub and international gateway connecting China to ASEAN markets. Leading in green aluminum/silicon processing powered by massive hydro grids.",
+            pillars: ["Clean Hydropower Generation", "Green Aluminum & Crystalline Silicon", "Specialty Tobacco & Agri-Floriculture", "ASEAN Cross-Border Logistics", "Biodiversity Tourism"],
+            resources: ["Rich non-ferrous metal reserves", "Cross-border Southeast Asian rail connections (China-Laos Railway)"],
+            cities: [
+                { name: "Kunming", industries: "Floriculture Distribution, Phosphorus Chemical Synthesis, Border Commodities Trading, Rail-Truck Multimodal Freight Logistics Hubs." },
+                { name: "Qujing", industries: "Crystalline Silicon Photovoltaic Materials, Green Aluminum Smetling, Fine Chemicals." }
+            ]
+        },
+        "Xizang（Tibet）": {
+            name: "Xizang（Tibet）", category: "agriculture",
+            indicators: { gdp: "0.26 Trillion RMB", growth: "8.5%", pop: "3.6 Million" },
+            summary: "High-altitude ecological reserve focusing on specialty clean power generation inputs, unique alpine agribusiness, and strategic international Himalayan land passages.",
+            pillars: ["Clean Hydropower & Geothermal Energy", "Tibetan Medical Systems & Biotech", "Premium Bottled Water Sourcing", "Ecological Tourism Services", "Border Trade Infrastructure"],
+            resources: ["Highest national solar and geothermal energy yield potential", "Unique pure glacier water networks, heavy mineral reserve baselines"],
+            cities: [
+                { name: "Lhasa", industries: "Tibetan Medicine Processing, Cultural Handcrafts, Green Logistics & Warehousing Hubs, High-altitude Data Caching Storage." }
+            ]
+        },
+        "Shandong": {
+            name: "Shandong", category: "industry", indicators: { gdp: "9.52 Trillion RMB", growth: "5.5%", pop: "101.6 Million" },
+            summary: "Comprehensive industrial powerhouse with complete categories. Leading green, low-carbon industrial transformation.",
+            pillars: ["Petrochemical Refining", "Heavy Machinery & Transport", "Marine Bio-industries", "Smart Household Appliances"],
+            resources: ["Abundant energy deposits (Shengli Oilfield)", "Extensive coastal marine reserves"],
+            cities: [{ name: "Qingdao", industries: "Smart Home Appliance Ecosystems, Marine Science & Deepsea Equipment, Logistics Networks." }]
+        },
+        "Anhui": {
+            name: "Anhui", category: "industry", indicators: { gdp: "4.92 Trillion RMB", growth: "5.6%", pop: "61.3 Million" },
+            summary: "Fastest-growing tech-manufacturing rising star. Globally recognized for its aggressive tech-investment incubation model.",
+            pillars: ["New Energy Vehicles", "Advanced Photovoltaics & Energy Storage", "Quantum Information & AI Software"],
+            resources: ["Highly integrated industrial ecosystem chains", "Direct access to top-tier technological commercialization pipelines"],
+            cities: [{ name: "Hefei", industries: "New Energy Vehicle Assembly (NIO/Volkswagen), Quantum Computing R&D, AI Speech (iFlytek), Display Fabs." }]
+        },
+        "Chongqing": {
+            name: "Chongqing", category: "industry", indicators: { gdp: "3.18 Trillion RMB", growth: "5.8%", pop: "32.1 Million" },
+            summary: "Megacity industrial fortress in Southwestern China and anchor point for the Western Land-Sea New Corridor.",
+            pillars: ["Intelligent Connected NEVs", "Consumer Electronic Manufacturing", "Advanced Structural Materials"],
+            resources: ["World-class river-rail-air multi-modal logistical transportation network"],
+            cities: [{ name: "Chongqing Municipality", industries: "Intelligent Clean EV Production (Changan/Seres), Hyperscale Laptop Computer Assembly Lines." }]
+        },
+        "Tianjin": {
+            name: "Tianjin", category: "industry", indicators: { gdp: "1.72 Trillion RMB", growth: "4.2%", pop: "13.6 Million" },
+            summary: "Northern shipping nexus and advanced manufacturing base.",
+            pillars: ["Aerospace Engineering (Airbus)", "Petrochemical Refining", "Equipment Manufacturing"],
+            resources: ["Northern deepwater cargo port (Tianjin Port)"],
+            cities: [{ name: "Tianjin Municipality", industries: "Aviation Logistics, Large-scale Petrochemicals, Marine Engineering Machinery." }]
+        },
+        "Hebei": {
+            name: "Hebei", category: "industry", indicators: { gdp: "4.55 Trillion RMB", growth: "5.0%", pop: "74.2 Million" },
+            summary: "Key heavy industrial processing layer enveloping the capital region.",
+            pillars: ["Iron & Steel Metallurgy", "Equipment Manufacturing", "Modern Logistics"],
+            resources: ["Largest global steel manufacturing capacity"],
+            cities: [{ name: "Shijiazhuang", industries: "Biopharmaceuticals, Textiles, Chemical Base Raw Materials." }]
+        },
+        "Shanxi": {
+            name: "Shanxi", category: "industry", indicators: { gdp: "2.65 Trillion RMB", growth: "4.0%", pop: "34.8 Million" },
+            summary: "National energy baseline safeguard and pioneer in coal-to-clean energy shift.",
+            pillars: ["Coal & Modern Carbon Chemicals", "Specialty Steel & Metallurgy", "New Energy Equipment"],
+            resources: ["Abundant coking coal deposits"],
+            cities: [{ name: "Taiyuan", industries: "Specialty Stainless Steels, Heavy Mining Machinery, Coal Chemical Units." }]
+        },
+        "Neimenggu（Inner Mongolia）": {
+            name: "Neimenggu（Inner Mongolia）", category: "agriculture", indicators: { gdp: "2.58 Trillion RMB", growth: "6.0%", pop: "24.0 Million" },
+            summary: "Northern green energy storage base and national dairy and livestock engine.",
+            pillars: ["Dairy Food Processing", "Wind & Solar Clean Power", "Rare Earth Metallurgy"],
+            resources: ["World's largest rare earth deposits (Bayan Obo)", "Vast solar and wind energy land corridors"],
+            cities: [{ name: "Baotou", industries: "Rare Earth Functional Materials, Heavy Tracked Vehicles." }]
+        },
+        "Liaoning": {
+            name: "Liaoning", category: "industry", indicators: { gdp: "3.12 Trillion RMB", growth: "4.8%", pop: "42.0 Million" },
+            summary: "Northeastern rust-belt anchor reinventing into advanced precision tooling and maritime units.",
+            pillars: ["Heavy Equipment & Defense Machinery", "Petrochemical Refining", "Automotive Assembly"],
+            resources: ["Deep industrial machining legacy", "Major northern maritime hubs (Dalian Port)"],
+            cities: [{ name: "Shenyang", industries: "CNC Machine Tools, Aircraft Assemblies, Automotive Processing (BMW)." }]
+        },
+        "Jilin": {
+            name: "Jilin", category: "industry", indicators: { gdp: "1.41 Trillion RMB", growth: "5.5%", pop: "23.5 Million" },
+            summary: "National automotive pioneer and prime grain-belt supplier.",
+            pillars: ["Automotive Manufacturing", "Agricultural Sourcing", "Satellite Remote Sensing"],
+            resources: ["Fertile black-soil arable systems", "Deep automotive tier-1 supplier networks"],
+            cities: [{ name: "Changchun", industries: "Passenger Vehicle Manufacturing, Rail Transit Cars, Optical Precision Machinery." }]
+        },
+        "Heilongjiang": {
+            name: "Heilongjiang", category: "agriculture", indicators: { gdp: "1.65 Trillion RMB", growth: "3.2%", pop: "30.6 Million" },
+            summary: "Northern agricultural security anchor and heavy aerospace engineering zone.",
+            pillars: ["Commercial Agriculture & Grain Logistics", "Heavy Power Generation Equipment", "Aerospace Composites"],
+            resources: ["Largest grain reserve baseline", "Daqing Oilfield deposits"],
+            cities: [{ name: "Harbin", industries: "Heavy Electric Machinery, Gas Turbines, Aerospace Engineering." }]
+        },
+        "Fujian": {
+            name: "Fujian", category: "tech", indicators: { gdp: "5.65 Trillion RMB", growth: "4.6%", pop: "41.8 Million" },
+            summary: "Maritime Silk Road hub and global leader in energy storage batteries.",
+            pillars: ["Lithium EV Batteries (CATL)", "Electronic Information", "Premium Footwear & Textiles"],
+            resources: ["Global battery technology innovation hub", "Extensive private business trading networks"],
+            cities: [{ name: "Xiamen", industries: "LCD Display Panels, Semiconductor Assembly, Cross-border Financial Services." }]
+        },
+        "Henan": {
+            name: "Henan", category: "agriculture", indicators: { gdp: "6.12 Trillion RMB", growth: "4.2%", pop: "98.2 Million" },
+            summary: "Central logistical junction transforming from a food giant to an electronics node.",
+            pillars: ["Electronic Terminal Assembly (Foxconn)", "Food Processing & Agribusiness", "New Materials"],
+            resources: ["Vast demographic dividend and labor supply", "High-density cross-national high-speed rail nodes"],
+            cities: [{ name: "Zhengzhou", industries: "Smartphones Assembly, Commercial Buses (Yutong), Frozen Food Processing." }]
+        },
+        "Hubei": {
+            name: "Hubei", category: "tech", indicators: { gdp: "5.82 Trillion RMB", growth: "5.5%", pop: "58.4 Million" },
+            summary: "Central technological and optoelectronic nexus flanking the Yangtze river transport pipeline.",
+            pillars: ["Optoelectronic Information (Optics Valley)", "Automotive Core Systems", "Biomedicine"],
+            resources: ["Premier engineering research institutions", "High-capacity inland central river port infrastructure"],
+            cities: [{ name: "Wuhan", industries: "Fiber Optic Communications, Flash Memory Chips (YMTC), Automobile Assemblies." }]
+        },
+        "Hunan": {
+            name: "Hunan", category: "industry", indicators: { gdp: "5.21 Trillion RMB", growth: "4.8%", pop: "65.7 Million" },
+            summary: "Global epicentre for heavy construction machinery and intelligent rail platforms.",
+            pillars: ["Heavy Construction Machinery", "Rail Transit Systems", "Advanced Metallurgy & New Materials"],
+            resources: ["Deep industrial engineering talent pool", "Abundant non-ferrous mineral extraction bases"],
+            cities: [{ name: "Changsha", industries: "Heavy Excavation Equipment (Sany), Automotive Assemblies, Cultural Media Production." }]
+        },
+        "Guangxi": {
+            name: "Guangxi", category: "agriculture", indicators: { gdp: "2.82 Trillion RMB", growth: "4.1%", pop: "50.4 Million" },
+            summary: "Southern trade corridor facing ASEAN trade zones with strengths in heavy automotives.",
+            pillars: ["Automotive & Machinery", "Metallurgy", "ASEAN Logistical Routing"],
+            resources: ["Primary sea gateway for western regions (Beibu Gulf)", "Hyperscale sugarcane cultivation"],
+            cities: [{ name: "Liuzhou", industries: "Mini EVs (Wuling), Heavy Industrial Machinery, Steel Metallurgy." }]
+        },
+        "Hainan": {
+            name: "Hainan", category: "service", indicators: { gdp: "0.79 Trillion RMB", growth: "7.5%", pop: "10.4 Million" },
+            summary: "National Free Trade Port pilot zone emphasizing duty-free business and deepsea tech testing.",
+            pillars: ["Duty-Free Tourism & Retail Services", "Modern Maritime Shipping Logistics", "Deep-sea Tech & Seed Science"],
+            resources: ["Sovereign zero-tariff custom policy perks", "Strategic deepsea maritime exploration grids"],
+            cities: [{ name: "Haikou", industries: "Cross-border Financial Tech, Duty-Free Distribution, Pharmaceutical Formulations." }]
+        },
+        "Guizhou": {
+            name: "Guizhou", category: "tech", indicators: { gdp: "2.18 Trillion RMB", growth: "4.6%", pop: "38.5 Million" },
+            summary: "National Big Data storage center leveraging its unique cool climate and natural karst caves.",
+            pillars: ["Cloud Data Storage Centers", "Premium Spirits (Moutai)", "New Energy Battery Materials"],
+            resources: ["Massive low-cost computing power infrastructure", "Rich phosphorus and manganese deposits"],
+            cities: [{ name: "Guiyang", industries: "Hyperscale Server Farms, Cloud Software, Electronic Components." }]
+        },
+        "Shaanxi": {
+            name: "Shaanxi", category: "tech", indicators: { gdp: "3.52 Trillion RMB", growth: "4.5%", pop: "39.5 Million" },
+            summary: "Northwestern high-tech powerhouse anchoring aerospace development and semiconductor design.",
+            pillars: ["Aerospace Engineering", "Semiconductor Wafers & Flash Memory", "New Energy Vehicles"],
+            resources: ["Dense concentrations of defense labs and tech universities", "Massive energy assets in northern grids"],
+            cities: [{ name: "Xian", industries: "Semiconductor Packaging (Samsung), Solar Modules (LONGi), Electric Autos (BYD Xian)." }]
+        },
+        "Gansu": {
+            name: "Gansu", category: "industry", indicators: { gdp: "1.25 Trillion RMB", growth: "5.8%", pop: "24.9 Million" },
+            summary: "Strategic northwest energy passage transitioning rapidly into a wind and solar capital.",
+            pillars: ["Wind & Solar Power Generation", "Petrochemical & Heavy Extraction", "Non-Ferrous Metallurgy"],
+            resources: ["Vast desert corridors optimized for solar arrays", "Rich nickel and cobalt deposits"],
+            cities: [{ name: "Lanzhou", industries: "Petrochemical Refining, Heavy Industrial Piping, Bio-pharmaceutical Bases." }]
+        },
+        "Qinghai": {
+            name: "Qinghai", category: "industry", indicators: { gdp: "0.41 Trillion RMB", growth: "4.8%", pop: "5.9 Million" },
+            summary: "Strategic brine salt-lake resource pool supplying national battery chains.",
+            pillars: ["Salt Lake Lithium Extraction", "Photovoltaic Power Units", "Clean Power Grid Interconnects"],
+            resources: ["Largest national brine lithium and potassium reserve", "Massive solar land grid lots"],
+            cities: [{ name: "Xining", industries: "Lithium Carbonate Synthesis, Carbon Fiber, Special Steel Products." }]
+        },
+        "Ningxia": {
+            name: "Ningxia", category: "tech", indicators: { gdp: "0.56 Trillion RMB", growth: "6.0%", pop: "7.3 Million" },
+            summary: "Key Western cloud computing storage hub and elite wine production zone.",
+            pillars: ["Cloud Computing Data Centers", "Premium Viticulture", "Coal Carbon Chemicals"],
+            resources: ["Abundant low-cost electricity grids for server operations", "Optimal arid soil for premium grapes"],
+            cities: [{ name: "Yinchuan", industries: "Monocrystalline Silicon Wafers, Server Cluster Hosting, Wine Processing." }]
+        },
+        "Xinjiang": {
+            name: "Xinjiang", category: "agriculture", indicators: { gdp: "2.02 Trillion RMB", growth: "6.2%", pop: "25.8 Million" },
+            summary: "Eurasian land corridor boasting immense energy reserves and top-tier industrial farming inputs.",
+            pillars: ["Oil & Natural Gas Refining", "Coal-Fired Clean Power Grid Utilities", "Polysilicon Solar Components"],
+            resources: ["Largest domestic oil, gas, and coal deposit baselines", "Premium long-staple cotton farms"],
+            cities: [{ name: "Urumqi", industries: "Petroleum Refining, Polysilicon Production, Wind Power Turbines, Border Trade Logistics." }]
+        },
+        "Taiwan": {
+            name: "Taiwan", category: "tech", indicators: { gdp: "25.2 Trillion TWD", growth: "2.8%", pop: "23.4 Million" },
+            summary: "Global semiconductor silicon shield with unmatched precision electronic design and foundry ecosystems.",
+            pillars: ["Advanced Semiconductor Manufacturing (TSMC)", "IC Design & Electronic Frameworks", "Precision CNC Machinery"],
+            resources: ["World-leading sub-2nm chip wafer fabrication fabs", "Extensive global tech supply link integrations"],
+            cities: [{ name: "Hsinchu", industries: "Advanced Foundry Substrates, Global IC Prototyping, Optoelectronic Optics." }]
+        },
+        "Macao": {
+            name: "Macao (SAR)", category: "service", indicators: { gdp: "410 Billion MOP", growth: "12%", pop: "0.68 Million" },
+            summary: "International leisure tourism anchor and trade platform connecting Portuguese-speaking markets.",
+            pillars: ["Integrated Leisure Tourism & Hospitality", "MICE Expo Event Services", "Traditional Chinese Medicine Platforms"],
+            resources: ["Free port status with international trade open-channels", "Historical Portuguese linguistic business ties"],
+            cities: [{ name: "Macao", industries: "Cross-border Destination Management, Traditional Medicine Incubators, Offshore Micro-Fintech." }]
+        }
+    };
 
-                const option = {
-                    backgroundColor: '#ffffff',
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: function(params) {
-                            const engName = mapNameMap[params.name] || params.name;
-                            return `<strong>${engName}</strong><br/><span style="font-size:11px;">Click to audit data assets</span>`;
-                        },
-                        backgroundColor: '#1f2937',
-                        textStyle: { color: '#ffffff' }
-                    },
-                    visualMap: {
-                        show: false,
-                        min: 0,
-                        max: 100,
-                        inRange: {
-                            color: ['#f3f4f6', '#e5e7eb', '#cbd5e1', '#94a3b8']
-                        }
-                    },
-                    series: [
-                        {
-                            name: 'China Infrastructure Units',
-                            type: 'map',
-                            map: 'china',
-                            roam: true,
-                            scaleLimit: { min: 1, max: 6 },
-                            label: {
-                                show: true,
-                                fontSize: 9,
-                                color: '#4b5563',
-                                formatter: function(p) { return mapNameMap[p.name] || ''; }
-                            },
-                            emphasis: {
-                                label: { show: true, fontSize: 11, fontWeight: 'bold', color: '#ffffff' },
-                                itemStyle: { areaColor: '#1e3a8a' }
-                            },
-                            itemStyle: {
-                                borderColor: '#ffffff',
-                                borderWidth: 1,
-                                areaColor: '#f3f4f6'
-                            },
-                            data: mapData
-                        }
-                    ]
-                };
+    const mapNameMap = {
+        "北京市": "Beijing", "天津市": "Tianjin", "河北省": "Hebei", "山西省": "Shanxi", "内蒙古自治区": "Neimenggu（Inner Mongolia）",
+        "辽宁省": "Liaoning", "吉林省": "Jilin", "黑龙江省": "Heilongjiang", "上海市": "Shanghai", "江苏省": "Jiangsu",
+        "浙江省": "Zhejiang", "安徽省": "Anhui", "福建省": "Fujian", "江西省": "Jiangxi", "山东省": "Shandong",
+        "河南省": "Henan", "湖北省": "Hubei", "湖南省": "Hunan", "广东省": "Guangdong", "广西壮族自治区": "Guangxi",
+        "海南省": "Hainan", "重庆市": "Chongqing", "四川省": "Sichuan", "贵州省": "Guizhou", "云南省": "Yunnan",
+        "西藏自治区": "Xizang（Tibet）", "陕西省": "Shaanxi", "甘肃省": "Gansu", "青海省": "Qinghai", "宁夏回族自治区": "Ningxia",
+        "新疆维吾尔自治区": "Xinjiang", "台湾省": "Taiwan", "香港特别行政区": "Hongkong", "澳门特别行政区": "Macao"
+    };
 
-                mapChart.setOption(option);
-                mapChart.on('click', function(params) {
-                    const engKey = mapNameMap[params.name];
-                    if (engKey && provinceData[engKey]) {
-                        renderDataDetails(provinceData[engKey]);
-                    } else {
-                        renderFallback(engKey || params.name);
-                    }
-                });
-                
-                initAuxiliaryControls();
+    fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json')
+        .then(response => response.json())
+        .then(chinaJson => {
+            echarts.registerMap('china', chinaJson);
+
+            const mapData = chinaJson.features.map(f => {
+                const chnName = f.properties.name;
+                const engName = mapNameMap[chnName] || chnName;
+                const hasData = provinceData[engName] ? 60 : 20;
+                return { name: chnName, value: hasData };
             });
 
-        function renderDataDetails(data) {
-            const container = document.getElementById('province-info');
-            
-            let pillarBadges = data.pillars.map(p => `<span class="inline-block bg-blue-50 text-blue-800 border border-blue-200 text-xs font-semibold px-2.5 py-1 rounded-md m-0.5">${p}</span>`).join('');
-            let resourceItems = data.resources.map(r => `<li class="text-xs text-gray-600 flex items-start gap-1.5"><i class="fa fa-cube text-gray-400 mt-1"></i><span>${r}</span></li>`).join('');
-            
-            let cityBlocks = data.cities.map(c => `
-                <div class="p-3 bg-gray-50 border border-gray-100 rounded-lg">
-                    <h4 class="text-xs font-bold text-gray-800 flex items-center gap-1.5 mb-1">
-                        <i class="fa fa-building text-primary"></i> ${c.name} Hub
-                    </h4>
-                    <p class="text-xs text-gray-600 leading-relaxed"><span class="font-medium text-gray-400">Pillar Matrix:</span> ${c.industries}</p>
-                </div>
-            `).join('');
-
-            container.innerHTML = `
-                <div class="space-y-5 animate-fadeIn">
-                    <div class="border-b border-gray-100 pb-3">
-                        <span class="text-xs font-bold tracking-widest text-primary uppercase">Geographic Economic Profile</span>
-                        <h2 class="text-2xl font-black text-gray-900 mt-0.5">${data.name}</h2>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2 text-center bg-gray-50/70 p-2.5 rounded-lg border border-gray-100">
-                        <div>
-                            <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Est. GDP (2026)</div>
-                            <div class="text-xs font-bold text-gray-800 mt-0.5">${data.indicators.gdp}</div>
-                        </div>
-                        <div class="border-x border-gray-200">
-                            <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Growth Rate</div>
-                            <div class="text-xs font-bold text-green-600 mt-0.5">${data.indicators.growth}</div>
-                        </div>
-                        <div>
-                            <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Population</div>
-                            <div class="text-xs font-bold text-gray-800 mt-0.5">${data.indicators.pop}</div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-1.5">Industrial Context</h3>
-                        <p class="text-xs text-gray-600 leading-relaxed bg-white">${data.summary}</p>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-2">Regional Pillar Sectors</h3>
-                        <div class="flex flex-wrap -m-0.5">${pillarBadges}</div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-1.5">Structural Reserves & Foundational Resources</h3>
-                        <ul class="space-y-1">${resourceItems}</ul>
-                    </div>
-
-                    <div class="pt-2 border-t border-gray-100">
-                        <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-2.5">Key Node / City Industry Breakdown</h3>
-                        <div class="space-y-2">${cityBlocks}</div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderFallback(name) {
-            const container = document.getElementById('province-info');
-            container.innerHTML = `
-                <div class="space-y-4">
-                    <div class="border-b border-gray-100 pb-3">
-                        <span class="text-xs font-semibold tracking-wider text-gray-400 uppercase">Profile Layer</span>
-                        <h2 class="text-2xl font-bold text-gray-800 mt-0.5">${name}</h2>
-                    </div>
-                    <div class="p-4 bg-yellow-50 text-yellow-800 border border-yellow-100 text-xs rounded-lg flex gap-2">
-                        <i class="fa fa-exclamation-triangle mt-0.5"></i>
-                        <div>
-                            <span class="font-bold">Extended baseline profile pending compilation.</span>
-                            <p class="mt-1 text-gray-600">Please click valid interactive map layers on the left window panel to view full live structured datasets.</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function initAuxiliaryControls() {
-            const searchInput = document.getElementById('province-search');
-            const filterSelect = document.getElementById('industry-filter');
-            const resultsBox = document.getElementById('search-results');
-
-            function executeDirectoryQuery() {
-                const query = searchInput.value.toLowerCase().trim();
-                const filter = filterSelect.value;
-                
-                resultsBox.innerHTML = '';
-                let matchingCount = 0;
-
-                if (query === '' && filter === 'all') {
-                    resultsBox.classList.add('hidden');
-                    return;
-                }
-
-                Object.keys(provinceData).forEach(key => {
-                    const p = provinceData[key];
-                    const matchesQuery = p.name.toLowerCase().includes(query);
-                    const matchesFilter = filter === 'all' || p.category === filter;
-
-                    if (matchesQuery && matchesFilter) {
-                        matchingCount++;
-                        const btn = document.createElement('button');
-                        btn.className = "px-2.5 py-1.5 bg-white border border-gray-200 hover:border-primary hover:bg-blue-50/30 text-gray-700 text-xs font-medium rounded-md transition text-left truncate shadow-sm flex items-center justify-between";
-                        btn.innerHTML = `<span>${p.name}</span><i class="fa fa-chevron-right text-[9px] text-gray-400"></i>`;
-                        btn.onclick = () => renderDataDetails(p);
-                        resultsBox.appendChild(btn);
+            const option = {
+                backgroundColor: '#ffffff',
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function(params) {
+                        const engName = mapNameMap[params.name] || params.name;
+                        return `<strong>${engName}</strong><br/><span style="font-size:11px;">Click to audit data assets</span>`;
+                    },
+                    backgroundColor: '#1f2937',
+                    textStyle: { color: '#ffffff' }
+                },
+                visualMap: {
+                    show: false,
+                    min: 0,
+                    max: 100,
+                    inRange: {
+                        color: ['#f3f4f6', '#e5e7eb', '#cbd5e1', '#94a3b8']
                     }
-                });
+                },
+                series: [
+                    {
+                        name: 'China Infrastructure Units',
+                        type: 'map',
+                        map: 'china',
+                        roam: true,
+                        scaleLimit: { min: 1, max: 6 },
+                        label: {
+                            show: true,
+                            fontSize: 9,
+                            color: '#4b5563',
+                            formatter: function(p) { return mapNameMap[p.name] || ''; }
+                        },
+                        emphasis: {
+                            label: { show: true, fontSize: 11, fontWeight: 'bold', color: '#ffffff' },
+                            itemStyle: { areaColor: '#1e3a8a' }
+                        },
+                        itemStyle: {
+                            borderColor: '#ffffff',
+                            borderWidth: 1,
+                            areaColor: '#f3f4f6'
+                        },
+                        data: mapData
+                    }
+                ]
+            };
 
-                if (matchingCount > 0) {
-                    resultsBox.classList.remove('hidden');
+            mapChart.setOption(option);
+            mapChart.on('click', function(params) {
+                const engKey = mapNameMap[params.name];
+                if (engKey && provinceData[engKey]) {
+                    renderDataDetails(provinceData[engKey]);
                 } else {
-                    resultsBox.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-2">No structural matches found for current filter criteria</div>`;
-                    resultsBox.classList.remove('hidden');
+                    renderFallback(engKey || params.name);
                 }
+            });
+
+            initAuxiliaryControls();
+        });
+
+    function renderDataDetails(data) {
+        const container = document.getElementById('province-info');
+
+        let pillarBadges = data.pillars.map(p => `<span class="inline-block bg-blue-50 text-blue-800 border border-blue-200 text-xs font-semibold px-2.5 py-1 rounded-md m-0.5">${p}</span>`).join('');
+        let resourceItems = data.resources.map(r => `<li class="text-xs text-gray-600 flex items-start gap-1.5"><i class="fa fa-cube text-gray-400 mt-1"></i><span>${r}</span></li>`).join('');
+
+        let cityBlocks = data.cities.map(c => `
+            <div class="p-3 bg-gray-50 border border-gray-100 rounded-lg">
+                <h4 class="text-xs font-bold text-gray-800 flex items-center gap-1.5 mb-1">
+                    <i class="fa fa-building text-primary"></i> ${c.name} Hub
+                </h4>
+                <p class="text-xs text-gray-600 leading-relaxed"><span class="font-medium text-gray-400">Pillar Matrix:</span> ${c.industries}</p>
+            </div>
+        `).join('');
+
+        container.innerHTML = `
+            <div class="space-y-5 animate-fadeIn">
+                <div class="border-b border-gray-100 pb-3">
+                    <span class="text-xs font-bold tracking-widest text-primary uppercase">Geographic Economic Profile</span>
+                    <h2 class="text-2xl font-black text-gray-900 mt-0.5">${data.name}</h2>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 text-center bg-gray-50/70 p-2.5 rounded-lg border border-gray-100">
+                    <div>
+                        <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Est. GDP (2026)</div>
+                        <div class="text-xs font-bold text-gray-800 mt-0.5">${data.indicators.gdp}</div>
+                    </div>
+                    <div class="border-x border-gray-200">
+                        <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Growth Rate</div>
+                        <div class="text-xs font-bold text-green-600 mt-0.5">${data.indicators.growth}</div>
+                    </div>
+                    <div>
+                        <div class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Population</div>
+                        <div class="text-xs font-bold text-gray-800 mt-0.5">${data.indicators.pop}</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-1.5">Industrial Context</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed bg-white">${data.summary}</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-2">Regional Pillar Sectors</h3>
+                    <div class="flex flex-wrap -m-0.5">${pillarBadges}</div>
+                </div>
+
+                <div>
+                    <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-1.5">Structural Reserves & Foundational Resources</h3>
+                    <ul class="space-y-1">${resourceItems}</ul>
+                </div>
+
+                <div class="pt-2 border-t border-gray-100">
+                    <h3 class="text-xs font-bold uppercase text-gray-400 tracking-wide mb-2.5">Key Node / City Industry Breakdown</h3>
+                    <div class="space-y-2">${cityBlocks}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderFallback(name) {
+        const container = document.getElementById('province-info');
+        container.innerHTML = `
+            <div class="space-y-4">
+                <div class="border-b border-gray-100 pb-3">
+                    <span class="text-xs font-semibold tracking-wider text-gray-400 uppercase">Profile Layer</span>
+                    <h2 class="text-2xl font-bold text-gray-800 mt-0.5">${name}</h2>
+                </div>
+                <div class="p-4 bg-yellow-50 text-yellow-800 border border-yellow-100 text-xs rounded-lg flex gap-2">
+                    <i class="fa fa-exclamation-triangle mt-0.5"></i>
+                    <div>
+                        <span class="font-bold">Extended baseline profile pending compilation.</span>
+                        <p class="mt-1 text-gray-600">Please click valid interactive map layers on the left window panel to view full live structured datasets.</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function initAuxiliaryControls() {
+        const searchInput = document.getElementById('province-search');
+        const filterSelect = document.getElementById('industry-filter');
+        const resultsBox = document.getElementById('search-results');
+
+        function executeDirectoryQuery() {
+            const query = searchInput.value.toLowerCase().trim();
+            const filter = filterSelect.value;
+
+            resultsBox.innerHTML = '';
+            let matchingCount = 0;
+
+            if (query === '' && filter === 'all') {
+                resultsBox.classList.add('hidden');
+                return;
             }
 
-            searchInput.addEventListener('input', executeDirectoryQuery);
-            filterSelect.addEventListener('change', executeDirectoryQuery);
+            Object.keys(provinceData).forEach(key => {
+                const p = provinceData[key];
+                const matchesQuery = p.name.toLowerCase().includes(query);
+                const matchesFilter = filter === 'all' || p.category === filter;
+
+                if (matchesQuery && matchesFilter) {
+                    matchingCount++;
+                    const btn = document.createElement('button');
+                    btn.className = "px-2.5 py-1.5 bg-white border border-gray-200 hover:border-primary hover:bg-blue-50/30 text-gray-700 text-xs font-medium rounded-md transition text-left truncate shadow-sm flex items-center justify-between";
+                    btn.innerHTML = `<span>${p.name}</span><i class="fa fa-chevron-right text-[9px] text-gray-400"></i>`;
+                    btn.onclick = () => renderDataDetails(p);
+                    resultsBox.appendChild(btn);
+                }
+            });
+
+            if (matchingCount > 0) {
+                resultsBox.classList.remove('hidden');
+            } else {
+                resultsBox.innerHTML = `<div class="col-span-full text-center text-xs text-gray-400 py-2">No structural matches found for current filter criteria</div>`;
+                resultsBox.classList.remove('hidden');
+            }
+        }
+
+        searchInput.addEventListener('input', executeDirectoryQuery);
+        filterSelect.addEventListener('change', executeDirectoryQuery);
+    }
+}
+
+// 导航栏
+const navbar = document.getElementById('navbar');
+const navLinks = navbar.querySelectorAll('a');
+const navBtn = navbar.querySelector('a[href="#contact"]');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'py-3');
+        navbar.classList.remove('py-6');
+        navLinks.forEach(link => {
+            link.classList.remove('text-[#e0e0e0]', 'hover:text-white');
+            link.classList.add('text-gray-800', 'hover:text-techBlue');
+        });
+        if (navBtn) {
+            navBtn.classList.remove('border-[#d1d1d1]', 'text-[#e0e0e0]', 'hover:bg-white/10');
+            navBtn.classList.add('border-techBlue', 'text-techBlue', 'hover:bg-techBlue/5');
+        }
+    } else {
+        navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'py-3');
+        navbar.classList.add('py-6');
+        navLinks.forEach(link => {
+            link.classList.add('text-[#e0e0e0]', 'hover:text-white');
+            link.classList.remove('text-gray-800', 'hover:text-techBlue');
+        });
+        if (navBtn) {
+            navBtn.classList.add('border-[#d1d1d1]', 'text-[#e0e0e0]', 'hover:bg-white/10');
+            navBtn.classList.remove('border-techBlue', 'text-techBlue', 'hover:bg-techBlue/5');
         }
     }
-    
-    ScrollTrigger.create({
-        trigger: '.bg-bgDeep',
-        start: 'top 80%',
-        onEnter: function() {
-            initChinaMap();
-            this.kill();
-        }
-    });
+});
 
-    document.getElementById('contact-form')?.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        alert('需求提交成功！我们将尽快与您联系');
-    })
+// 页面加载完成后执行
+window.addEventListener("load", () => {
+    setupSectionFadeIn();
+    initScrollEffects();
+});
 
-    const navbar = document.getElementById('navbar');
-    const navLinks = navbar.querySelectorAll('a');
-    const navBtn = navbar.querySelector('a[href="#contact"]');
+// 窗口大小变化时重新初始化（防止横竖切换卡死）
+window.addEventListener("resize", () => {
+    initScrollEffects();
+});
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'py-3');
-            navbar.classList.remove('py-6');
-            navLinks.forEach(link => {
-                link.classList.remove('text-[#e0e0e0]', 'hover:text-white');
-                link.classList.add('text-gray-800', 'hover:text-techBlue');
-            });
-            if (navBtn) {
-                navBtn.classList.remove('border-[#d1d1d1]', 'text-[#e0e0e0]', 'hover:bg-white/10');
-                navBtn.classList.add('border-techBlue', 'text-techBlue', 'hover:bg-techBlue/5');
-            }
-        } else {
-            navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'py-3');
-            navbar.classList.add('py-6');
-            navLinks.forEach(link => {
-                link.classList.add('text-[#e0e0e0]', 'hover:text-white');
-                link.classList.remove('text-gray-800', 'hover:text-techBlue');
-            });
-            if (navBtn) {
-                navBtn.classList.add('border-[#d1d1d1]', 'text-[#e0e0e0]', 'hover:bg-white/10');
-                navBtn.classList.remove('border-techBlue', 'text-techBlue', 'hover:bg-techBlue/5');
-            }
-        }
-    });
+// 地图触发
+ScrollTrigger.create({
+    trigger: '.bg-bgDeep',
+    start: 'top 80%',
+    onEnter: function() {
+        initChinaMap();
+        this.kill();
+    }
+});
 
-    window.addEventListener("load", () => {
-        setupSectionFadeIn();
-        ScrollTrigger.create({
-            trigger: "#china-map",
-            start: "top 80%",
-            once: true,
-            onEnter: initChinaMap
-        });
-    });
+// 表单
+document.getElementById('contact-form')?.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    alert('需求提交成功！我们将尽快与您联系');
+})
 </script>
 
 
