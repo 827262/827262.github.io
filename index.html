@@ -1,3 +1,4 @@
+
 <html lang="zh-CN" class="bg-[#FFFFFF] text-[#525252] overflow-x-hidden select-none"><head>
     <meta name="referrer" content="no-referrer">
     <meta charset="UTF-8">
@@ -49,7 +50,7 @@
                 heroTitle: "IT'S TIME TO EXPLORE NEW CHINA",
                 hereYouWillSee: "Here You Will See......",
                 hereYouWillSeeDesc: "Explore the full picture of China — from intangible heritage, local cuisine and traditional festivals to kung fu culture, manufacturing, cutting-edge technology, leading enterprises, government sectors, healthcare systems and natural resources.",
-                startTour: "Start Your Inspection Tour in China", 
+                startTour: "Start Your Inspection Tour in China",
                 customItinerary: "Custom Itinerary",
                 ourAdvantagesTitle: "OUR ADVANTAGES",
             },
@@ -156,63 +157,59 @@
         .navbar-scrolled .logo-white {
             @apply text-techBlue;
         }
+      /* 横向滚动容器核心样式 */
+.horizontal-wrap {
+  scrollbar-width: none; /* 隐藏Firefox滚动条 */
+  -webkit-overflow-scrolling: touch; /* 移动端顺滑滚动 */
+  scroll-behavior: smooth; 
+  width: max-content !important;/* 平滑滚动 */
+}
+.horizontal-wrap::-webkit-scrollbar {
+  display: none; /* 隐藏Chrome滚动条 */
+}
+/* 确保面板不被挤压 */
+.panel {
+  flex-shrink: 0;
+}
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
 <header id="navbar" class="fixed top-0 left-0 w-full z-[9999] py-6 px-4 navbar-transparent transition-all duration-500">
-    <div class="max-w-6xl mx-auto flex items-center justify-between relative">
-        <a href="#hero-section" class="logo-white">
-            IN CHINA+
-        </a>
+    <!-- 去掉了 max-w-6xl mx-auto，改为 full width + 内部左右对齐 -->
+    <div class="w-full flex items-center justify-between relative px-4 md:px-8">
+       <a href="#" class="flex items-center">
+  <!-- 透明底 Logo 图片，按需调整宽高 -->
+  <img src="/images/logo.png" alt="IN CHINA+" class="h-8 md:h-10 w-auto">
+</a>
 
-<!-- 语言切换按钮（独立出来 → 电脑手机都显示） -->
-<div class="relative lang-dropdown mr-2">
-    <button id="langBtn" class="text-white text-sm font-medium bg-white/20 px-3 py-1 rounded-full hover:bg-white/30">
-        🌐
-    </button>
-    <div id="langMenu" class="absolute top-full right-0 mt-2 hidden bg-white/95 backdrop-blur-md rounded-lg shadow-lg overflow-hidden z-50">
-        <button onclick="setLanguage('zh')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">中文</button>
-        <button onclick="setLanguage('en')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">EN</button>
-        <button onclick="setLanguage('fr')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">FR</button>
-        <button onclick="setLanguage('ja')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">JP</button>
+        <!-- 语言切换按钮（独立出来 → 电脑手机都显示） -->
+        <div class="relative lang-dropdown mr-2">
+            <button id="langBtn" class="text-white text-sm font-medium bg-white/20 px-3 py-1 rounded-full hover:bg-white/30">
+                🌐
+            </button>
+            <div id="langMenu" class="absolute top-full right-0 mt-2 hidden bg-white/95 backdrop-blur-md rounded-lg shadow-lg overflow-hidden z-50">
+                <button onclick="setLanguage('zh')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">CN</button>
+                <button onclick="setLanguage('en')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">EN</button>
+                <button onclick="setLanguage('fr')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">FR</button>
+                <button onclick="setLanguage('ja')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">JP</button>
+            </div>
+        </div>
+
+        <nav class="hidden md:flex items-center gap-6">
+            <a href="#start-tour" class="nav-link" data-i18n="explore">Explore</a>
+            <a href="#resource-map" class="nav-link" data-i18n="resourceMap">Resource Map</a>
+            <a href="#advantages" class="nav-link" data-i18n="ourAdvantages">Our Advantages</a>
+            <a href="#process" class="nav-link" data-i18n="process">Process</a>
+
+            <a href="#contact" class="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-100 transition-all" data-i18n="bookVisit">Book Visit</a>
+        </nav>
+
+        <button class="md:hidden text-[#e0e0e0] text-xl">
+            <i class="fa fa-bars"></i>
+        </button>
     </div>
-</div>
-
-<nav class="hidden md:flex items-center gap-6">
-    <a href="#start-tour" class="nav-link" data-i18n="explore">Explore</a>
-    <a href="#resource-map" class="nav-link" data-i18n="resourceMap">Resource Map</a>
-    <a href="#advantages" class="nav-link" data-i18n="ourAdvantages">Our Advantages</a>
-    <a href="#process" class="nav-link" data-i18n="process">Process</a>
-
-    <a href="#contact" class="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-100 transition-all" data-i18n="bookVisit">Book Visit</a>
-</nav>
-
-<button class="md:hidden text-[#e0e0e0] text-xl">
-    <i class="fa fa-bars"></i>
-</button>
-
-<!-- 语言菜单点击逻辑 -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const langBtn = document.getElementById('langBtn');
-  const langMenu = document.getElementById('langMenu');
-
-  langBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    langMenu.classList.toggle('hidden');
-  });
-
-  document.addEventListener('click', () => {
-    langMenu.classList.add('hidden');
-  });
-
-  langMenu.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-});
-</script>
-</div></header>
+</header>
 
 <div class="fixed inset-0 noise-bg pointer-events-none z-50"></div>
 
@@ -225,7 +222,9 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     
     <div class="text-center z-20 px-6 max-w-6xl">
-        <h1 class="hero-title tracking-tight font-black uppercase text-4xl md:text-8xl leading-none text-white transition-all" data-i18n="heroTitle" style="font-weight: normal; font-size: 64px;">IT'S TIME TO EXPLORE NEW CHINA</h1>
+        <h1 class="hero-title tracking-tight font-black uppercase text-4xl md:text-8xl leading-none text-white transition-all" data-i18n="heroTitle">
+            IT'S TIME TO EXPLORE NEW CHINA
+        </h1>
     </div>
 
     <!-- 手机端自动隐藏所有左右侧图片，电脑端完全不变 -->
@@ -265,78 +264,167 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </section>
 
-<!-- ========== 第一页：仅保留首图（无滑动） ========== -->
-<section id="start-tour" class="relative w-full">
-    <div class="w-full min-h-[50vh] md:h-screen p-6 md:p-24 relative bg-cover bg-center flex items-center" style="background-image: url('https://images.unsplash.com/photo-1634647626782-f5fffa9fd9b1?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-        <div class="absolute inset-0 bg-black/30"></div>
-        <div class="relative z-10 max-w-4xl">
-            <span class="text-white font-mono tracking-widest block mb-4">InChina+</span>
-            <h2 class="text-3xl md:text-7xl font-bold leading-tight text-white" data-i18n="hereYouWillSee">
-                Here You Will See......
-            </h2>
-            <p class="text-white mt-6 text-lg max-w-xl" data-i18n="hereYouWillSeeDesc">
-                Explore the full picture of China — from intangible heritage, local cuisine and traditional festivals to kung fu culture, manufacturing, cutting-edge technology, leading enterprises, government sectors, healthcare systems and natural resources.
-            </p>
-        </div>
+<section id="start-tour" class="horizontal-container relative">
+  <!-- 电脑端：修复后的横向滚动（可来回滚、顺滑无BUG） -->
+  <div class="md:flex hidden horizontal-wrap flex h-screen w-max overflow-x-auto sticky top-0 bg-bgDeep" id="horizontalWrap">
+    <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1634647626782-f5fffa9fd9b1?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+      <div class="absolute inset-0 bg-black/30"></div>
+      <div class="max-w-4xl relative z-10">
+        <span class="text-white font-mono tracking-widest block mb-4">InChina+</span>
+        <h2 class="panel-text-reveal text-3xl md:text-7xl font-bold leading-tight text-white" data-i18n="hereYouWillSee">
+          Here You Will See......
+        </h2>
+        <p class="text-white mt-6 text-lg max-w-xl" data-i18n="hereYouWillSeeDesc">
+          Explore the full picture of China — from intangible heritage, local cuisine and traditional festivals to kung fu culture, manufacturing, cutting-edge technology, leading enterprises, government sectors, healthcare systems and natural resources.
+        </p>
+      </div>
     </div>
-</section>
 
-<!-- ========== 第二页：全新 3×2 网格页面（6个板块） ========== -->
-<section class="py-16 md:py-24 px-4 md:px-16 bg-bgDeep">
-    <div class="max-w-7xl mx-auto">
-        <!-- 电脑 3 个一行 / 手机 1 个一行 -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-
-            <!-- 01 -->
-            <div class="flex flex-col gap-4">
-                <div class="h-64 md:h-80 rounded-3xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1548337138-e87d889cc369?q=80&amp;w=1792&amp;auto=format&amp;fit=crop');"></div>
-                <div class="text-7xl text-white/5 font-mono" style="line-height: 1px;">01</div>
-                <h3 class="text-2xl md:text-3xl font-bold text-techBlue">New Energy Industry Ecosystem Exploration</h3>
-                <p class="text-gray-400">Discover why China is leading the world in new energy.Gain first-hand insight into China's energy transition through curated visits to leading solar, wind, energy storage, hydrogen, and emerging energy industrial clusters.</p>
-            </div>
-
-            <!-- 02 -->
-            <div class="flex flex-col gap-4">
-                <div class="h-64 md:h-80 rounded-3xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?q=80&amp;w=1770&amp;auto=format&amp;fit=crop');"></div>
-                <div class="text-7xl text-white/5 font-mono" style="line-height: 1px;">02</div>
-                <h3 class="text-2xl md:text-3xl font-bold text-easternGold">Low-Altitude Economy &amp; Future Mobility</h3>
-                <p class="text-gray-400">Explore drones, low-altitude aviation, and intelligent transportation — emerging sectors redefining the future of mobility.</p>
-            </div>
-
-            <!-- 03 -->
-            <div class="flex flex-col gap-4">
-                <div class="h-64 md:h-80 rounded-3xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1585166059782-f28143545183?q=80&amp;w=774&amp;auto=format&amp;fit=crop');"></div>
-                <div class="text-7xl text-white/5 font-mono" style="line-height: 1px;">03</div>
-                <h3 class="text-2xl md:text-3xl font-bold text-gray-400">Advanced Manufacturing &amp; Industrial Design</h3>
-                <p class="text-gray-400">Explore the next generation of Chinese manufacturing through leading factories, industrial design centers, and advanced production ecosystems.</p>
-            </div>
-
-            <!-- 04 -->
-            <div class="flex flex-col gap-4">
-                <div class="h-64 md:h-80 rounded-3xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1636821771168-d13e578a88ba?q=80&amp;w=1770&amp;auto=format&amp;fit=crop');"></div>
-                <div class="text-7xl text-white/5 font-mono" style="line-height: 1px;">04</div>
-                <h3 class="text-2xl md:text-3xl font-bold text-purple-400">Sustainable Development &amp; Future Cities</h3>
-                <p class="text-gray-400">See How the Future of Cities Is Emerging in China. Discover smart urban systems, green architecture, and circular economy models.</p>
-            </div>
-
-            <!-- 05 -->
-            <div class="flex flex-col gap-4">
-                <div class="h-64 md:h-80 rounded-3xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&amp;w=2064&amp;auto=format&amp;fit=crop');"></div>
-                <div class="text-7xl text-white/5 font-mono" style="line-height: 1px;">05</div>
-                <h3 class="text-2xl md:text-3xl font-bold text-blue-600" style="line-height: 36px;">AI &amp; Intelligent Manufacturing</h3>
-                <p class="text-gray-400">Visit leading AI companies and intelligent factories to explore how artificial intelligence is transforming modern manufacturing.</p>
-            </div>
-
-            <!-- 06 -->
-            <div class="flex flex-col gap-4">
-                <div class="h-64 md:h-80 rounded-3xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1668600418821-14bc89be2f0d?q=80&amp;w=1740&amp;auto=format&amp;fit=crop');"></div>
-                <div class="text-7xl text-white/5 font-mono" style="line-height: 1px;">06</div>
-                <h3 class="text-2xl md:text-3xl font-bold text-jade">University Innovation &amp; Research Program</h3>
-                <p class="text-gray-400">Step inside China's leading universities, laboratories, and research institutions. Engage in in-depth exchanges with professors and scholars.</p>
-            </div>
-
+    <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgDeep border-l border-white/5">
+      <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+        <div>
+          <div class="text-9xl font-black text-white/5 font-mono">01</div>
+          <h3 class="text-2xl md:text-5xl font-bold text-techBlue mb-6">New Energy Industry Ecosystem Exploration</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">Discover why China is leading the world in new energy.Gain first-hand insight into China's energy transition through curated visits to leading solar, wind, energy storage, hydrogen, and emerging energy industrial clusters.</p>
         </div>
+        <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1548337138-e87d889cc369?q=80&amp;w=1792&amp;auto=format&amp;fit=crop');"></div>
+      </div>
     </div>
+
+    <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgSlate border-l border-white/5">
+      <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+        <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden order-2 md:order-1" style="background-image: url('https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?q=80&amp;w=1770&amp;auto=format&amp;fit=crop');"></div>
+        <div class="order-1 md:order-2">
+          <div class="text-9xl font-black text-white/5 font-mono">02</div>
+          <h3 class="text-2xl md:text-5xl font-bold text-easternGold mb-6">Low-Altitude Economy &amp; Future Mobility</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">Explore drones, low-altitude aviation, and intelligent transportation — emerging sectors redefining the future of mobility.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgSlate border-l border-white/5">
+      <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+        <div>
+          <div class="text-9xl font-black text-white/5 font-mono">03</div>
+          <h3 class="text-2xl md:text-5xl font-bold text-gray-400 mb-6">Advanced Manufacturing &amp; Industrial Design</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">Explore the next generation of Chinese manufacturing through leading factories, industrial design centers, and advanced production ecosystems.</p>
+        </div>
+        <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1585166059782-f28143545183?q=80&amp;w=774&amp;auto=format&amp;fit=crop');"></div>
+      </div>
+    </div>
+
+    <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgDeep border-l border-white/5">
+      <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+        <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden order-2 md:order-1" style="background-image: url('https://images.unsplash.com/photo-1636821771168-d13e578a88ba?q=80&amp;w=1770&amp;auto=format&amp;fit=crop');"></div>
+        <div class="order-1 md:order-2">
+          <div class="text-9xl font-black text-white/5 font-mono">04</div>
+          <h3 class="text-2xl md:text-5xl font-bold text-purple-400 mb-6">Sustainable Development &amp; Future Cities</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">See How the Future of Cities Is Emerging in China. Discover smart urban systems, green architecture, and circular economy models.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgSlate border-l border-white/5">
+      <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+        <div>
+          <div class="text-9xl font-black text-white/5 font-mono">05</div>
+          <h3 class="text-2xl md:text-5xl font-bold text-blue-600 mb-6">AI &amp; Intelligent Manufacturing</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">Visit leading AI companies and intelligent factories to explore how artificial intelligence is transforming modern manufacturing.</p>
+        </div>
+        <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&amp;w=2064&amp;auto=format&amp;fit=crop');"></div>
+      </div>
+    </div>
+
+    <div class="panel w-screen h-screen flex-shrink-0 flex items-center p-8 md:p-24 relative bg-bgDeep border-l border-white/5">
+      <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+        <div class="panel-img-scale h-[50vh] bg-cover bg-center rounded-3xl relative overflow-hidden order-2 md:order-1" style="background-image: url('https://images.unsplash.com/photo-1668600418821-14bc89be2f0d?q=80&amp;w=1740&amp;auto=format&amp;fit=crop');"></div>
+        <div class="order-1 md:order-2">
+          <div class="text-9xl font-black text-white/5 font-mono">06</div>
+          <h3 class="text-2xl md:text-5xl font-bold text-jade mb-6">University Innovation &amp; Research Program</h3>
+          <p class="text-gray-400 leading-relaxed text-lg">Step inside China's leading universities, laboratories, and research institutions. Engage in in-depth exchanges with professors and scholars.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端代码：保留你原来的，无需修改 -->
+  <div class="block md:hidden bg-bgDeep">
+    <!-- 这里是你原来的手机端垂直显示代码，完全保留 -->
+    <div class="w-full min-h-[50vh] p-6 relative bg-cover bg-center flex items-center" style="background-image: url('https://images.unsplash.com/photo-1634647626782-f5fffa9fd9b1?q=80&amp;w=1770&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+      <div class="absolute inset-0 bg-black/30"></div>
+      <div class="relative z-10">
+        <span class="text-white font-mono text-sm mb-2 block">InChina+</span>
+        <h2 class="text-3xl font-bold text-white mb-3" data-i18n="hereYouWillSee">Here You Will See......</h2>
+        <p class="text-white text-sm" data-i18n="hereYouWillSeeDesc">Explore the full picture of China — from intangible heritage, local cuisine and traditional festivals to kung fu culture, manufacturing, cutting-edge technology, leading enterprises, government sectors, healthcare systems and natural resources.</p>
+      </div>
+    </div>
+
+    <div class="w-full p-6 bg-bgDeep border-t border-white/5">
+      <div class="grid grid-cols-1 gap-4">
+        <div>
+          <div class="text-4xl text-white/5 font-mono mb-1">01</div>
+          <h3 class="text-xl font-bold text-techBlue mb-1">New Energy Industry Ecosystem Exploration</h3>
+          <p class="text-gray-400 text-sm">Discover why China is leading the world in new energy.Gain first-hand insight into China's energy transition through curated visits to leading solar, wind, energy storage, hydrogen, and emerging energy industrial clusters.</p>
+        </div>
+        <div class="h-[26vh] rounded-2xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1548337138-e87d889cc369?q=80&amp;w=1792&amp;auto=format&amp;fit=crop');"></div>
+      </div>
+    </div>
+
+    <div class="w-full p-6 bg-bgSlate border-t border-white/5">
+      <div class="grid grid-cols-1 gap-4">
+        <div class="h-[26vh] rounded-2xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507582020474-9a35b7d455d9?q=80&amp;w=1770&amp;auto=fit=crop');"></div>
+        <div>
+          <div class="text-4xl text-white/5 font-mono mb-1">02</div>
+          <h3 class="text-xl font-bold text-easternGold mb-1">Low-Altitude Economy &amp; Future Mobility</h3>
+          <p class="text-gray-400 text-sm">Explore drones, low-altitude aviation, and intelligent transportation — emerging sectors redefining the future of mobility.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full p-6 bg-bgSlate border-t border-white/5">
+      <div class="grid grid-cols-1 gap-4">
+        <div>
+          <div class="text-4xl text-white/5 font-mono mb-1">03</div>
+          <h3 class="text-xl font-bold text-gray-400 mb-1">Advanced Manufacturing &amp; Industrial Design</h3>
+          <p class="text-gray-400 text-sm">Explore the next generation of Chinese manufacturing through leading factories, industrial design centers, and advanced production ecosystems.</p>
+        </div>
+        <div class="h-[26vh] rounded-2xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1585166059782-f5fffa9fd9b1?q=80&amp;w=774&amp;auto=format&amp;fit=crop');"></div>
+      </div>
+    </div>
+
+    <div class="w-full p-6 bg-bgDeep border-t border-white/5">
+      <div class="grid grid-cols-1 gap-4">
+        <div class="h-[26vh] rounded-2xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1636821771168-d13e578a88ba?q=80&amp;w=1770&amp;auto=fit=crop');"></div>
+        <div>
+          <div class="text-4xl text-white/5 font-mono mb-1">04</div>
+          <h3 class="text-xl font-bold text-purple-400 mb-1">Sustainable Development &amp; Future Cities</h3>
+          <p class="text-gray-400 text-sm">See How the Future of Cities Is Emerging in China. Discover smart urban systems, green architecture, and circular economy models.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full p-6 bg-bgSlate border-t border-white/5">
+      <div class="grid grid-cols-1 gap-4">
+        <div>
+          <div class="text-4xl text-white/5 font-mono mb-1">05</div>
+          <h3 class="text-xl font-bold text-blue-600 mb-1">AI &amp; Intelligent Manufacturing</h3>
+          <p class="text-gray-400 text-sm">Visit leading AI companies and intelligent factories to explore how artificial intelligence is transforming modern manufacturing.</p>
+        </div>
+        <div class="h-[26vh] rounded-2xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&amp;w=2064&amp;auto=fit=crop');"></div>
+      </div>
+    </div>
+
+    <div class="w-full p-6 bg-bgDeep border-t border-white/5">
+      <div class="grid grid-cols-1 gap-4">
+        <div class="h-[26vh] rounded-2xl bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1668600418821-14bc89be2f0d?q=80&amp;w=1740&amp;auto=fit=crop');"></div>
+        <div>
+          <div class="text-4xl text-white/5 font-mono mb-1">06</div>
+          <h3 class="text-xl font-bold text-jade mb-1">University Innovation &amp; Research Program</h3>
+          <p class="text-gray-400 text-sm">Step inside China's leading universities, laboratories, and research institutions. Engage in in-depth exchanges with professors and scholars.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <script>
@@ -351,7 +439,11 @@ window.addEventListener('scroll', function() {
     navbar.classList.remove('navbar-scrolled');
   }
 });
+
+
 </script>
+
+
 
 <section id="resource-map" class="w-full min-h-screen bg-white text-dark antialiased pb-16">
     <div class="container mx-auto px-4 py-20 max-w-7xl">
@@ -362,13 +454,14 @@ window.addEventListener('scroll', function() {
 
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
             <div class="lg:col-span-3 w-full">
-               <div class="border border-gray-200 rounded-xl p-4 bg-white shadow-sm h-full max-h-[260px] md:max-h-none flex flex-col justify-between">
-    <div id="china-map" class="map-container w-full flex-grow" style="height: 100%; max-height: 200px; md:max-height: 500px;"></div>
-    <div class="text-xs text-gray-400 mt-1 flex items-center justify-between">
-        <span><i class="fa fa-info-circle mr-1"></i> Use mouse wheel to zoom. Click and drag to pan across regions.</span>
-        <span>Standard Reference Projection (2026 Audit)</span>
-    </div>
-</div>
+                <!-- 手机端限制地图最大高度，电脑端保持全屏高度 h-full -->
+                <div class="border border-gray-200 rounded-xl p-4 bg-white shadow-sm h-full max-h-[500px] md:max-h-none flex flex-col justify-between">
+                    <div id="china-map" class="map-container w-full flex-grow"></div>
+                    <div class="text-xs text-gray-400 mt-2 flex items-center justify-between">
+                        <span><i class="fa fa-info-circle mr-1"></i> Use mouse wheel to zoom. Click and drag to pan across regions.</span>
+                        <span>Standard Reference Projection (2026 Audit)</span>
+                    </div>
+                </div>
             </div>
 
             <div class="lg:col-span-2 w-full">
@@ -404,20 +497,6 @@ window.addEventListener('scroll', function() {
         </div>
     </div>
 </section>
-
-<script>
-// 强制初始化地图
-window.addEventListener('load', function() {
-  setTimeout(() => {
-    if (typeof initChinaMap === 'function') {
-      initChinaMap();
-      console.log('✅ 中国地图已启动');
-    } else {
-      console.error('❌ 地图函数未加载');
-    }
-  }, 800);
-});
-</script>
   
 <section id="start-tour" class="relative w-full py-32 my-16 flex items-center justify-center text-center" style="background-image: url('https://images.unsplash.com/photo-1644067321735-dca4a3be4d35?q=80&amp;w=2542&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="absolute inset-0 bg-black/60 z-0"></div>
@@ -431,7 +510,7 @@ window.addEventListener('load', function() {
     </div>
 </section>
 
-<section id="advantages" class="product-sticky-container relative bg-white w-full flex flex-col md:flex-row min-h-screen h-screen overflow-hidden z-0 pt-10 pb-0 md:pb-0">
+<section id="advantages" class="product-sticky-container relative bg-white w-full flex flex-col md:flex-row min-h-screen h-screen overflow-hidden z-0 pt-10">
     <div class="w-full md:w-1/2 h-40 md:h-screen flex items-center px-8 md:px-24 z-20 bg-cover bg-center relative" style="background-image: url('https://images.unsplash.com/photo-1720050704211-03712ebe857c?q=80&amp;w=981&amp;auto=format&amp;fit=crop');">
         <div class="absolute inset-0 bg-black/40"></div>
         <div class="relative z-10">
@@ -442,7 +521,7 @@ window.addEventListener('load', function() {
     </div>
 
     <div class="w-full md:w-1/2 overflow-y-auto h-full" id="themes-content">
-        <div class="prod-item min-h-0 flex flex-col justify-center px-8 md:px-16 py-5 md:py-11 border-b border-gray-100">
+        <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
             <div class="max-w-3xl mx-auto">
                 <div class="text-techBlue font-mono text-sm mb-5 tracking-wider">THEME 01</div>
                 <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">300+ Verified Direct Resources</h3>
@@ -455,7 +534,7 @@ window.addEventListener('load', function() {
             </div>
         </div>
         
-        <div class="prod-item min-h-0 flex flex-col justify-center px-8 md:px-16 py-5 md:py-11 border-b border-gray-100">
+        <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
             <div class="max-w-3xl mx-auto">
                 <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 02</div>
                 <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">100% Bespoke Solutions</h3>
@@ -468,7 +547,7 @@ window.addEventListener('load', function() {
             </div>
         </div>
 
-        <div class="prod-item min-h-0 flex flex-col justify-center px-8 md:px-16 py-5 md:py-11 border-b border-gray-100">
+        <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
             <div class="max-w-3xl mx-auto">
                 <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 03</div>
                 <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">End-to-End Premium Professional Services</h3>
@@ -481,7 +560,7 @@ window.addEventListener('load', function() {
             </div>
         </div>
 
-        <div class="prod-item min-h-0 flex flex-col justify-center px-8 md:px-16 py-5 md:py-11 border-b border-gray-100">
+        <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
             <div class="max-w-3xl mx-auto">
                 <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 04</div>
                 <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">Long-Term Value Continuity</h3>
@@ -494,7 +573,7 @@ window.addEventListener('load', function() {
             </div>
         </div>
 
-        <div class="prod-item min-h-0 flex flex-col justify-center px-8 md:px-16 py-5 md:py-11 border-b border-gray-100">
+        <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
             <div class="max-w-3xl mx-auto">
                 <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 05</div>
                 <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">Global One-Stop Services</h3>
@@ -507,15 +586,15 @@ window.addEventListener('load', function() {
             </div>
         </div>
 
-        <div class="prod-item min-h-0 flex flex-col justify-center px-8 md:px-16 py-5 md:py-11 border-b border-gray-100">
+        <div class="prod-item min-h-screen flex flex-col justify-center px-8 md:px-16 py-11 border-b border-gray-100">
             <div class="max-w-3xl mx-auto">
                 <div class="text-easternGold font-mono text-sm mb-5 tracking-wider">THEME 06</div>
                 <h3 class="text-3xl md:text-6xl font-bold text-jade mb-8 leading-tight">Comprehensive Service Assurance</h3>
                 <p class="text-gray-500 leading-relaxed mb-6 text-lg">True premium service is not just about smooth execution — it's about complete peace of mind.<br>With end-to-end safety protocols, a dedicated professional team and full insurance coverage, we ensure the safety of all personnel and every step of your itinerary.<br>We also support signing non-disclosure agreements (NDAs) to strictly protect your commercial information, discussion content and partnership plans.</p>
                 <div class="text-base font-mono text-gray-400 flex gap-4">
-                    <span>•Safety&amp; Security</span>
-                    <span>•Confidentiality &amp; Data Protection</span>
-                    <span>•Emergency Response Protocols</span>
+                    <span>• Safety &amp; Security</span>
+                    <span>• Confidentiality &amp; Data Protection</span>
+                    <span>• Emergency Response Protocols</span>
                 </div>
             </div>
         </div>
@@ -544,7 +623,7 @@ window.addEventListener('load', function() {
 
       <!-- 板块3 -->
       <div class="bg-white p-5 md:p-8 rounded-xl shadow-sm">
-        <h3 class="text-lg md:text-xl font-semibly text-gray-800 mb-2">Industry Associations</h3>
+        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2">Industry Associations</h3>
         <p class="text-xs md:text-sm text-gray-500">Official chambers &amp; professional institutions</p>
       </div>
 
@@ -693,7 +772,7 @@ window.addEventListener('load', function() {
             opacity: 0.4;
         }
         .experience-section .card-1 {
-            background-image: url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-image: url("https://plus.unsplash.com/premium_photo-1661433201283-fcb240e88ad4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
         }
         .experience-section .card-2 {
             background-image: url("https://images.unsplash.com/photo-1531970227416-f0cddeb1f748?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
@@ -768,7 +847,7 @@ window.addEventListener('load', function() {
     <h2 class="page-title">Exclusive experience</h2>
     <div class="experience-container">
         <div class="top-wrapper">
-           <div class="top-left">
+            <div class="top-left">
                 <div class="experience-card card-1 stretch-y">
                     <div class="card-title">Premium Industry Banquet</div>
                 </div>
@@ -1207,7 +1286,7 @@ window.addEventListener('load', function() {
         </div>
 
         <div class="border-t border-gray-300 pt-6 flex flex-col md:flex-row justify-between text-gray-600 text-sm">
-            <div>© 2025 IN CHINA+. All rights reserved.</div>
+            <div>© 2026 IN CHINA+. All rights reserved.</div>
             <div class="flex gap-6 mt-4 md:mt-0">
                 <a href="#" class="hover:text-gray-900 transition-colors">Privacy</a>
                 <a href="#" class="hover:text-gray-900 transition-colors">Terms</a>
@@ -1231,53 +1310,50 @@ window.addEventListener('load', function() {
         if(window.chinaChart) window.chinaChart.resize();
     });
 
-    function setupSectionFadeIn() {
-        const sections = gsap.utils.toArray("section:not(#hero-section)");
-        
-        sections.forEach((section) => {
-            const headings = section.querySelectorAll("h1, h2, h3");
-            const texts = section.querySelectorAll("p, span, div");
-            const images = section.querySelectorAll("[style*='background-image']");
-            const cards = section.querySelectorAll(".grid > div, .prod-item, .panel > div");
+   function setupSectionFadeIn() {
+  // 关键：强制排除横向滚动区域，不做一次性入场动画
+  const sections = gsap.utils.toArray(
+    "section:not(#hero-section):not(#start-tour):not(.horizontal-container)"
+  );
 
-            gsap.set(section, { opacity: 0 });
-            gsap.set(headings, { y: 30, opacity: 0 });
-            gsap.set(texts, { y: 20, opacity: 0 });
-            gsap.set(images, { scale: 0.95, opacity: 0 });
-            gsap.set(cards, { y: 40, opacity: 0 });
+  sections.forEach((section) => {
+    // 只给内容做动画，不给整个 section 设 opacity:0
+    const headings = section.querySelectorAll("h1, h2, h3");
+    const texts = section.querySelectorAll("p, span");
+    const images = section.querySelectorAll("[style*='background-image']");
+    const cards = section.querySelectorAll(".grid > div, .prod-item");
 
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top 80%",
-                once: true,
-                onEnter: () => {
-                    gsap.to(section, { 
-                        opacity: 1, 
-                        duration: 0.8,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.to(headings, {
-                        y: 0, opacity: 1, duration: 0.9,
-                        stagger: 0.1, ease: "power3.out"
-                    });
-                    gsap.to(texts, {
-                        y: 0, opacity: 1, duration: 1,
-                        stagger: 0.08, delay: 0.2, ease: "power2.out"
-                    });
-                    gsap.to(images, {
-                        scale: 1, opacity: 1, duration: 1.2,
-                        delay: 0.3, ease: "power2.out"
-                    });
-                    gsap.to(cards, {
-                        y: 0, opacity: 1, duration: 1.1,
-                        stagger: 0.12, delay: 0.1, ease: "power3.out"
-                    });
-                }
-            });
+    // 不设置 section { opacity:0 }，避免锁住滚动
+    gsap.set(headings, { y: 30, opacity: 0 });
+    gsap.set(texts, { y: 20, opacity: 0 });
+    gsap.set(images, { scale: 0.95, opacity: 0 });
+    gsap.set(cards, { y: 40, opacity: 0 });
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.to(headings, {
+          y: 0, opacity: 1, duration: 0.9,
+          stagger: 0.1, ease: "power3.out"
         });
-    }
-
+        gsap.to(texts, {
+          y: 0, opacity: 1, duration: 1,
+          stagger: 0.08, delay: 0.2, ease: "power2.out"
+        });
+        gsap.to(images, {
+          scale: 1, opacity: 1, duration: 1.2,
+          delay: 0.3, ease: "power2.out"
+        });
+        gsap.to(cards, {
+          y: 0, opacity: 1, duration: 1.1,
+          stagger: 0.12, delay: 0.1, ease: "power3.out"
+        });
+      }
+    });
+  });
+}
    // 只控制首页 it's time to... ：立即显示 + 滑动快速消失
 // 完全不影响其他任何动画、交互、横向滚动
 gsap.to(".hero-title", {
@@ -1372,7 +1448,62 @@ gsap.to(".hero-title", {
     });
 
     heroTimeline.to({}, { duration: 1 });
+  
+/// ========== 修复后的横向滚动逻辑（核心） ==========
+document.addEventListener('DOMContentLoaded', () => {
+  // 定位修复后的滚动容器
+  const wrap = document.getElementById('horizontalWrap');
+  if (!wrap) {
+    console.error('横向滚动容器未找到！');
+    return;
+  }
 
+  // 1. 基础样式设置
+  wrap.style.cursor = 'grab';
+  wrap.style.scrollBehavior = 'smooth';
+  wrap.style.webkitOverflowScrolling = 'touch';
+
+  // 2. 鼠标拖拽滚动
+  let isDragging = false;
+  let startX, startScrollLeft;
+
+  wrap.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    wrap.style.cursor = 'grabbing';
+    startX = e.pageX;
+    startScrollLeft = wrap.scrollLeft;
+    e.preventDefault(); // 防止选中文字
+  });
+
+  wrap.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const dx = e.pageX - startX;
+    wrap.scrollLeft = startScrollLeft - dx * 1.2; // 1.2倍速度，更跟手
+  });
+
+  // 结束拖拽
+  ['mouseup', 'mouseleave'].forEach(event => {
+    wrap.addEventListener(event, () => {
+      isDragging = false;
+      wrap.style.cursor = 'grab';
+    });
+  });
+
+  // 3. 滚轮横向滚动（关键：passive: false 必须加）
+  wrap.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    wrap.scrollLeft += e.deltaY * 1.5; // 滚轮速度适配
+  }, { passive: false });
+
+  // 4. 键盘左右键滚动（可选，增强体验）
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') wrap.scrollLeft -= 300;
+    if (e.key === 'ArrowRight') wrap.scrollLeft += 300;
+  });
+
+  console.log('横向滚动功能初始化完成！');
+});
+    
     gsap.utils.toArray(".counter-num").forEach(counter => {
         const target = +counter.dataset.target;
         gsap.to(counter, {
@@ -1721,38 +1852,31 @@ gsap.to(".hero-title", {
                             color: ['#f3f4f6', '#e5e7eb', '#cbd5e1', '#94a3b8']
                         }
                     },
-                  series: [
-    {
-        name: 'China Infrastructure Units',
-        type: 'map',
-        map: 'china',
-        roam: true,
-        // 👇 只改这三行 + 加设备判断
-        zoom: window.innerWidth < 768 ? 1.4 : 1.35, // 手机1.4，电脑1.35
-        center: window.innerWidth < 768 ? [104, 10.5] : [104, 35.5], // 手机上调，电脑保留你的20.5
-        scaleLimit: { 
-            min: window.innerWidth < 768 ? 1.2 : 1.35, // 手机最小缩放1.4，电脑1.35
-            max: 3 
-        },
-        // 👇 以下全部保留你原来的配置，一个字都不用改
-        label: {
-            show: true,
-            fontSize: 9,
-            color: '#4b5563',
-            formatter: function(p) { return mapNameMap[p.name] || ''; }
-        },
-        emphasis: {
-            label: { show: true, fontSize: 11, fontWeight: 'bold', color: '#ffffff' },
-            itemStyle: { areaColor: '#1e3a8a' }
-        },
-        itemStyle: {
-            borderColor: '#ffffff',
-            borderWidth: 1,
-            areaColor: '#f3f4f6'
-        },
-        data: mapData
-    }
-]
+                    series: [
+                        {
+                            name: 'China Infrastructure Units',
+                            type: 'map',
+                            map: 'china',
+                            roam: true,
+                            scaleLimit: { min: 1, max: 6 },
+                            label: {
+                                show: true,
+                                fontSize: 9,
+                                color: '#4b5563',
+                                formatter: function(p) { return mapNameMap[p.name] || ''; }
+                            },
+                            emphasis: {
+                                label: { show: true, fontSize: 11, fontWeight: 'bold', color: '#ffffff' },
+                                itemStyle: { areaColor: '#1e3a8a' }
+                            },
+                            itemStyle: {
+                                borderColor: '#ffffff',
+                                borderWidth: 1,
+                                areaColor: '#f3f4f6'
+                            },
+                            data: mapData
+                        }
+                    ]
                 };
 
                 mapChart.setOption(option);
@@ -1921,6 +2045,4 @@ gsap.to(".hero-title", {
         setupSectionFadeIn();
     });
 </script>
-
-
 </body></html>
