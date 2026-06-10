@@ -881,9 +881,8 @@ addressChengdu: "· 成都：中華人民共和国四川省成都市武侯区吉
     <div class="w-full flex items-center justify-between relative px-4 md:px-8">
         <!-- 左侧 Logo -->
         <a href="#hero-section" class="logo-white flex items-center h-10">
-            <img 
-               <img src="images/logo.png" alt="IN CHINA+" class="h-full w-auto object-contain">
-            >
+            <img <img="" src="images/logo.png" alt="IN CHINA+" class="h-full w-auto object-contain">
+            &gt;
         </a>
 
         <!-- 中间导航（仅电脑显示） -->
@@ -1230,32 +1229,32 @@ window.addEventListener('load', function() {
 <!-- 300+ Corporate Resources -->
 <section class="py-20 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12" data-i18n="corporateResourcesTitle">300+ Corporate Resources</h2>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12" data-i18n="corporateResourcesTitle" style="line-height: 114px;">300+ Ressources d'entreprises</h2>
     
     <!-- 核心改动：电脑一行4个 / 手机一行2个 ✅ -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
       
       <!-- 板块1 -->
       <div class="bg-white p-5 md:p-8 rounded-xl shadow-sm">
-        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" data-i18n="topTierEnterprises">Top Tier Enterprises</h3>
-        <p class="text-xs md:text-sm text-gray-500" data-i18n="topTierEnterprisesDesc">Leading industry giants &amp; flagship companies</p>
+        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" data-i18n="topTierEnterprises" style="line-height: 31px;">Entreprises de premier ordre</h3>
+        <p class="text-xs md:text-sm text-gray-500" data-i18n="topTierEnterprisesDesc" style="line-height: 20px;">Géants industriels et sociétés phares</p>
       </div>
 
       <!-- 板块2 -->
       <div class="bg-white p-5 md:p-8 rounded-xl shadow-sm">
-        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" data-i18n="innovationStartups">Innovation Startups</h3>
-        <p class="text-xs md:text-sm text-gray-500" data-i18n="innovationStartupsDesc">High-growth tech &amp; innovative enterprises</p>
+        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" data-i18n="innovationStartups" style="line-height: 31px;">Startups innovantes</h3>
+        <p class="text-xs md:text-sm text-gray-500" data-i18n="innovationStartupsDesc">Entreprises technologiques à forte croissance</p>
       </div>
 
       <!-- 板块3 -->
       <div class="bg-white p-5 md:p-8 rounded-xl shadow-sm">
-        <h3 class="text-lg md:text-xl font-semibly text-gray-800 mb-2" data-i18n="industryAssociations" style="font-weight: bold;">行业协会机构</h3>
+        <h3 class="text-lg md:text-xl font-semibly text-gray-800 mb-2" data-i18n="industryAssociations" style="font-weight: bold; line-height: 31px;">Associations industrielles</h3>
         <p class="text-xs md:text-sm text-gray-500" data-i18n="industryAssociationsDesc">Official chambers &amp; professional institutions</p>
       </div>
 
       <!-- 板块4 -->
       <div class="bg-white p-5 md:p-8 rounded-xl shadow-sm">
-        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" data-i18n="academicPartners">Academic Partners</h3>
+        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" data-i18n="academicPartners" style="line-height: 31px;">Partenaires académiques</h3>
         <p class="text-xs md:text-sm text-gray-500" data-i18n="academicPartnersDesc">Top universities &amp; research institutions</p>
       </div>
       
@@ -1264,10 +1263,7 @@ window.addEventListener('load', function() {
 </section>
 
 <section class="h-screen w-full relative overflow-hidden">
-    <div 
-        class="w-full h-full object-cover bg-cover bg-center"
-        style="background-image: url('https://images.unsplash.com/photo-1544594376-0a9a6ae2c997?q=80&w=2703&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"
-    >
+    <div class="w-full h-full object-cover bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1544594376-0a9a6ae2c997?q=80&amp;w=2703&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
         <!-- 如果你需要在图片上添加文字或其他内容，可以在这里添加 -->
     </div>
 </section>
@@ -1482,7 +1478,7 @@ window.addEventListener('load', function() {
     }
 </style>
 
-    <h2 class="page-title" data-i18n="exclusiveExperience">Exclusive experience</h2>
+    <h2 class="page-title" data-i18n="exclusiveExperience" style="line-height: 131px; text-decoration: none;">Expérience exclusive</h2>
     <div class="experience-container">
         <div class="top-wrapper">
            <div class="top-left">
@@ -2438,7 +2434,7 @@ gsap.to(".hero-title", {
         zoom: window.innerWidth < 768 ? 1.4 : 1.35, // 手机1.4，电脑1.35
         center: window.innerWidth < 768 ? [104, 10] : [104, 35.5], // 手机上调，电脑保留你的20.5
         scaleLimit: { 
-            min: window.innerWidth < 768 ? 1.2 : 1.35, // 手机最小缩放1.4，电脑1.35
+            min: window.innerWidth < 768 ? 0.9 : 1.35, // 手机最小缩放1.4，电脑1.35
             max: 3 
         },
         // 👇 以下全部保留你原来的配置，一个字都不用改
