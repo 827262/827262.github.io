@@ -345,7 +345,7 @@ step6Item3: "Long-term Resource Matching Services",
     case01: "Egyptian Govt-Enterprise UAV Tour",
     case01Desc: "5-Day Custom UAV Tour for 8 Egyptian Delegation, Connecting Global Leading Tech & Cooperation",
     case02: "European Gaming Delegation | Tencent Exchange",
-    case02Desc: "Connect European gaming firms with Tencent for accurate resource integration.",
+    case02Desc: "Connect European gaming companies with this tech giant to achieve precise resource integration.",
     case03: "US University Industry-Research Exchange",
     case03Desc: "Connect distinguished US professors with China’s leading academic institutions.",
     clientQuote: "“Plenty of top resources can’t be bought with money. IN CHINA+ saved us tons of time and hassle, letting us truly get to grips with how China’s industrial ecosystem works at its core.”",
@@ -878,37 +878,46 @@ addressChengdu: "· 成都：中華人民共和国四川省成都市武侯区吉
 <body class="antialiased overflow-x-hidden">
 
 <header id="navbar" class="fixed top-0 left-0 w-full z-[9999] py-6 px-4 navbar-transparent transition-all duration-500">
-    <div class="max-w-6xl mx-auto flex items-center justify-between relative">
-        <a href="#hero-section" class="logo-white">
-            IN CHINA+
+    <div class="w-full flex items-center justify-between relative px-4 md:px-8">
+        <!-- 左侧 Logo -->
+        <a href="#hero-section" class="logo-white flex items-center h-10">
+            <img 
+                src="827262.github.io/images/logo.png" 
+                alt="IN CHINA+" 
+                class="h-full w-auto object-contain"
+            >
         </a>
 
-<!-- 语言切换按钮（独立出来 → 电脑手机都显示） -->
-<div class="relative lang-dropdown mr-2">
-    <button id="langBtn" class="text-white text-sm font-medium bg-white/20 px-3 py-1 rounded-full hover:bg-white/30">
-        🌐
-    </button>
-    <div id="langMenu" class="absolute top-full right-0 mt-2 hidden bg-white/95 backdrop-blur-md rounded-lg shadow-lg overflow-hidden z-50">
-        <button onclick="setLanguage('zh')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">CN</button>
-        <button onclick="setLanguage('en')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">EN</button>
-        <button onclick="setLanguage('fr')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">FR</button>
-        <button onclick="setLanguage('ja')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">JP</button>
+        <!-- 中间导航（仅电脑显示） -->
+        <nav class="hidden md:flex items-center gap-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <a href="#start-tour" class="nav-link" data-i18n="explore">Explore</a>
+            <a href="#resource-map" class="nav-link" data-i18n="resourceMap">Resource Map</a>
+            <a href="#advantages" class="nav-link" data-i18n="ourAdvantages">Our Advantages</a>
+            <a href="#process" class="nav-link" data-i18n="process">Process</a>
+            <a href="#contact" class="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-100 transition-all" data-i18n="bookVisit">Book Visit</a>
+        </nav>
+
+        <!-- 右侧：小地球 + 手机菜单按钮（永远靠右） -->
+        <div class="flex items-center gap-3 ml-auto">
+            <!-- 语言切换按钮（靠右） -->
+            <div class="relative lang-dropdown">
+                <button id="langBtn" class="text-white text-sm font-medium bg-white/20 px-3 py-1 rounded-full hover:bg-white/30">
+                    🌐
+                </button>
+                <div id="langMenu" class="absolute top-full right-0 mt-2 hidden bg-white/95 backdrop-blur-md rounded-lg shadow-lg overflow-hidden z-50">
+                    <button onclick="setLanguage('zh')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">CN</button>
+                    <button onclick="setLanguage('en')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">EN</button>
+                    <button onclick="setLanguage('fr')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">FR</button>
+                    <button onclick="setLanguage('ja')" class="block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left">JP</button>
+                </div>
+            </div>
+
+            <!-- 手机端菜单按钮 -->
+            <button class="md:hidden text-[#e0e0e0] text-xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
     </div>
-</div>
-
-<nav class="hidden md:flex items-center gap-6">
-    <a href="#start-tour" class="nav-link" data-i18n="explore">Explore</a>
-    <a href="#resource-map" class="nav-link" data-i18n="resourceMap">Resource Map</a>
-    <a href="#advantages" class="nav-link" data-i18n="ourAdvantages">Our Advantages</a>
-    <a href="#process" class="nav-link" data-i18n="process">Process</a>
-
-    <a href="#contact" class="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-100 transition-all" data-i18n="bookVisit">Book Visit</a>
-</nav>
-
-<button class="md:hidden text-[#e0e0e0] text-xl">
-    <i class="fa fa-bars"></i>
-   </button>
- </div>
 </header>
 
 <script>
@@ -1233,7 +1242,7 @@ window.addEventListener('load', function() {
       
       <!-- 板块1 -->
       <div class="bg-white p-5 md:p-8 rounded-xl shadow-sm">
-        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" data-i18n=" topTierEnterprises">Top Tier Enterprises</h3>
+        <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2" data-i18n="topTierEnterprises">Top Tier Enterprises</h3>
         <p class="text-xs md:text-sm text-gray-500" data-i18n="topTierEnterprisesDesc">Leading industry giants &amp; flagship companies</p>
       </div>
 
@@ -1261,7 +1270,7 @@ window.addEventListener('load', function() {
 
 <section class="h-screen w-full relative overflow-hidden">
     <video autoplay="" muted="" loop="" playsinline="" class="w-full h-full object-cover">
-        <source src="https://www.pexels.com/download/video/32016660/" type="video/mp4">
+        <source src="827262.github.io/videos/city.mp4" type="video/mp4">
     </video>
 </section>
 
@@ -1773,7 +1782,7 @@ window.addEventListener('load', function() {
         </div>
     </div>
     <div class="absolute bottom-10 font-mono text-[10px] text-gray-400 tracking-[0.3em] relative z-10" data-doubao-line="1771" data-doubao-column="5" style="translate: none; rotate: none; scale: none; opacity: 1; transform: translate(0px, 0px);">
-        © 2026 IN CHINA+. ALL RIGHTS RESERVED.
+   
     </div>
 </section>
 
