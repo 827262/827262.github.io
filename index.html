@@ -882,9 +882,7 @@ addressChengdu: "· 成都：中華人民共和国四川省成都市武侯区吉
         <!-- 左侧 Logo -->
         <a href="#hero-section" class="logo-white flex items-center h-10">
             <img 
-                src="827262.github.io/images/logo.png" 
-                alt="IN CHINA+" 
-                class="h-full w-auto object-contain"
+               <img src="images/logo.png" alt="IN CHINA+" class="h-full w-auto object-contain">
             >
         </a>
 
@@ -912,10 +910,7 @@ addressChengdu: "· 成都：中華人民共和国四川省成都市武侯区吉
                 </div>
             </div>
 
-            <!-- 手机端菜单按钮 -->
-            <button class="md:hidden text-[#e0e0e0] text-xl">
-                <i class="fa fa-bars"></i>
-            </button>
+            
         </div>
     </div>
 </header>
@@ -1269,8 +1264,20 @@ window.addEventListener('load', function() {
 </section>
 
 <section class="h-screen w-full relative overflow-hidden">
-    <video autoplay="" muted="" loop="" playsinline="" class="w-full h-full object-cover">
-        <source src="827262.github.io/videos/city.mp4" type="video/mp4">
+    <video 
+        autoplay 
+        muted 
+        loop 
+        playsinline 
+        preload="auto"  <!-- 预加载视频 -->
+        poster="images/video-placeholder.jpg"  <!-- 视频加载前的占位图 -->
+        class="w-full h-full object-cover"
+    >
+        <source src="videos/city.mp4" type="video/mp4">
+        <!-- 兼容其他格式（可选） -->
+        <source src="videos/city.webm" type="video/webm">
+        <!-- 降级提示 -->
+        Your browser does not support the video tag.
     </video>
 </section>
 
