@@ -2413,9 +2413,9 @@ gsap.to(".hero-title", {
         roam: true,
         // 👇 只改这三行 + 加设备判断
         zoom: window.innerWidth < 768 ? 1.4 : 1.35, // 手机1.4，电脑1.35
-        center: window.innerWidth < 768 ? [104, 50] : [104, 35.5], // 手机上调，电脑保留你的20.5
+        center: window.innerWidth < 768 ? [104, 10] : [104, 35.5], // 手机上调，电脑保留你的20.5
         scaleLimit: { 
-            min: window.innerWidth < 768 ? 1.2 : 1.35, // 手机最小缩放1.4，电脑1.35
+            min: window.innerWidth < 768 ? 1.1 : 1.35, // 手机最小缩放1.1，电脑1.35
             max: 3 
         },
         // 👇 以下全部保留你原来的配置，一个字都不用改
